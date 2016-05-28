@@ -1,0 +1,3 @@
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+on_i = 1

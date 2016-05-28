@@ -1,2 +1,4 @@
-ln -s ~/dotfiles/.vimrc ~/.vimrc
-ln -s ~/dotfiles/.bash_profile ~/.bash_profile
+ln -sf ~/dotfiles/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/.bash_profile ~/.bash_profile
+ln -sf ~/dotfiles/.vim/dein/dein.toml ~/.vim/dein/dein.toml
+ln -sf ~dotfiles/.vim/dein/dein_lazy.toml ~/.vim/dein/dein_lazy.toml
