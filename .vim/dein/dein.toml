@@ -6,3 +6,7 @@ repo = 'Shougo/unite.vim'
 
 [[plugins]]
 repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'

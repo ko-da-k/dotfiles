@@ -21,6 +21,13 @@ on_ft = 'python'
 repo = 'andviro/flake8-vim'
 on_ft = 'python'
 
+
+# C#
+
+[[plugins]]
+repo = 'OrangeT/vim-csharp'
+on_ft = ['cs','csi','csx']
+
 # 一般設定
 
 [[plugins]]
