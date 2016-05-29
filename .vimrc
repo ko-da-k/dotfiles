@@ -5,12 +5,13 @@ endif
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state(expand('~/.vim/dein'))
-    call dein#begin(expand('~/.vim/dein'))
-
+    
     " プラグインリストを収めたTOMLファイル
     let g:dein_dir = expand('~/.vim/dein')
     let s:toml = g:dein_dir . '/dein.toml'
     let s:lazy_toml = g:dein_dir . '/dein_lazy.toml'
+
+    call dein#begin(expand('~/.vim/dein'), [$MYVIMRC,s:toml])
 
     " TOMLファイルにpluginを記述
     call dein#load_toml(s:toml, {'lazy': 0})
