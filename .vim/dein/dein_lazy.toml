@@ -32,4 +32,5 @@ on_ft = ['cs','csi','csx']
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
-insert = 1
+on_i = 1
+

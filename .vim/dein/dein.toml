@@ -10,3 +10,4 @@ repo = 'tomasr/molokai'
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
+
