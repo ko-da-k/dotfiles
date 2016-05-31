@@ -6,3 +6,4 @@ if [ ! -e ~/.vim/ftplugin ]; then
     mkdir ~/.vim/ftplugin
 fi
 ln -sf ~/dotfiles/.vim/ftplugin/python.vim ~/.vim/ftplugin/python.vim
+ln -sf ~/dotfiles/.zshrc ~/.zshrc
