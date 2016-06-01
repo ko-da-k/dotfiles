@@ -88,3 +88,9 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+"#####Unite.vim#####
+nnoremap [unite] <Nop>
+nmap <Space>f [unite]
+nnoremap <silent> [unite]f :Unite<Space>file<CR>
+nnoremap <silent> [unite]n :Unite<Space>file/new<CR>
