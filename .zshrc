@@ -12,9 +12,9 @@ colors
 bindkey -v
 
 # ヒストリを増やす
-HISTFILE = ~/.zsh_history
-HISTSIZE = 100000
-SAVEHIST = 100000
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
 
 # 同時に起動したzshの間でヒストリを共有する
 setopt share_history
@@ -43,6 +43,9 @@ setopt auto_pushd
 
 # pushdしたとき、ディレクトリがすでにスタックに含まれていれば追加しない
 setopt pushd_ignore_dups
+
+# 候補を詰めて表示
+setopt list_packed
 
 # prompt
 PROMPT="%{${fg[green]}%}%n%{${reset_color}%}@%{${fg[cyan]}%}%m%{${reset_color}%}:%{${fg[yellow]}%}[%~]
