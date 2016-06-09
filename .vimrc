@@ -68,6 +68,7 @@ set wrapscan "検索時に最後まで行ったら最初に戻る
 autocmd filetype  python setlocal completeopt-=preview "docstringは表示しない
 
 "#####neocomplete#####
+let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_ignore_case = 1
 let g:neocomplete#enable_smart_case = 1
@@ -94,3 +95,15 @@ nnoremap [unite] <Nop>
 nmap <Space>f [unite]
 nnoremap <silent> [unite]f :Unite<Space>file<CR>
 nnoremap <silent> [unite]n :Unite<Space>file/new<CR>
+
+" ---------- jedi.vim設定 ----------
+" neocompleteと連携
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+" docstring非表示
+autocmd Filetype python setlocal completeopt-=preview
