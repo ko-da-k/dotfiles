@@ -7,3 +7,4 @@ if [ ! -e ~/.vim/ftplugin ]; then
 fi
 ln -sf ~/dotfiles/.vim/ftplugin/python.vim ~/.vim/ftplugin/python.vim
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sf /Users/labmember/dotfiles/.ideavimrc /Users/labmember/.ideavimrc
