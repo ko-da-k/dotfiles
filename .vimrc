@@ -44,7 +44,6 @@ set smartindent "オートインデント
 set smarttab "新しい行を作った時に高度な自動インデント
 set clipboard=unnamed,autoselect "OSのクリッポボードと連携
 set matchpairs& matchpairs+=<:> "対応カッコに＜＞を追加
-set colorcolumn=80 "80行目にラインを入れる
 set backspace=eol,indent,start
 
 "#####キーバインド#####

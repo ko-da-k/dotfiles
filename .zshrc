@@ -47,6 +47,17 @@ setopt pushd_ignore_dups
 # 候補を詰めて表示
 setopt list_packed
 
+# gitのリポジトリ情報
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats "%F{green}[%b|%a]%F{reset_color}"
+precmd () { vcs_info }
+
 # prompt
-PROMPT="%{${fg[green]}%}%n%{${reset_color}%}@%{${fg[cyan]}%}%m%{${reset_color}%}:%{${fg[yellow]}%}[%~]
-%{${reset_color}%}%# "
+PROMPT="%{${fg[green]}%}%n%{${reset_color}%}@%{${fg[cyan]}%}%m%{${reset_color}%}:"
+RPROMPT="%{${fg[yellow]}%}[%~]%{${reset_color}%}"
+RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
