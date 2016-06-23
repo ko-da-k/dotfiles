@@ -48,7 +48,7 @@ set backspace=eol,indent,start
 
 "#####キーバインド#####
 "ここをコピれば、他のキーバインドにも対応出来る
-inoremap <Space>j <Esc> 
+"inoremap <Space>j <Esc> 
 noremap <Space>o o<Esc>
 noremap <Space>p o<Esc>p
 noremap <Space>h ^

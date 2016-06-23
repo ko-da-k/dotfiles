@@ -1,3 +1,8 @@
+if exists('b:did_ftplugin')
+  finish
+endif
+let b:did_ftplugin = 1
+
 py3 << EOF
 import os
 import sys
@@ -18,3 +23,8 @@ EOF
 let g:syntastic_python_checkers = ["flake8"]
 
 set colorcolumn=80 "80行目にラインを入れる
+set tabstop=4 "インデントをスペース4つ分に設定
+set shiftwidth=4 "自動インデントの幅
+set smartindent "オートインデント
+set smarttab "新しい行を作った時に高度な自動インデント
+
