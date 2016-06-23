@@ -34,10 +34,6 @@ on_ft = 'js'
 repo = 'myhere/vim-nodejs-complete'
 on_ft = 'js'
 
-[[plugins]]
-repo = 'teramako/jscomplete-vim'
-on_ft = 'js'
-
 # html5
 [[plugins]]
 repo = 'othree/html5.vim'
