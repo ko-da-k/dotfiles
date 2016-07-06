@@ -6,3 +6,4 @@ noremap <Space>p o<Esc>p
 noremap <Space>h ^
 noremap <Space>l $
 
+set clipboard=unnamed,autoselect "OSのクリッポボードと連携
