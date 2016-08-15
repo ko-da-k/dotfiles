@@ -5,3 +5,5 @@ eval "$(pyenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
 source $(brew --prefix nvm)/nvm.sh
+
+export PGDATA="/usr/local/var/postgres"
