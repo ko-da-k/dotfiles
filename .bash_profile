@@ -7,3 +7,6 @@ export NVM_DIR="$HOME/.nvm"
 source $(brew --prefix nvm)/nvm.sh
 
 export PGDATA="/usr/local/var/postgres"
+
+export GOPATH="$HOME/Documents/code/Go/"
+export PATH="$GOPATH/bin:$PATH"
