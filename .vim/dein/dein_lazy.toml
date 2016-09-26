@@ -48,6 +48,11 @@ on_ft = 'html'
 repo = 'hail2u/vim-css3-syntax'
 on_ft = 'css'
 
+# Go
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+
 # 一般設定
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'

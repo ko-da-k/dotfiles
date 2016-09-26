@@ -8,5 +8,5 @@ source $(brew --prefix nvm)/nvm.sh
 
 export PGDATA="/usr/local/var/postgres"
 
-export GOPATH="$HOME/Documents/code/Go/"
+export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
