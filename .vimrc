@@ -46,7 +46,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 let g:neocomplete#keyword_patterns._ = '\h\w*'
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><CR> pumvisible() ? "\neocomplete#close_popup()"
+inoremap <expr><CR> pumvisible() ? "\neocomplete#close_popup()" : "\<CR>"
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
