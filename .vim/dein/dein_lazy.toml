@@ -3,9 +3,9 @@
 repo = 'hynek/vim-python-pep8-indent'
 on_ft = 'python'
 
-[[plugins]]
-repo = 'davidhalter/jedi-vim'
-on_ft = 'python'
+#[[plugins]]
+#repo = 'davidhalter/jedi-vim'
+#on_ft = 'python'
 
 #[[plugins]]
 #repo = 'lambdalisue/vim-pyenv'
