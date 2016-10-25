@@ -10,3 +10,5 @@ export PGDATA="/usr/local/var/postgres"
 
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
+
+export PATH="/usr/local/opt/openssl/bin:$PATH"
