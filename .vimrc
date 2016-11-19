@@ -2,12 +2,17 @@
 if &compatible
   set nocompatible
 endif
+
+let g:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = g:dein_dir . '/repos/github.com/Shougo/dein.vim' 
+
+if !isdirectory(g:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+endif
+
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state(expand('~/.vim/dein'))
-    
-    " プラグインリストを収めたTOMLファイル
-    let g:dein_dir = expand('~/.vim/dein')
+if dein#load_state(g:dein_dir)
     let s:toml = g:dein_dir . '/dein.toml'
     let s:lazy_toml = g:dein_dir . '/dein_lazy.toml'
 
@@ -54,8 +59,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 nnoremap [unite] <Nop>
 nmap <Space>f [unite]
 nnoremap <silent> [unite]f :Unite<Space>file<CR>
-nnoremap <silent> [unite]n :Unite<Space>file/new<CR>
-
+nnoremap <silent> [unite]n :Unite<Space>file/new<CR> 
 
 filetype plugin indent on
 
