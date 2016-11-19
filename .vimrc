@@ -6,7 +6,7 @@ endif
 let g:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = g:dein_dir . '/repos/github.com/Shougo/dein.vim' 
 
-if !isdirectory(g:dein_repo_dir)
+if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 
