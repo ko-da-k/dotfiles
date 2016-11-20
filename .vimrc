@@ -1,6 +1,6 @@
 "#####deinの設定#####
 if &compatible
-  set nocompatible
+    set nocompatible
 endif
 
 let g:dein_dir = expand('~/.vim/dein')
@@ -66,24 +66,24 @@ filetype plugin indent on
 "#####kaoriya#####
 if has('kaoriya')
     set noundofile
-	let g:no_vimrc_example=0
-	let g:vimrc_local_finish=1
-	let g:gvimrc_local_finish=1
+    let g:no_vimrc_example=0
+    let g:vimrc_local_finish=1
+    let g:gvimrc_local_finish=1
 
-	"$VIM/plugins/kaoriya/autodate.vim
-	let plugin_autodate_disable  = 1
-	"$VIM/plugins/kaoriya/cmdex.vim
-	let plugin_cmdex_disable     = 1
-	"$VIM/plugins/kaoriya/dicwin.vim
-	let plugin_dicwin_disable    = 1
-	"$VIMRUNTIME/plugin/format.vim
-	let plugin_format_disable    = 1
-	"$VIM/plugins/kaoriya/hz_ja.vim
-	let plugin_hz_ja_disable     = 1
-	"$VIM/plugins/kaoriya/scrnmode.vim
-	let plugin_scrnmode_disable  = 1
-	"$VIM/plugins/kaoriya/verifyenc.vim
-	let plugin_verifyenc_disable = 1
+    "$VIM/plugins/kaoriya/autodate.vim
+    let plugin_autodate_disable  = 1
+    "$VIM/plugins/kaoriya/cmdex.vim
+    let plugin_cmdex_disable     = 1
+    "$VIM/plugins/kaoriya/dicwin.vim
+    let plugin_dicwin_disable    = 1
+    "$VIMRUNTIME/plugin/format.vim
+    let plugin_format_disable    = 1
+    "$VIM/plugins/kaoriya/hz_ja.vim
+    let plugin_hz_ja_disable     = 1
+    "$VIM/plugins/kaoriya/scrnmode.vim
+    let plugin_scrnmode_disable  = 1
+    "$VIM/plugins/kaoriya/verifyenc.vim
+    let plugin_verifyenc_disable = 1
 endif
 
 "#####初期設定#####
@@ -128,7 +128,7 @@ let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 
 if !exists('g:neocomplete#force_omni_input_patterns')
-        let g:neocomplete#force_omni_input_patterns = {}
+    let g:neocomplete#force_omni_input_patterns = {}
 endif
 
 " let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
