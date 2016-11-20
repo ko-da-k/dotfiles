@@ -65,10 +65,11 @@ filetype plugin indent on
 
 "#####kaoriya#####
 if has('kaoriya')
+    set noundofile
 	let g:no_vimrc_example=0
 	let g:vimrc_local_finish=1
 	let g:gvimrc_local_finish=1
- 
+
 	"$VIM/plugins/kaoriya/autodate.vim
 	let plugin_autodate_disable  = 1
 	"$VIM/plugins/kaoriya/cmdex.vim
