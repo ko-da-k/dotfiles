@@ -61,3 +61,8 @@ precmd () { vcs_info }
 PROMPT="%{${fg[green]}%}%n%{${reset_color}%}:"
 RPROMPT="%{${fg[yellow]}%}[%~]%{${reset_color}%}"
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+
+# プロファイリングの出力
+if ( which zprof > /dev/null ) ;then
+    zprof | less
+fi
