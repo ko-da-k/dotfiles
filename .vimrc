@@ -40,7 +40,6 @@ let g:neocomplete#enable_auto_close_preview = 0
 set completeopt-=preview
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#keyword_patterns')
@@ -122,31 +121,5 @@ set ignorecase "大文字/小文字の区別なく検索する
 set smartcase "検索文字列に大文字が含まれている場合は区別して検索する
 set wrapscan "検索時に最後まで行ったら最初に戻る
 
-"#####python設定#####
-autocmd FileType python setlocal omnifunc=jedi#completions
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-endif
-
-" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
-
 "#####Go設定#####
-" vim-go  
-"" mapping  
-""" go runのキーマッピング  
-au FileType go nmap gr (go-run)  
-""" go testのキーマッピング  
-au FileType go nmap gt (go-test)  
-"" highlight  
-let g:go_hightlight_functions = 1  
-let g:go_hightlight_methods = 1  
-let g:go_hightlight_structs = 1  
-let g:go_hightlight_interfaces = 1  
-let g:go_hightlight_operators = 1  
-let g:go_hightlight_build_constraints = 1  
-"" GoFmt時にインポートするパッケージを整理(GoFmtはファイル書き込み時に自動的に実行される)  
-let g:go_fmt_command = "goimports"
+
