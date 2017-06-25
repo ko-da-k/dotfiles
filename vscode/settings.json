@@ -1,5 +1,7 @@
 // Place your settings in this file to overwrite the default settings
 {
+    "editor.fontFamily": "source han code jp",
+    "editor.fontSize": 13,
     "python.linting.pep8Enabled": true,
 
     // 言語に対するファイルの関連付け (例 "*.extension": "html") を構成します。これらの関連付けは、インストールされている言語の既定の関連付けより優先されます。
