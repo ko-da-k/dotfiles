@@ -1,12 +1,14 @@
 source ~/.bashrc
 
-# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
+if [[ -f ~/.pyenv ]]; then 
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
 
-# export NVM_DIR="$HOME/.nvm"
-# source $(brew --prefix nvm)/nvm.sh
+if [[ -f ~/.nodebrew/nodebrew ]]; then
+  export PATH="$HOME/.nodebrew/current/bin:$PATH"
+fi
 
 # export PGDATA="/usr/local/var/postgres"
 
