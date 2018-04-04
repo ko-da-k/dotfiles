@@ -6,6 +6,10 @@ if [[ -f ~/.pyenv ]]; then
   eval "$(pyenv init -)"
 fi
 
+if [[ -f ~/.rbenv ]]; then
+  eval "$(rbenv init -)"
+fi
+
 if [[ -f ~/.nodebrew/nodebrew ]]; then
   export PATH="$HOME/.nodebrew/current/bin:$PATH"
 fi
