@@ -1,18 +1,18 @@
 source ~/.bashrc
 
-if [[ -f ~/.pyenv ]]; then 
+if [ -d ~/.pyenv ]; then 
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
 fi
 
-if [[ -f ~/.rbenv ]]; then
+if [ -d ~/.rbenv ]; then
   export RBENV_ROOT="$HOME/.rbenv"
   export PATH="$RBENV_ROOT/bin:$PATH"
   eval "$(rbenv init -)"
 fi
 
-if [[ -f ~/.nodebrew/nodebrew ]]; then
+if [ -d ~/.nodebrew/nodebrew ]; then
   export PATH="$HOME/.nodebrew/current/bin:$PATH"
 fi
 
