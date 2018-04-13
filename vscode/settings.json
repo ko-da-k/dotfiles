@@ -21,14 +21,6 @@
         "editor.tabSize": 2,
         "editor.insertSpaces": true,
     },
-    "ruby.lint": {
-        "reek": true,
-        "rubocop": true,
-        "ruby": false, //Runs ruby -wc
-        "fasterer": true,
-        "debride": true,
-        "ruby-lint": true
-    },
     "[html]": {
         "editor.tabSize": 2,
         "editor.insertSpaces": true,
@@ -36,6 +28,17 @@
     "[css]": {
         "editor.tabSize": 2,
         "editor.insertSpaces": true,
-    }
+    },
+    "[scss]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+    },
+    "[markdown]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+    },
+    "[slim]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+    },
 }
-
