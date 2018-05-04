@@ -10,6 +10,7 @@
     "git.autofetch": false,
     "python.linting.pep8Enabled": true,
     "terminal.integrated.shellArgs.osx": ["-l"],
+    "terminal.integrated.shellArgs.linux": ["-l"],
 
 
     // 言語に対するファイルの関連付け (例 "*.extension": "html") を構成します。これらの関連付けは、インストールされている言語の既定の関連付けより優先されます。

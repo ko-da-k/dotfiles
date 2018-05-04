@@ -16,6 +16,11 @@ if [ -d ~/.nodebrew/nodebrew ]; then
   export PATH="$HOME/.nodebrew/current/bin:$PATH"
 fi
 
+if [ -d ~/.go ]; then
+  export GOROOT="$HOME/.go"
+  export GOPATH="$HOME/.go"
+  export PATH="$GOPATH/bin:$PATH"
+fi
 # export PGDATA="/usr/local/var/postgres"
 
 # export GOPATH="$HOME/.go"
