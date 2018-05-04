@@ -18,7 +18,7 @@ fi
 
 if [ -d ~/.go ]; then
   export GOROOT="$HOME/.go"
-  export GOPATH="$HOME/.go"
+  export GOPATH="$HOME/Documents/code/go"
   export PATH="$GOPATH/bin:$PATH"
 fi
 # export PGDATA="/usr/local/var/postgres"
