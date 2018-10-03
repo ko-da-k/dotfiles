@@ -1,6 +1,3 @@
-
-
-
 # 環境変数
 export LANG=ja_JP.UTF-8
 
@@ -58,9 +55,12 @@ zstyle ':vcs_info:*' actionformats "%F{green}[%b|%a]%F{reset_color}"
 precmd () { vcs_info }
 
 # prompt
-PROMPT="%{${fg[green]}%}%n%{${reset_color}%}:"
+PROMPT="%{${fg[yellow]}%}[%D{%Y/%m/%d} %T] %{${fg[green]}%}%n%{${reset_color}%}:"
 RPROMPT="%{${fg[yellow]}%}[%~]%{${reset_color}%}"
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+
+TRAPALRM () { zle reset-prompt }
+TMOUT=30
 
 # プロファイリングの出力
 if ( which zprof > /dev/null ) ;then
