@@ -1,22 +1,22 @@
 source ~/.bashrc
 
-if [ -d ~/.pyenv ]; then 
+if [ -e ~/.pyenv ]; then 
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
 fi
 
-if [ -d ~/.rbenv ]; then
+if [ -e ~/.rbenv ]; then
   export RBENV_ROOT="$HOME/.rbenv"
   export PATH="$RBENV_ROOT/bin:$PATH"
   eval "$(rbenv init -)"
 fi
 
-if [ -d ~/.nodebrew/nodebrew ]; then
+if [ -e ~/.nodebrew/nodebrew ]; then
   export PATH="$HOME/.nodebrew/current/bin:$PATH"
 fi
 
-if [ -d ~/.go ]; then
+if [ -e ~/.go ]; then
   export GOROOT="$HOME/.go"
   export GOPATH="$HOME/Documents/code/go"
   export PATH="$GOROOT/bin:$PATH"
