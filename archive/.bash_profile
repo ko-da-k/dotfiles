@@ -27,3 +27,4 @@ fi
 # export PATH="$GOPATH/bin:$PATH"
 
 # export PATH="/usr/local/opt/openssl/bin:$PATH"
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
