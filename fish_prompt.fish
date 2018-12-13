@@ -50,5 +50,5 @@ function fish_prompt
     end
 
     # Main
-    echo -n (set_color cyan)(prompt_pwd)(set_color white) $git_info (set_color red)'>'(set_color yellow)'>'(set_color green)'> '
+    echo -n '['(date "+%H:%M:%S")'] '(set_color cyan)(prompt_pwd)(set_color white) $git_info (set_color red)'>'(set_color yellow)'>'(set_color green)'> '
 end
