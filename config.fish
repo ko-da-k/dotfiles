@@ -21,7 +21,7 @@ if test -d ~/.linuxbrew
   set -x PATH $HOME/.linuxbrew/bin $PATH
 end
 
-set -x GOROOT /usr/local/opt/go/libexec
+# set -x GOROOT /usr/local/opt/go/libexec
 set -x GOPATH $HOME/go
 if test -d $GOPATH/bin
   set -x PATH $GOPATH/bin $PATH
