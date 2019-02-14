@@ -1,6 +1,7 @@
 alias g gcloud
 alias k kubectl
 
+fish_vi_key_bindings
 set fish_plugins theme peco
 
 if test -d ~/.pyenv
