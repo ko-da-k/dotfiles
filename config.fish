@@ -1,5 +1,10 @@
 alias g gcloud
 alias k kubectl
+alias xargs gxargs
+alias head ghead
+alias tail gtail
+alias sed gsed
+alias base64 gbase64
 
 fish_vi_key_bindings
 set fish_plugins theme peco
@@ -30,4 +35,4 @@ end
 set -x PATH $GOROOT/bin $PATH
 set -x GO111MODULE on
 
-
+export LSCOLORS=gxfxcxdxbxegedabagacad
