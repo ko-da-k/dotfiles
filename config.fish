@@ -1,10 +1,21 @@
 alias g gcloud
 alias k kubectl
-alias xargs gxargs
-alias head ghead
-alias tail gtail
-alias sed gsed
-alias base64 gbase64
+
+switch (uname)
+case Linux
+    echo Linux Settings!
+case Darwin
+    echo Darwin Settings!
+    alias xargs gxargs
+    alias head ghead
+    alias tail gtail
+    alias sed gsed
+    alias base64 gbase64
+case FreeBSD NetBSD DraqgonFly
+    echo BSD Setting!
+case '*'
+    echo Stranger!
+end
 
 fish_vi_key_bindings
 set fish_plugins theme peco
