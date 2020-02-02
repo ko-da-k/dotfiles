@@ -4,6 +4,7 @@ alias k kubectl
 switch (uname)
 case Linux
     echo Linux Settings!
+    set -x PATH $HOME/.local/bin $PATH
 case Darwin
     echo Darwin Settings!
     alias xargs gxargs
