@@ -52,9 +52,3 @@ on_ft = 'css'
 [[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
-
-# 一般設定
-[[plugins]]
-repo = 'Shougo/neocomplete.vim'
-on_i = 1
-
