@@ -53,3 +53,37 @@ echo Setup vim && {
 echo Setup Jetbrains && {
     ln -sf $PWD/.ideavimrc $HOME/.ideavimrc
 }
+
+echo Install Ansible && {
+    if type ansible >/dev/null 2>&1; then
+        echo "ansible is already installed" 
+    else
+        OS_TYPE=$(uname -s) 
+        if [ $OS_TYPE == "Darwin" ]; then
+            echo "for Darwin"
+            if type brew >/dev/null 2>&1; then
+                brew install ansible
+            else
+                echo "brew not found. please install homebrew"
+            fi
+        elif [ $OS_TYPE == "Linux" ]; then
+            echo "for Linux"
+            if  [ -e /etc/debian_version ] || [ -e /etc/debian_release ]; then
+                if [ -e /etc/lsb-release ]; then
+                    echo "Ubuntu Distribution"
+                    sudo sh -c "apt update"
+                    sudo sh -c "apt install software-properties-common"
+                    sudo sh -c "apt-add-repository --yes --update ppa:ansible/ansible"
+                    sudo sh -c "apt install ansible -y"
+                else
+                    echo "Debian Distribution"
+                    echo "ansible cannot be installed automatically."
+                fi
+            else
+                echo "unsupported distribution. skip installation."
+            fi
+        else
+            echo "it does not support $OS_TYPE. skip installation."
+        fi
+    fi
+}
