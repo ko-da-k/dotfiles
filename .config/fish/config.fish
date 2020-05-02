@@ -41,10 +41,16 @@ end
 
 # set -x GOROOT /usr/local/opt/go/libexec
 set -x GOPATH $HOME/go
+set -x PATH /usr/local/go/bin $PATH
 if test -d $GOPATH/bin
   set -x PATH $GOPATH/bin $PATH
 end
 set -x PATH $GOROOT/bin $PATH
 set -x GO111MODULE on
+
+if test -d ~/.cargo
+  source $HOME/.cargo/env
+  set -x PATH $HOME/.cargo/bin $PATH
+end
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
