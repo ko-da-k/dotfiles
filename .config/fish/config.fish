@@ -33,9 +33,6 @@ if test -d ~/.pyenv
     eval (pyenv init - | source)
 end
 
-if test -d ~/.nodebrew
-    set -x PATH $HOME/.nodebrew/current/bin $PATH
-end
 
 if test -d ~/.linuxbrew
     eval ($HOME/.linuxbrew/bin/brew shellenv | source)
