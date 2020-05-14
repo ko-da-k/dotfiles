@@ -32,6 +32,7 @@ if test -d ~/.pyenv
     end
     eval (pyenv init - | source)
 end
+set -x PIPENV_VENV_IN_PROJECT true
 
 if test -d ~/.nodebrew
     set -x PATH $HOME/.nodebrew/current/bin $PATH
