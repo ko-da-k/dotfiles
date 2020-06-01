@@ -1,4 +1,4 @@
-alias g gcloud
+alias g git
 alias k kubectl
 
 switch (uname)
@@ -33,14 +33,12 @@ if test -d ~/.pyenv
     eval (pyenv init - | source)
 end
 
-
 if test -d ~/.linuxbrew
     eval ($HOME/.linuxbrew/bin/brew shellenv | source)
     eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv | source)
     set -x PATH $HOME/.linuxbrew/bin $PATH
 end
 
-# set -x GOROOT /usr/local/opt/go/libexec
 set -x GOPATH $HOME/go
 set -x PATH /usr/local/go/bin $PATH
 if test -d $GOPATH/bin
