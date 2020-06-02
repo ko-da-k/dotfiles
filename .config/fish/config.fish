@@ -1,4 +1,4 @@
-alias g gcloud
+alias g git
 alias k kubectl
 
 switch (uname)
@@ -34,17 +34,12 @@ if test -d ~/.pyenv
 end
 set -x PIPENV_VENV_IN_PROJECT true
 
-if test -d ~/.nodebrew
-    set -x PATH $HOME/.nodebrew/current/bin $PATH
-end
-
 if test -d ~/.linuxbrew
     eval ($HOME/.linuxbrew/bin/brew shellenv | source)
     eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv | source)
     set -x PATH $HOME/.linuxbrew/bin $PATH
 end
 
-# set -x GOROOT /usr/local/opt/go/libexec
 set -x GOPATH $HOME/go
 set -x PATH /usr/local/go/bin $PATH
 if test -d $GOPATH/bin
