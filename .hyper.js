@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 12,
 
     // font family with optional fallbacks
-    fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: 'Source Han Code JP, Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
@@ -144,8 +144,8 @@ module.exports = {
       footerTransparent: false,
     },
     opacity: {
-      focus: 0.9,
-      blur: 0.5,
+      focus: 0.95,
+      blur: 0.7,
     },
     tabIcons: {
       activeStyle: {
@@ -190,7 +190,7 @@ module.exports = {
     "hyper-statusline",
     "hyper-search",
     "hyper-opacity",
-    "hyper-tab-icons-plus"
+    "hyper-tab-icons-plus",
   ],
 
 
