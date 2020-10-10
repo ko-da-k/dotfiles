@@ -73,3 +73,7 @@ echo Setup vim && {
 echo Setup Jetbrains && {
     ln -sf $PWD/.ideavimrc $HOME/.ideavimrc
 }
+
+echo Setup Hyper && {
+    ln -sf $PWD/.hyper.js $HOME/.hyper.js
+}
