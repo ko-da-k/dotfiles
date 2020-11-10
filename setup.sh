@@ -64,7 +64,7 @@ echo Setup vim && {
             mkdir -p $HOME/.vim/dein
         fi
         ln -sf $PWD/.vim/dein/dein.toml $HOME/.vim/dein/dein.toml
-        ln -sf $PWD/.vim/dein/dein_lazy.tom/ $HOME/.vim/dein/dein_lazy.toml
+        ln -sf $PWD/.vim/dein/dein_lazy.toml $HOME/.vim/dein/dein_lazy.toml
     else
         echo "vim does not exist in $PATH"
     fi

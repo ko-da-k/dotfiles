@@ -65,6 +65,9 @@ endif
 "#####初期設定#####
 syntax on "コードの色分け
 colorscheme dracula
+let g:dracula_colorterm = 0
+let g:dracula_italic = 0
+set termguicolors
 "#####表示設定#####
 set autoindent "新しい行のインデントを現在行と同じにする
 set expandtab "タブで挿入する文字をスペースに

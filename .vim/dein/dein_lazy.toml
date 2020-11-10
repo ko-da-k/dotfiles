@@ -52,3 +52,4 @@ on_ft = 'css'
 [[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
+
