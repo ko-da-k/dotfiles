@@ -77,3 +77,7 @@ echo Setup Jetbrains && {
 echo Setup Hyper && {
     ln -sf $PWD/.hyper.js $HOME/.hyper.js
 }
+
+echo Setup starship && {
+    ln -sf $PWD/.config/starship.toml $HOME/.config/starship.toml
+}

@@ -28,7 +28,7 @@ end
 if test -d ~/.pyenv
     set -x PYENV_ROOT $HOME/.pyenv
     if test -d ~/.pyenv/bin
-        set -x PATH $PYENV_ROOT/bin $PATH
+        set -x PATH $PATH $PYENV_ROOT/bin 
     end
     eval (pyenv init - | source)
 end
@@ -37,24 +37,27 @@ set -x PIPENV_VENV_IN_PROJECT true
 if test -d ~/.linuxbrew
     eval ($HOME/.linuxbrew/bin/brew shellenv | source)
     eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv | source)
-    set -x PATH $HOME/.linuxbrew/bin $PATH
+    set -x PATH $PATH $HOME/.linuxbrew/bin
 end
 
 set -x GOPATH $HOME/go
 set -x PATH /usr/local/go/bin $PATH
 if test -d $GOPATH/bin
-    set -x PATH $GOPATH/bin $PATH
+    set -x PATH $PATH $GOPATH/bin
 end
 set -x PATH $GOROOT/bin $PATH
 set -x GO111MODULE on
 
 if test -d ~/.cargo
-    source $HOME/.cargo/env
-    set -x PATH $HOME/.cargo/bin $PATH
+    set -x PATH $PATH $HOME/.cargo/bin
 end
 
 if test -d /usr/local/kubebuilder
-  set -x PATH /usr/local/kubebuilder/bin $PATH
+    set -x PATH $PATH /usr/local/kubebuilder/bin
+end
+
+if type -q starship
+    starship init fish | source
 end
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
