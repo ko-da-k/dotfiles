@@ -65,6 +65,3 @@ function fish_prompt
     echo -n $laststatus(set_color brpurple)'['(date "+%H:%M:%S")']' (set_color brcyan)(prompt_pwd)(set_color brwhite) (_git_info)(set_color brcyan) '[kubectx:'(_kubectx)']' \n(set_color brred)'>'(set_color bryellow)'>'(set_color brgreen)'> '
 end
 
-function fish_right_prompt
-    # intentionally left blank
-end
