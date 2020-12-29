@@ -4,7 +4,6 @@ format = """
 ------------------------
 $time$directory$git_branch$git_commit$git_status
 $kubernetes
-$gcloud
 $status$character"""
 
 [package]
