@@ -1,3 +1,11 @@
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = ['toml']
+
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+on_ft = ['tf','tfvars','terraform']
+hook_source = '''
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+'''
