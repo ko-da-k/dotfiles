@@ -70,6 +70,33 @@ echo Setup vim && {
     fi
 }
 
+echo Setup NeoVim && {
+    if type nvim >/dev/null 2>&1; then
+        if [ ! -d $HOME/.config/nvim ]; then
+            mkdir -p $HOME/.config/nvim
+        fi
+
+        ln -sf $PWD/.config/nvim/init.vim $HOME/.config/nvim/init.vim
+
+        if [ ! -d $HOME/.config/nvim/ftplugin ]; then
+            mkdir -p $HOME/.config/nvim/ftplugin
+        fi
+
+        for file in $(find $PWD/.vim/after/ftplugin -maxdepth 1 -type f); do
+            ln -sf $PWD/.vim/after/ftplugin/${file##*/} $HOME/.config/nvim/ftplugin/${file##*/}
+        done
+
+        # setup dein
+        if [ ! -d $HOME/.config/nvim/dein ]; then
+            mkdir -p $HOME/.config/nvim/dein
+        fi
+        ln -sf $PWD/.vim/dein/dein.toml $HOME/.config/nvim/dein/plugin.toml
+        ln -sf $PWD/.vim/dein/dein_lazy.toml $HOME/.config/nvim/dein/lazy.toml
+    else
+        echo "neovim does not exist in $PATH"
+    fi
+}
+
 echo Setup Jetbrains && {
     ln -sf $PWD/.ideavimrc $HOME/.ideavimrc
 }

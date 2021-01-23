@@ -1,5 +1,6 @@
 alias g git
 alias k kubectl
+alias vim nvim
 
 switch (uname)
 case Linux

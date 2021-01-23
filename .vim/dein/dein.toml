@@ -12,20 +12,36 @@ build = 'make'
 repo = 'dracula/vim'
 name = 'dracula'
 
-# [[plugins]]
-# repo = 'Shougo/deoplete'
-# on_i = 1
-# hook_source = '''
-#   let g:deoplete#enable_at_startup = 1
-#   let g:deoplete#auto_complete_delay = 0
-#   let g:deoplete#auto_complete_start_length = 1
-#   let g:deoplete#enable_camel_case = 0
-#   let g:deoplete#enable_ignore_case = 0
-#   let g:deoplete#enable_refresh_always = 0
-#   let g:deoplete#enable_smart_case = 1
-#   let g:deoplete#file#enable_buffer_path = 1
-#   let g:deoplete#max_list = 10000
-#   inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-#         \ neosnippet#expandable_or_jumpable() ?
-#         \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-# '''
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_source = '''
+let g:lsp_semantic_enabled = 1
+'''
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+hook_source = '''
+let g:asyncomplete_enable_for_all = 0
+autocmd vimrc FileType autohotkey,autoit,cfg,git,go,yaml,java,javascript,python,toml,rs,cs call asyncomplete#enable_for_buffer()
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ asyncomplete#force_refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+'''
