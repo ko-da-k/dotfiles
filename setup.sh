@@ -46,6 +46,7 @@ echo Setup vim && {
     if type vim >/dev/null 2>&1; then
         ln -sf $PWD/.vimrc $HOME/.vimrc
         ln -sf $PWD/.ideavimrc $HOME/.ideavimrc
+        ln -sf $PWD/.vimrc.keymap $HOME/.vimrc.keymap
 
         if [ ! -d $HOME/.vim/after ]; then
             mkdir -p $HOME/.vim/after

@@ -84,23 +84,10 @@ set clipboard=unnamed,autoselect "OSのクリッポボードと連携
 set matchpairs& matchpairs+=<:> "対応カッコに＜＞を追加
 set backspace=eol,indent,start
 
-"#####キーバインド#####
-"ここをコピれば、他のキーバインドにも対応出来る
-"inoremap <Space>j <Esc>
-noremap <Space>o o<Esc>
-noremap <Space>p o<Esc>p
-noremap <Space>h ^
-noremap <Space>l $
+"##### keybind #####
+source .vimrc.keymap
 
 "#####余計なファイル設定#####
 set noswapfile "スワップファイルを作らない
 set nobackup "バックアップを作成しない
 set viminfo= "viminfoを作成しない
-
-"#####検索設定#####
-set ignorecase "大文字/小文字の区別なく検索する
-set smartcase "検索文字列に大文字が含まれている場合は区別して検索する
-set wrapscan "検索時に最後まで行ったら最初に戻る
-
-"#####Go設定#####
-

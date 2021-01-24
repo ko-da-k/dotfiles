@@ -7,7 +7,7 @@ end
 function fish_mode_prompt
 end
 
-function fish_prompt 
+function fish_prompt
     set -l last_status $status
     if test $last_status -eq 0
         set laststatus ''
@@ -51,7 +51,7 @@ function fish_prompt
             end
             echo "(git$git_status$git_branch"(set_color white)")"
         end
-    end 
+    end
 
     function _kubectx
         if type kubectl > /dev/null 2>&1
@@ -59,7 +59,7 @@ function fish_prompt
         else
             echo '-'
         end
-    end 
+    end
 
     # Main
     echo -n $laststatus(set_color brpurple)'['(date "+%H:%M:%S")']' (set_color brcyan)(prompt_pwd)(set_color brwhite) (_git_info)(set_color brcyan) '[kubectx:'(_kubectx)']' \n(set_color brred)'>'(set_color bryellow)'>'(set_color brgreen)'> '
