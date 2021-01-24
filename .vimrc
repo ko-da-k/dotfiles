@@ -1,4 +1,4 @@
-"#####deinの設定#####
+"##### dein install start #####
 if &compatible
     set nocompatible
 endif
@@ -26,18 +26,11 @@ if dein#load_state(g:dein_dir)
     call dein#save_state()
 endif
 
-" 未インストールを確認
+" check installation
 if dein#check_install()
     call dein#install()
 endif
-
-"#####Unite.vim#####
-nnoremap [unite] <Nop>
-nmap <Space>f [unite]
-nnoremap <silent> [unite]f :Unite<Space>file<CR>
-nnoremap <silent> [unite]n :Unite<Space>file/new<CR>
-
-filetype plugin indent on
+"##### dein install finished #####
 
 "#####kaoriya#####
 if has('kaoriya')
@@ -62,14 +55,14 @@ if has('kaoriya')
     let plugin_verifyenc_disable = 1
 endif
 
-"#####初期設定#####
+"##### common setup #####
+filetype plugin indent on
 filetype plugin on
 syntax on
 colorscheme dracula
 let g:dracula_colorterm = 0
 let g:dracula_italic = 0
 set termguicolors
-"#####表示設定#####
 set autoindent "新しい行のインデントを現在行と同じにする
 set expandtab "タブで挿入する文字をスペースに
 set number "行番号を表示する
@@ -83,11 +76,19 @@ set smarttab "新しい行を作った時に高度な自動インデント
 set clipboard=unnamed,autoselect "OSのクリッポボードと連携
 set matchpairs& matchpairs+=<:> "対応カッコに＜＞を追加
 set backspace=eol,indent,start
-
-"##### keybind #####
-source .vimrc.keymap
-
-"#####余計なファイル設定#####
+"## file setting
 set noswapfile "スワップファイルを作らない
 set nobackup "バックアップを作成しない
 set viminfo= "viminfoを作成しない
+"##### common setup end #####
+
+"##### keybind start #####
+source .vimrc.keymap 
+
+"### Unite.vim
+nnoremap [unite] <Nop>
+nmap <Space>f [unite]
+nnoremap <silent> [unite]f :Unite<Space>file<CR>
+nnoremap <silent> [unite]n :Unite<Space>file/new<CR>
+
+"##### keybind end ##### 
