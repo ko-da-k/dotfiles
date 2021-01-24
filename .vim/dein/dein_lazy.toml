@@ -9,3 +9,9 @@ hook_source = '''
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 '''
+
+[[plugins]]
+repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
+hook_source = '''
+let g:NERDTreeLimitedSyntax = 1
+'''
