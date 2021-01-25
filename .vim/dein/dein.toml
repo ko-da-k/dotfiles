@@ -14,7 +14,7 @@ name = 'dracula'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-hook_source = '''
+hook_add = '''
 let g:lsp_semantic_enabled = 1
 '''
 
@@ -48,14 +48,14 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 [[plugins]]
 repo = 'preservim/nerdtree'
-hook_source = '''
-let g:NERDTreeIgnore = ['\.pyc','node_modules','.git']
-let g:NERDTreeShowHidden = 1
-
+hook_add = ''' 
 nnoremap <Space>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+let g:NERDTreeIgnore = ['\.pyc','node_modules','.git']
+let g:NERDTreeShowHidden = 1
 '''
 
 [[plugins]]
@@ -69,6 +69,14 @@ repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+hook_add = '''
+let g:gitgutter_sign_column_always = 1
+'''
+
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
+hook_add = '''
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+'''
