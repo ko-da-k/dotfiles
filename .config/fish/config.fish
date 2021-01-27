@@ -1,6 +1,10 @@
 alias g git
 alias k kubectl
 alias vim nvim
+alias ls lsd
+alias lla 'ls -la'
+alias lt 'ls --tree'
+alias lg lazygit
 
 switch (uname)
 case Linux
