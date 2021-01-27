@@ -56,6 +56,7 @@ if has('kaoriya')
 endif
 
 "##### common setup #####
+set encoding=UTF-8
 filetype plugin indent on
 filetype plugin on
 syntax on
