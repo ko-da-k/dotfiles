@@ -59,13 +59,13 @@ let g:NERDTreeShowHidden = 1
 '''
 
 [[plugins]]
-repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-[[plugins]]
 repo = 'Xuyuanp/nerdtree-git-plugin'
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
