@@ -1,1 +1,11 @@
-source .vimrc.keymap
+" common keymap
+
+noremap <Space>o o<Esc>
+noremap <Space>p o<Esc>p
+noremap <Space>h ^
+noremap <Space>l $
+
+set clipboard=unnamed,autoselect "sync os clipboard
+set ignorecase "ignore upper/lower when searching
+set smartcase "not ignore upper when upper contains in search words
+set wrapscan "if last word, next is first word.

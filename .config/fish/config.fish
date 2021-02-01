@@ -1,6 +1,7 @@
 alias g git
 alias k kubectl
 alias vim nvim
+alias view 'vim -RM'
 alias ls lsd
 alias lla 'ls -la'
 alias lt 'ls --tree'
