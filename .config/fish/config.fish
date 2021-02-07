@@ -7,6 +7,9 @@ alias lla 'ls -la'
 alias lt 'ls --tree'
 alias lg lazygit
 
+set -x XDG_CONFIG_HOME $HOME/.config
+set -x XDG_CACHE_HOME $HOME/.cache
+
 switch (uname)
 case Linux
     echo Linux Settings!

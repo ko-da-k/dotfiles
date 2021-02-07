@@ -3,20 +3,21 @@ if &compatible
     set nocompatible
 endif
 
-let g:dein_dir = expand('~/.vim/dein')
+let g:dein_config_dir = expand('~/.config/nvim/dein')
+let g:dein_cache_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = g:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state(g:dein_dir)
-    let s:toml = g:dein_dir . '/dein.toml'
-    let s:lazy_toml = g:dein_dir . '/dein_lazy.toml'
+if dein#load_state(g:dein_cache_dir)
+    let s:toml = g:dein_config_dir . '/plugin.toml'
+    let s:lazy_toml = g:dein_config_dir . '/lazy.toml'
 
-    call dein#begin(expand('~/.vim/dein'), [$MYVIMRC,s:toml])
+    call dein#begin(expand(g:dein_cache_dir), [$MYVIMRC,s:toml])
 
     " TOMLファイルにpluginを記述
     call dein#load_toml(s:toml, {'lazy': 0})
