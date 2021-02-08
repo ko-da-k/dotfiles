@@ -4,14 +4,14 @@ if &compatible
 endif
 
 let g:dein_config_dir = expand('~/.config/nvim/dein')
-let g:dein_cache_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = g:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let g:dein_cache_dir = expand('~/.cache/nvim/dein')
+let s:dein_repo_dir = g:dein_cache_dir . '/repos/github.com/Shougo/dein.vim'
 
 if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/nvim/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state(g:dein_cache_dir)
     let s:toml = g:dein_config_dir . '/plugin.toml'

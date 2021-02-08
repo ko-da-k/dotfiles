@@ -91,6 +91,9 @@ echo Setup NeoVim && {
         if [ ! -d $HOME/.config/nvim/dein ]; then
             mkdir -p $HOME/.config/nvim/dein
         fi
+        if [ ! -d $HOME/.cache/nvim/dein ]; then
+            mkdir -p $HOME/.cache/nvim/dein
+        fi
         ln -sf $PWD/.vim/dein/dein.toml $HOME/.config/nvim/dein/plugin.toml
         ln -sf $PWD/.vim/dein/dein_lazy.toml $HOME/.config/nvim/dein/lazy.toml
     else

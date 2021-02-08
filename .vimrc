@@ -84,7 +84,7 @@ set viminfo= "viminfoを作成しない
 "##### common setup end #####
 
 "##### keybind start #####
-source .vimrc.keymap 
+source ~/.vimrc.keymap 
 
 "### Unite.vim
 nnoremap [unite] <Nop>
