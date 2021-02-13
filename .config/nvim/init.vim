@@ -63,34 +63,31 @@ if has('kaoriya')
     let plugin_verifyenc_disable = 1
 endif
 
-"#####初期設定#####
+"#####common settings#####
 filetype plugin on
 syntax on
 colorscheme dracula
 let g:dracula_colorterm = 0
 let g:dracula_italic = 0
 set termguicolors
-"#####表示設定#####
+set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+
+"#####editor settings#####
 set autoindent "新しい行のインデントを現在行と同じにする
 set expandtab "タブで挿入する文字をスペースに
 set number "行番号を表示する
-set title "編集中のファイル名を表示 
+set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 set tabstop=4 "インデントをスペース4つ分に設定
 set shiftwidth=4 "自動インデントの幅
 set smartindent "オートインデント
 set smarttab "新しい行を作った時に高度な自動インデント
-set clipboard+=unnamedplus "OSのクリッポボードと連携
 set matchpairs& matchpairs+=<:> "対応カッコに＜＞を追加
 set backspace=eol,indent,start
 
-"#####キーバインド#####
-"ここをコピれば、他のキーバインドにも対応出来る
-"inoremap <Space>j <Esc>
-noremap <Space>o o<Esc>
-noremap <Space>p o<Esc>p
-noremap <Space>h ^
-noremap <Space>l $
+"#####keybind#####
+source ~/.vimrc.keymap
 
 "#####余計なファイル設定#####
 set noswapfile "スワップファイルを作らない

@@ -48,7 +48,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 [[plugins]]
 repo = 'preservim/nerdtree'
-hook_add = ''' 
+hook_add = '''
 nnoremap <Space>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
@@ -80,3 +80,6 @@ hook_add = '''
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 '''
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
