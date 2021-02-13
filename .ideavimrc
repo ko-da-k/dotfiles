@@ -1,11 +1,12 @@
 " common keymap
+source ~/.vimrc.keymap
 
-noremap <Space>o o<Esc>
-noremap <Space>p o<Esc>p
-noremap <Space>h ^
-noremap <Space>l $
-
-set clipboard=unnamed,autoselect "sync os clipboard
-set ignorecase "ignore upper/lower when searching
-set smartcase "not ignore upper when upper contains in search words
-set wrapscan "if last word, next is first word.
+" jetbrains actions
+" how to check: `:actionlist`
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap <Leader>gt :action GotoTypeDeclaration<CR>
+nnoremap <Leader>gi :action GotoImplementation<CR>
+nnoremap <Leader>gs :action GotoSuperMethod<CR>
+nnoremap <Leader>b :action JumpToLastChange<CR>
+nnoremap <Leader>ga :action GotoAction<CR>
+vnoremap <Leader>ga :action GotoAction<CR>

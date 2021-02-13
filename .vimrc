@@ -84,7 +84,7 @@ set viminfo= "viminfoを作成しない
 "##### common setup end #####
 
 "##### keybind start #####
-source ~/.vimrc.keymap 
+source ~/.vimrc.keymap
 
 "### Unite.vim
 nnoremap [unite] <Nop>
@@ -92,4 +92,4 @@ nmap <Space>f [unite]
 nnoremap <silent> [unite]f :Unite<Space>file<CR>
 nnoremap <silent> [unite]n :Unite<Space>file/new<CR>
 
-"##### keybind end ##### 
+"##### keybind end #####

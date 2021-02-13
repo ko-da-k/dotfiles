@@ -1,11 +1,17 @@
 " common keymap
+let mapleader = "\<Space>"
 
-noremap <Space>o o<Esc>
-noremap <Space>p o<Esc>p
-noremap <Space>h ^
-noremap <Space>l $
+noremap <Leader>o o<Esc>
+noremap <Leader>p o<Esc>p
+noremap <Leader>h ^
+noremap <Leader>l $
 
 set clipboard+=unnamedplus "sync os clipboard
 set ignorecase "ignore upper/lower when searching
 set smartcase "not ignore upper when upper contains in search words
 set wrapscan "if last word, next is first word.
+
+" search settings
+set ignorecase "ignore upper/lower
+set smartcase "not ignore if upper contains
+set wrapscan "if jump to the bottom, next is first.

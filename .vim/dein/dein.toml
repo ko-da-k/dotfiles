@@ -16,6 +16,10 @@ name = 'dracula'
 repo = 'prabirshrestha/vim-lsp'
 hook_add = '''
 let g:lsp_semantic_enabled = 1
+noremap <silent> gd :LspDefinition<CR>
+noremap <silent> <Leader>gt :LspTypeDefinition<CR>
+noremap <silent> <Leader>gr :LspReferennces<CR>
+noremap <silent> <Leader>gi :LspImplementation<CR>
 '''
 
 [[plugins]]
@@ -50,7 +54,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 repo = 'preservim/nerdtree'
 hook_add = '''
 nnoremap <Space>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-n> :NERDTreeCWD<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
@@ -71,8 +75,10 @@ repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
 let g:gitgutter_sign_column_always = 1
+nmap ghp <Plug>(GitGutterPreviewHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
 '''
-
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
