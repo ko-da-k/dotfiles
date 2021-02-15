@@ -14,6 +14,7 @@ switch (uname)
 case Linux
     echo Linux Settings!
     set -x PATH $HOME/.local/bin $PATH
+    xmodmap -e "keycode 47 = colon semicolon Cyrillic_ZHE"
 case Darwin
     echo Darwin Settings!
     alias xargs gxargs
