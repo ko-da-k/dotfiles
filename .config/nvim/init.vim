@@ -32,12 +32,6 @@ if dein#check_install()
     call dein#install()
 endif
 
-"#####Unite.vim#####
-nnoremap [unite] <Nop>
-nmap <Space>f [unite]
-nnoremap <silent> [unite]f :Unite<Space>file<CR>
-nnoremap <silent> [unite]n :Unite<Space>file/new<CR>
-
 filetype plugin indent on
 
 "#####kaoriya#####
