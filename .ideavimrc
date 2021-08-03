@@ -7,7 +7,8 @@ nnoremap gd :action GotoDeclaration<CR>
 nnoremap <Leader>gt :action GotoTypeDeclaration<CR>
 nnoremap <Leader>gi :action GotoImplementation<CR>
 nnoremap <Leader>gs :action GotoSuperMethod<CR>
-nnoremap <Leader>b :action JumpToLastChange<CR>
+nnoremap <Leader>gb :action Back<CR>
+nnoremap <Leader>gf :action Forward<CR>
 nnoremap <Leader>ga :action GotoAction<CR>
 vnoremap <Leader>ga :action GotoAction<CR>
 nnoremap <Leader>== :action ReformatCode<CR>
