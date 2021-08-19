@@ -35,14 +35,17 @@ function fish_user_key_bindings
     bind \cf peco_change_directory
 end
 
-if test -d ~/.pyenv
-    set -x PYENV_ROOT $HOME/.pyenv
-    if test -d ~/.pyenv/bin
-        set -x PATH $PATH $PYENV_ROOT/bin 
+if test -d ~/.anyenv
+    set -x ANYENV_ROOT $HOME/.anyenv
+    if test -d ~/.anyenv/bin
+        set -x PATH $PATH $ANYENV_ROOT/bin
     end
-    eval (pyenv init - | source)
+    eval (anyenv init - | source)
 end
-set -x PIPENV_VENV_IN_PROJECT true
+
+if type -q poetry
+    poetry config virtualenvs.in-project true
+end
 
 if test -d ~/.linuxbrew
     eval ($HOME/.linuxbrew/bin/brew shellenv | source)

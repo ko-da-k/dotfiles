@@ -16,7 +16,6 @@ vnoremap <Leader>== :action ReformatCode<CR>
 
 " ideavim-easymotion
 set easymotion
-
 map <Leader>f <Plug>(easymotion-bd-f)
 nmap s <Plug>(easymotion-bd-f2)
 nmap g/ <Plug>(easymotion-sn)
