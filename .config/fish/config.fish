@@ -11,10 +11,6 @@ set -x XDG_CONFIG_HOME $HOME/.config
 set -x XDG_CACHE_HOME $HOME/.cache
 
 switch (uname)
-case Linux
-    echo Linux Settings!
-    set -x PATH $HOME/.local/bin $PATH
-    xmodmap -e "keycode 47 = colon semicolon Cyrillic_ZHE"
 case Darwin
     echo Darwin Settings!
     alias xargs gxargs
