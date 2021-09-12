@@ -21,7 +21,7 @@ case Darwin
 case FreeBSD NetBSD DraqgonFly
     echo BSD Setting!
 case '*'
-    echo Stranger!
+    #echo Stranger!
 end
 
 fish_vi_key_bindings
@@ -30,6 +30,16 @@ function fish_user_key_bindings
     bind \cr peco_select_history
     bind \cf peco_change_directory
 end
+
+
+set -x GOPATH $HOME/go
+set -x GOROOT /usr/local/go
+set -x PATH /usr/local/go/bin $PATH
+if test -d $GOPATH/bin
+    set -x PATH $PATH $GOPATH/bin
+end
+set -x PATH $GOROOT/bin $PATH
+set -x GO111MODULE on
 
 if test -d ~/.anyenv
     set -x ANYENV_ROOT $HOME/.anyenv
@@ -49,13 +59,6 @@ if test -d ~/.linuxbrew
     set -x PATH $PATH $HOME/.linuxbrew/bin
 end
 
-set -x GOPATH $HOME/go
-set -x PATH /usr/local/go/bin $PATH
-if test -d $GOPATH/bin
-    set -x PATH $PATH $GOPATH/bin
-end
-set -x PATH $GOROOT/bin $PATH
-set -x GO111MODULE on
 
 if test -d ~/.cargo
     set -x PATH $PATH $HOME/.cargo/bin
@@ -67,6 +70,14 @@ end
 
 if type -q starship
     starship init fish | source
+end
+
+if test -d $HOME/.local/bin
+    set -x PATH $PATH $HOME/.local/bin
+end
+
+if type -q tty
+    set -x GPG_TTY (tty)
 end
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
@@ -87,6 +98,6 @@ function attach_tmux_session_if_needed
     end
 end
 
-if test -z $TMUX && status --is-login
-    attach_tmux_session_if_needed
-end
+#if test -z $TMUX && status --is-login
+#    attach_tmux_session_if_needed
+#end
