@@ -112,3 +112,10 @@ echo Setup Hyper && {
 echo Setup starship && {
     ln -sf $PWD/.config/starship.toml $HOME/.config/starship.toml
 }
+
+echo Setup global gitignore && {
+    if [ ! -d $HOME/.config/git ]; then
+        mkdir -p $HOME/.config/git
+    fi
+    ln -sf $PWD/.config/git/ignore $HOME/.config/git/ignore
+}

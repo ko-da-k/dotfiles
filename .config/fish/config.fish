@@ -32,15 +32,6 @@ function fish_user_key_bindings
 end
 
 
-set -x GOPATH $HOME/go
-set -x GOROOT /usr/local/go
-set -x PATH /usr/local/go/bin $PATH
-if test -d $GOPATH/bin
-    set -x PATH $PATH $GOPATH/bin
-end
-set -x PATH $GOROOT/bin $PATH
-set -x GO111MODULE on
-
 if test -d ~/.anyenv
     set -x ANYENV_ROOT $HOME/.anyenv
     if test -d ~/.anyenv/bin
@@ -48,6 +39,15 @@ if test -d ~/.anyenv
     end
     eval (anyenv init - | source)
 end
+
+#set -x GOPATH $HOME/go
+#set -x GOROOT /usr/local/go
+#set -x PATH /usr/local/go/bin $PATH
+#if test -d $GOPATH/bin
+#    set -x PATH $PATH $GOPATH/bin
+#end
+#set -x PATH $GOROOT/bin $PATH
+#set -x GO111MODULE on
 
 if type -q poetry
     poetry config virtualenvs.in-project true
