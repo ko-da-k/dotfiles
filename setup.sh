@@ -12,6 +12,14 @@ echo Define Variables && {
     readonly PWD=$(pwd)
 }
 
+echo Setup bash && {
+    ln -sf $PWD/.bashrc $HOME/.bashrc
+}
+
+echo Setup bash && {
+    ln -sf $PWD/.zshrc $HOME/.zshrc
+}
+
 echo Setup fish && {
     if type fish >/dev/null 2>&1; then
         ln -sf $PWD/.config/fish/config.fish $HOME/.config/fish/config.fish

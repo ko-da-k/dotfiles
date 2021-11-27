@@ -1,10 +1,15 @@
 add_newline = true
 
-format = """
-------------------------
+format = """------------------------
+$gcloud\
+$aws\
+$kubernetes\
+$golang\
+$python\
+$rust\
+$nodejs
 $time$directory$git_branch$git_commit$git_status
-$kubernetes
-$status$character"""
+$shell$status$character"""
 
 [package]
 disabled = true
@@ -15,15 +20,18 @@ error_symbol = "[✗✗✗](bold red)"
 vicmd_symbol = "[V](bold green)"
 
 [git_branch]
-symbol = "🌱 " 
+symbol = "🌱 "
 
 [kubernetes]
 disabled = false
 format = '[$symbol$context\($namespace\)](green)'
 
 [gcloud]
-disabled = false 
-format = '[$symbol$account(\($project\))$region](blue)'
+disabled = false
+format = '[$symbol$account(@domain)(\($project\))$region](cyan)'
+[gcloud.region_aliases]
+us-central1 = "uc1"
+asia-northeast1 = "an1"
 
 [aws]
 disabled = false
@@ -33,3 +41,24 @@ format = '[$symbol$profile$region]($style)'
 [time]
 disabled = false
 format = '[$time]($style) '
+
+[golang]
+disabled=false
+format = '[$symbol$version](bold cyan)'
+
+[python]
+disabled=false
+format = '[$symbol$pyenv_prefix\($version\)\($virtualenv\)]($style)'
+python_binary = ["./venv/bin/python", "python", "python3"]
+
+[rust]
+disabled=false
+format = "[$symbol$version](red bold)"
+
+[nodejs]
+disabled=false
+format = "[$symbol($version)]($style)"
+
+[shell]
+disabled=true
+format = "[$indicator](bold green)"
