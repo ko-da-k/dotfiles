@@ -1,8 +1,8 @@
 add_newline = true
 
 format = """------------------------
-$gcloud\
-$aws\
+$gcloud
+$aws
 $kubernetes\
 $golang\
 $python\
@@ -28,6 +28,7 @@ format = '[$symbol$context\($namespace\)](green)'
 
 [gcloud]
 disabled = false
+symbol = "gcloud:"
 format = '[$symbol$account(@domain)(\($project\))$region](cyan)'
 [gcloud.region_aliases]
 us-central1 = "uc1"
@@ -35,7 +36,7 @@ asia-northeast1 = "an1"
 
 [aws]
 disabled = false
-symbol = "🅰 "
+symbol = "aws:"
 format = '[$symbol$profile$region]($style)'
 
 [time]
@@ -44,19 +45,23 @@ format = '[$time]($style) '
 
 [golang]
 disabled=false
+symbol = "go:"
 format = '[$symbol$version](bold cyan)'
 
 [python]
 disabled=false
+symbol = "py:"
 format = '[$symbol$pyenv_prefix\($version\)\($virtualenv\)]($style)'
 python_binary = ["./venv/bin/python", "python", "python3"]
 
 [rust]
 disabled=false
+symbol="rs:"
 format = "[$symbol$version](red bold)"
 
 [nodejs]
 disabled=false
+symbol="node:"
 format = "[$symbol($version)]($style)"
 
 [shell]

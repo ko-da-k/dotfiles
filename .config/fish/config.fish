@@ -40,14 +40,10 @@ if test -d ~/.anyenv
     eval (anyenv init - | source)
 end
 
-#set -x GOPATH $HOME/go
-#set -x GOROOT /usr/local/go
-#set -x PATH /usr/local/go/bin $PATH
-#if test -d $GOPATH/bin
-#    set -x PATH $PATH $GOPATH/bin
-#end
-#set -x PATH $GOROOT/bin $PATH
-#set -x GO111MODULE on
+set -x PATH /usr/local/go/bin $PATH
+set -x PATH $HOME/go/bin $PATH
+set -x GO111MODULE on
+alias go go1.17
 
 if type -q poetry
     poetry config virtualenvs.in-project true
