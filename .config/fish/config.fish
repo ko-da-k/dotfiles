@@ -10,9 +10,12 @@ alias lg lazygit
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x XDG_CACHE_HOME $HOME/.cache
 
+set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
+
 switch (uname)
 case Darwin
     echo Darwin Settings!
+    eval (/opt/homebrew/bin/brew shellenv)
     alias xargs gxargs
     alias head ghead
     alias tail gtail
@@ -20,6 +23,11 @@ case Darwin
     alias base64 gbase64
 case FreeBSD NetBSD DraqgonFly
     echo BSD Setting!
+    if test -d ~/.linuxbrew
+        eval ($HOME/.linuxbrew/bin/brew shellenv | source)
+        eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv | source)
+        set -x PATH $PATH $HOME/.linuxbrew/bin
+    end
 case '*'
     #echo Stranger!
 end
@@ -31,30 +39,20 @@ function fish_user_key_bindings
     bind \cf peco_change_directory
 end
 
-
-if test -d ~/.anyenv
-    set -x ANYENV_ROOT $HOME/.anyenv
-    if test -d ~/.anyenv/bin
-        set -x PATH $PATH $ANYENV_ROOT/bin
-    end
-    eval (anyenv init - | source)
+if type -q anyenv
+    source (anyenv init - fish|psub)
 end
+
+# Added by Toolbox App
+set -x PATH $PATH "$HOME/Library/Application Support/Jetbrains/Toolbox/scripts"
 
 set -x PATH /usr/local/go/bin $PATH
 set -x PATH $HOME/go/bin $PATH
 set -x GO111MODULE on
-alias go go1.17
 
 if type -q poetry
     poetry config virtualenvs.in-project true
 end
-
-if test -d ~/.linuxbrew
-    eval ($HOME/.linuxbrew/bin/brew shellenv | source)
-    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv | source)
-    set -x PATH $PATH $HOME/.linuxbrew/bin
-end
-
 
 if test -d ~/.cargo
     set -x PATH $PATH $HOME/.cargo/bin
@@ -69,7 +67,7 @@ if type -q starship
 end
 
 if test -d $HOME/.local/bin
-    set -x PATH $PATH $HOME/.local/bin
+    set -x PATH $HOME/.local/bin $PATH
 end
 
 if type -q tty
