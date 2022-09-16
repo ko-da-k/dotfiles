@@ -57,6 +57,6 @@ format = "[$symbol$version](red bold)"
 
 [nodejs]
 disabled=false
-symbol="node:"
+symbol="nodejs:"
 format = "[$symbol($version)]($style)"
 
