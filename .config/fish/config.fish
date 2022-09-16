@@ -43,12 +43,20 @@ if type -q anyenv
     source (anyenv init - fish|psub)
 end
 
-# Added by Toolbox App
-set -x PATH $PATH "$HOME/Library/Application Support/Jetbrains/Toolbox/scripts"
+if type -q starship
+    starship init fish | source
+end
 
-set -x PATH /usr/local/go/bin $PATH
-set -x PATH $HOME/go/bin $PATH
-set -x GO111MODULE on
+# Added by Toolbox App
+if test -d "$HOME/Library/Application Support/Jetbrains/Toolbox/scripts"
+    set -x PATH $PATH "$HOME/Library/Application Support/Jetbrains/Toolbox/scripts"
+end
+
+if type -q go
+    set -x PATH /usr/local/go/bin $PATH
+    set -x PATH $HOME/go/bin $PATH
+    set -x GO111MODULE on
+end
 
 if type -q poetry
     poetry config virtualenvs.in-project true
@@ -60,10 +68,6 @@ end
 
 if test -d /usr/local/kubebuilder
     set -x PATH $PATH /usr/local/kubebuilder/bin
-end
-
-if type -q starship
-    starship init fish | source
 end
 
 if test -d $HOME/.local/bin

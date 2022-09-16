@@ -1,15 +1,15 @@
 add_newline = true
 
 format = """------------------------
-$gcloud
-$aws
+$gcloud\
+$aws\
 $kubernetes\
 $golang\
 $python\
 $rust\
 $nodejs
-$time$directory$git_branch$git_commit$git_status
-$shell$status$character"""
+$directory$git_branch$git_commit$git_status
+$character"""
 
 [package]
 disabled = true
@@ -39,10 +39,6 @@ disabled = false
 symbol = "aws:"
 format = '[$symbol$profile$region]($style)'
 
-[time]
-disabled = false
-format = '[$time]($style) '
-
 [golang]
 disabled=false
 symbol = "go:"
@@ -51,7 +47,7 @@ format = '[$symbol$version](bold cyan)'
 [python]
 disabled=false
 symbol = "py:"
-format = '[$symbol$pyenv_prefix\($version\)\($virtualenv\)]($style)'
+format = '[$symbol$version\($virtualenv\)]($style)'
 python_binary = ["./venv/bin/python", "python", "python3"]
 
 [rust]
@@ -64,6 +60,3 @@ disabled=false
 symbol="node:"
 format = "[$symbol($version)]($style)"
 
-[shell]
-disabled=true
-format = "[$indicator](bold green)"
