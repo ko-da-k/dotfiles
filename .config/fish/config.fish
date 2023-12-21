@@ -66,6 +66,10 @@ if test -d ~/.cargo
     set -x PATH $PATH $HOME/.cargo/bin
 end
 
+if test -d ~/.krew/bin
+    set -x PATH $PATH $HOME/.krew/bin
+end
+
 if test -d /usr/local/kubebuilder
     set -x PATH $PATH /usr/local/kubebuilder/bin
 end
