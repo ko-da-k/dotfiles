@@ -7,7 +7,8 @@ $kubernetes\
 $golang\
 $python\
 $rust\
-$nodejs
+$nodejs\
+$dotnet
 $directory$git_branch$git_commit$git_status
 $character"""
 
@@ -19,44 +20,45 @@ success_symbol = "[>>>](bold green)"
 error_symbol = "[✗✗✗](bold red)"
 vicmd_symbol = "[V](bold green)"
 
-[git_branch]
-symbol = "🌱 "
-
 [kubernetes]
 disabled = false
-format = '[$symbol$context\($namespace\)](green)'
+format = '[$symbol\($context\($namespace\)\)](green)'
 
 [gcloud]
 disabled = false
-symbol = "gcloud:"
-format = '[$symbol$account(@domain)(\($project\))$region](cyan)'
+symbol = "gcloud"
+format = '[$symbol\($account(@domain)(\($project\))$region\)](cyan)'
 [gcloud.region_aliases]
 us-central1 = "uc1"
 asia-northeast1 = "an1"
 
 [aws]
 disabled = false
-symbol = "aws:"
-format = '[$symbol$profile$region]($style)'
+symbol = "aws"
+format = '[$symbol\(($profile$region)\)]($style)'
 
 [golang]
 disabled=false
-symbol = "go:"
-format = '[$symbol$version](bold cyan)'
+symbol = "go"
+format = '[$symbol\(($version)\)](bold cyan)'
 
 [python]
 disabled=false
-symbol = "py:"
-format = '[$symbol$version\($virtualenv\)]($style)'
+symbol = "py"
+format = '[$symbol\($version\)\($virtualenv\)]($style)'
 python_binary = ["./venv/bin/python", "python", "python3"]
 
 [rust]
 disabled=false
-symbol="rs:"
-format = "[$symbol$version](red bold)"
+symbol="rs"
+format = '[$symbol\(($version)\)]($style)'
 
 [nodejs]
 disabled=false
-symbol="nodejs:"
-format = "[$symbol($version)]($style)"
+symbol="nodejs"
+format = '[$symbol\(($version)|($engines_version)\)]($style)'
 
+[dotnet]
+disabled=false
+symbol=".NET"
+format = '[$symbol\(($version)|($tfm)\)]($style)'
