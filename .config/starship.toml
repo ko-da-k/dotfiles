@@ -10,7 +10,7 @@ $rust\
 $nodejs\
 $dotnet
 $directory$git_branch$git_commit$git_status
-$character"""
+$nix_shell$character"""
 
 [package]
 disabled = true
@@ -62,3 +62,8 @@ format = '[$symbol\(($version)|($engines_version)\)]($style)'
 disabled=false
 symbol=".NET"
 format = '[$symbol\(($version)|($tfm)\)]($style)'
+
+[nix_shell]
+disabled=false
+symbol="nix"
+format = '[$symbol\(($state):($name)\)]($style)'
