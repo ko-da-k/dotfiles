@@ -66,9 +66,6 @@ repo = 'Xuyuanp/nerdtree-git-plugin'
 repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
-repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-[[plugins]]
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
 let g:gitgutter_sign_column_always = 1
