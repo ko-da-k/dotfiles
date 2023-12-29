@@ -50,6 +50,10 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".ideavimrc".source = ./.ideavimrc;
+    ".vimrc.keymap".source = ./.vimrc.keymap;
+    ".tmux.conf".source = ./.tmux.conf;
+    ".hyper.js".source = ./.hyper.js;
   };
 
   # Home Manager can also manage your environment variables through
