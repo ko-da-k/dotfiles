@@ -6,6 +6,9 @@ install-home-manager:
 	./result/activate
 	home-manager --version
 
+build:
+	home-manager build -v --flake .#ko-da-k
+
 switch:
 	home-manager switch -v --flake .#ko-da-k
 
