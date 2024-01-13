@@ -15,7 +15,6 @@ set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
 switch (uname)
 case Darwin
     echo Darwin Settings!
-    eval (/opt/homebrew/bin/brew shellenv)
     alias xargs gxargs
     alias head ghead
     alias tail gtail
