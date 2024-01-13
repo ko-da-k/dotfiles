@@ -42,22 +42,6 @@ echo Setup fish && {
     fi
 }
 
-echo Setup tmux && {
-    if type tmux >/dev/null 2>&1; then
-        ln -sf $PWD/.tmux.conf $HOME/.tmux.conf
-    else
-        echo "tmux does not exist in $PATH"
-    fi
-}
-
-echo Setup Jetbrains && {
-    ln -sf $PWD/.ideavimrc $HOME/.ideavimrc
-}
-
-echo Setup Hyper && {
-    ln -sf $PWD/.hyper.js $HOME/.hyper.js
-}
-
 echo Setup starship && {
     ln -sf $PWD/.config/starship.toml $HOME/.config/starship.toml
 }
