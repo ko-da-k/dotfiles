@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   home.file = {
     ".ideavimrc".source = ./.ideavimrc;
     ".vimrc.keymap".source = ./.vimrc.keymap;
