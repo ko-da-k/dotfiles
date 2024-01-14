@@ -79,5 +79,6 @@
   imports = [ 
     ./neovim.nix 
     ./tmux.nix 
+    ./starship.nix
   ];
 }
