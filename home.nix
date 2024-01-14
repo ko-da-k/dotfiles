@@ -50,7 +50,6 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".tmux.conf".source = ./.tmux.conf;
     ".hyper.js".source = ./.hyper.js;
   };
 
@@ -76,5 +75,8 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  imports = [ ./neovim.nix ];
+  imports = [ 
+    ./neovim.nix 
+    ./tmux.nix 
+  ];
 }
