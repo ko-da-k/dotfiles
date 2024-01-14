@@ -82,6 +82,7 @@
       vim-nix
       vim-fish
       coc-nvim
+      coc-lists
       coc-python
       coc-yaml
       coc-toml
