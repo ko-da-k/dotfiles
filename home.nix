@@ -35,6 +35,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     pkgs.hello
+    (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
