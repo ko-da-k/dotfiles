@@ -6,6 +6,12 @@ install-home-manager:
 	./result/activate
 	home-manager --version
 
+update-home-manager:
+	nix flake update
+	nix build --verbose .#homeConfigurations.ko-da-k.activationPackage
+	./result/activate
+	home-manager --version
+
 build:
 	home-manager build -v --flake .#ko-da-k
 

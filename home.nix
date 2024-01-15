@@ -80,5 +80,6 @@
     ./home/nvim
     ./home/shell/starship.nix
     ./home/terminal/tmux.nix
+    ./home/terminal/alacritty.nix
   ];
 }
