@@ -78,7 +78,7 @@
 
   imports = [ 
     ./home/nvim
-    ./tmux.nix 
-    ./starship.nix
+    ./home/shell/starship.nix
+    ./home/terminal/tmux.nix
   ];
 }
