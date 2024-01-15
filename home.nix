@@ -77,7 +77,7 @@
   programs.home-manager.enable = true;
 
   imports = [ 
-    ./neovim.nix 
+    ./home/nvim
     ./tmux.nix 
     ./starship.nix
   ];
