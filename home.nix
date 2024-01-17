@@ -34,8 +34,12 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    pkgs.hello
     (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
+    pkgs.ghq
+    pkgs.fzf
+    pkgs.asdf-vm
+    pkgs.lsd
+    pkgs.lazygit
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -78,7 +82,7 @@
 
   imports = [ 
     ./home/nvim
-    ./home/shell/starship.nix
+    ./home/shell
     ./home/terminal/tmux.nix
     ./home/terminal/alacritty
   ];

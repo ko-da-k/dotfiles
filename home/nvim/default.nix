@@ -77,6 +77,7 @@
         nmap <Leader>w <Plug>(easymotion-overwin-w)
         '';
       }
+      lazygit-nvim
       vim-terraform
       vim-nix
       vim-fish

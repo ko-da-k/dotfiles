@@ -20,28 +20,6 @@ echo Setup bash && {
     ln -sf $PWD/.zshrc $HOME/.zshrc
 }
 
-echo Setup fish && {
-    if type fish >/dev/null 2>&1; then
-        ln -sf $PWD/.config/fish/config.fish $HOME/.config/fish/config.fish
-        if [ ! -d $HOME/.config/fish/functions ]; then
-            mkdir -p $HOME/.config/fish/functions
-        fi
-        if [ ! -d $HOME/.config/fish/conf.d ]; then
-            mkdir -p $HOME/.config/fish/conf.d
-        fi
-
-        for file in $(find $PWD/.config/fish/functions -maxdepth 1 -type f); do
-            ln -sf $PWD/.config/fish/functions/${file##*/} $HOME/.config/fish/functions/${file##*/}
-        done
-
-        for file in $(find $PWD/.config/fish/conf.d -maxdepth 1 -type f); do
-            ln -sf $PWD/.config/fish/conf.d/${file##*/} $HOME/.config/fish/conf.d/${file##*/}
-        done
-    else
-        echo "fish does not exist in $PATH"
-    fi
-}
-
 echo Setup starship && {
     ln -sf $PWD/.config/starship.toml $HOME/.config/starship.toml
 }
