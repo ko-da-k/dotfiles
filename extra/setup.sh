@@ -12,16 +12,18 @@ echo Define Variables && {
     readonly PWD=$(pwd)
 }
 
-echo Setup bash && {
-    ln -sf $PWD/.bashrc $HOME/.bashrc
+: cannot manage via nix because of fig && {
+    echo Setup bash && {
+        ln -sf $PWD/.bashrc $HOME/.bashrc
+    }
+    echo Setup zsh && {
+        ln -sf $PWD/.zshrc $HOME/.zshrc
+    }
 }
 
-echo Setup bash && {
-    ln -sf $PWD/.zshrc $HOME/.zshrc
-}
 
-echo Setup starship && {
-    ln -sf $PWD/.config/starship.toml $HOME/.config/starship.toml
+echo Setup Hyper && {
+    ln -sf $PWD/.hyper.js $HOME/.hyper.js
 }
 
 echo Setup global gitignore && {

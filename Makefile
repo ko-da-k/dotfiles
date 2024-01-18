@@ -1,4 +1,6 @@
-all: build
+.PHONY: extra
+
+all: install-home-manager switch gc
 
 # https://nix-community.github.io/home-manager/index.xhtml#ch-nix-flakes
 install-home-manager:
@@ -20,3 +22,7 @@ switch:
 
 gc:
 	nix-collect-garbage
+
+# home files outside of nix home-manager
+extra:
+	./extra/setup.sh

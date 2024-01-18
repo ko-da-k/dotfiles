@@ -1,5 +1,0 @@
-import = ["./dracula.toml"]
-
-[window]
-opacity = 0.5
-blur = true
