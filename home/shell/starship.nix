@@ -10,9 +10,8 @@
       add_newline = true;
 
       format = ''
-      $gcloud$aws$kubernetes$golang$python$rust$nodejs$dotnet
-      $directory$git_branch$git_commit$git_status
-      $nix_shell$character'';
+      $gcloud$aws$kubernetes$directory$git_branch$git_commit$git_status
+      $nix_shell$shell$character'';
 
       package.disabled = true;
 
@@ -43,41 +42,14 @@
         format = ''[$symbol(($profile$region))]($style)'';
       };
       
-      golang = {
-        disabled=false;
-        symbol = ''go'';
-        format = ''[$symbol(($version))](bold cyan)'';
+      nix_shell = {
+        disabled = false;
+        symbol = ''nix'';
+        format = ''[$symbol(($state):($name))]($style)'';
       };
 
-      python = {
-        disabled=false;
-        symbol = ''py'';
-        format = ''[$symbol($version)($virtualenv)]($style)'';
-        python_binary = [''./venv/bin/python'' ''python'' ''python3''];
-      };
-      
-      rust = {
-        disabled=false;
-        symbol=''rs'';
-        format = ''[$symbol(($version))]($style)'';
-      };
-      
-      nodejs = {
-        disabled=false;
-        symbol=''nodejs'';
-        format = ''[$symbol(($version)|($engines_version))]($style)'';
-      };
-      
-      dotnet = {
-        disabled=false;
-        symbol=''.NET'';
-        format = ''[$symbol(($version)|($tfm))]($style)'';
-      };
-      
-      nix_shell = {
-        disabled=false;
-        symbol=''nix'';
-        format = ''[$symbol(($state):($name))]($style)'';
+      shell = {
+        disabled = false;
       };
     };
   };
