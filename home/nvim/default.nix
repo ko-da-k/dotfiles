@@ -18,21 +18,24 @@
       { 
         plugin = dracula-nvim; 
         config = ''
-        colorscheme dracula
-        let g:dracula_colorterm = 0
-        let g:dracula_italic = 0
+          " first init
+          let mapleader = "\<Space>"
+
+          colorscheme dracula
+          let g:dracula_colorterm = 0
+          let g:dracula_italic = 0
         '';
       }
       {
         plugin = nerdtree;
         config = ''
-        nnoremap <Space>n :NERDTreeFocus<CR>
-        nnoremap <C-n> :NERDTreeCWD<CR>
-        nnoremap <C-t> :NERDTreeToggle<CR>
-        nnoremap <C-f> :NERDTreeFind<CR>
+          nnoremap <Leader>n :NERDTreeFocus<CR>
+          nnoremap <C-n> :NERDTreeCWD<CR>
+          nnoremap <C-t> :NERDTreeToggle<CR>
+          nnoremap <C-f> :NERDTreeFind<CR>
 
-        let g:NERDTreeIgnore = ['\.pyc','node_modules','.git']
-        let g:NERDTreeShowHidden = 1
+          let g:NERDTreeIgnore = ['\.pyc','node_modules', '\.git$', '\.idea$', '\.vscode$', '\.history$']
+          let g:NERDTreeShowHidden = 1
         '';
       }
       nerdtree-git-plugin
@@ -60,17 +63,17 @@
           map <C-p> :Files<CR>
           map <C-g> :Rg<CR>
           " Mapping selecting mappings
-          nmap <leader><tab> <plug>(fzf-maps-n)
-          xmap <leader><tab> <plug>(fzf-maps-x)
-          omap <leader><tab> <plug>(fzf-maps-o)
+          nmap <Leader><tab> <plug>(fzf-maps-n)
+          xmap <Leader><tab> <plug>(fzf-maps-x)
+          omap <Leader><tab> <plug>(fzf-maps-o)
         '';
       }
       {
         plugin = vim-easymotion;
         config = ''
         " <Leader>f{char} to move to {char}
-        map  <Space>f <Plug>(easymotion-bd-f)
-        nmap <Space>f <Plug>(easymotion-overwin-f)
+        map  <Leader>f <Plug>(easymotion-bd-f)
+        nmap <Leader>f <Plug>(easymotion-overwin-f)
 
         " s{char}{char} to move to {char}{char}
         nmap s <Plug>(easymotion-overwin-f2)
@@ -87,7 +90,12 @@
         nmap <Leader>w <Plug>(easymotion-overwin-w)
         '';
       }
-      lazygit-nvim
+      {
+        plugin = lazygit-nvim;
+        config = ''
+          nnoremap <Leader>lg :LazyGit<CR>
+        '';
+      }
       vim-terraform
       vim-nix
       vim-fish
@@ -107,6 +115,8 @@
     ];
 
     extraConfig = ''
+      source ~/.vimrc.keymap
+      " nvim settings
       set encoding=UTF-8
       filetype plugin indent on
       filetype plugin on
@@ -121,15 +131,11 @@
       set shiftwidth=4
       set smartindent
       set smarttab
-      set clipboard&
-      set clipboard^=unnamedplus
       set matchpairs& matchpairs+=<:>
       set backspace=eol,indent,start
       set noswapfile
       set nobackup
       set viminfo=
-
-      source ~/.vimrc.keymap
       '';
   };
 }
