@@ -81,10 +81,6 @@
         " g/{char}+ to move
         nmap g/ <Plug>(easymotion-sn)
 
-        " Move to line
-        map <Leader>L <Plug>(easymotion-bd-jk)
-        nmap <Leader>L <Plug>(easymotion-overwin-line)
-
         " Move to word
         map  <Leader>w <Plug>(easymotion-bd-w)
         nmap <Leader>w <Plug>(easymotion-overwin-w)
@@ -93,13 +89,20 @@
       {
         plugin = lazygit-nvim;
         config = ''
-          nnoremap <Leader>lg :LazyGit<CR>
+          nnoremap <Leader>g :LazyGit<CR>
         '';
       }
       vim-terraform
       vim-nix
       vim-fish
-      coc-nvim
+      {
+        plugin = coc-nvim;
+        config = ''
+          inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm()
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+          inoremap <silent><expr> <Esc> coc#pum#visible() ? coc#pum#cancel() : "\<Esc>"
+        '';
+      }
       coc-lists
       coc-python
       coc-yaml
