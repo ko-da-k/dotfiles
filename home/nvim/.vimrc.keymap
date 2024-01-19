@@ -6,7 +6,8 @@ noremap <Leader>p o<Esc>p
 noremap <Leader>h ^
 noremap <Leader>l $
 
-set clipboard+=unnamedplus "sync os clipboard
+set clipboard&
+set clipboard^=unnamedplus "sync os clipboard
 set ignorecase "ignore upper/lower when searching
 set smartcase "not ignore upper when upper contains in search words
 set wrapscan "if last word, next is first word.

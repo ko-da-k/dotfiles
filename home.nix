@@ -37,6 +37,9 @@
     (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
     pkgs.ghq
     pkgs.fzf
+    pkgs.silver-searcher
+    pkgs.ripgrep
+    pkgs.bat
     pkgs.asdf-vm
     pkgs.lsd
     pkgs.lazygit

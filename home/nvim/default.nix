@@ -53,8 +53,18 @@
         nmap ghu <Plug>(GitGutterUndoHunk)
         '';
       }
-      ctrlp-vim
-      fzf-vim
+      {
+        plugin = fzf-vim;
+        config = ''
+          let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+          map <C-p> :Files<CR>
+          map <C-g> :Rg<CR>
+          " Mapping selecting mappings
+          nmap <leader><tab> <plug>(fzf-maps-n)
+          xmap <leader><tab> <plug>(fzf-maps-x)
+          omap <leader><tab> <plug>(fzf-maps-o)
+        '';
+      }
       {
         plugin = vim-easymotion;
         config = ''
