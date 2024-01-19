@@ -119,7 +119,8 @@
 
     extraConfig = ''
       source ~/.vimrc.keymap
-      " nvim settings
+
+      " --- nvim settings -----------------------
       set encoding=UTF-8
       filetype plugin indent on
       filetype plugin on
@@ -139,6 +140,12 @@
       set noswapfile
       set nobackup
       set viminfo=
+
+      " --- terminal ----------------------------
+      nnoremap tt :belowright new<CR>:terminal<CR>:resize 15<CR>i
+      tnoremap <ESC> <C-\><C-n>
+      autocmd TermOpen * setlocal norelativenumber
+      autocmd TermOpen * setlocal nonumber
       '';
   };
 }
