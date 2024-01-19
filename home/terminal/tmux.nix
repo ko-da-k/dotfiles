@@ -20,10 +20,13 @@
     ];
 
     extraConfig = ''
+      # --- general ------------------------------------------------------
       set -g history-limit 5000
-      setw -g mode-keys vi
       set-option -g default-command ""
       set-option -g mouse on
+      bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+      # --- display ------------------------------------------------------
       set-option -g status-position top
       set-option -g status-justify "left"
       set-option -g status-left "#H:[#P]"
@@ -35,12 +38,11 @@
       set-option -g pane-active-border-style fg=colour31
       set-window-option -g window-status-format " [#I]#W"
       set-window-option -g window-status-current-format " [#I]#W"
-# for hyper
       setw -g allow-rename on
       set-option -g automatic-rename on
       set-option -g automatic-rename-format "#(cd #{pane_current_path} && basename $(git rev-parse --show-toplevel 2>/dev/null || pwd))"
 
-# key bindings
+      # --- naviation ----------------------------------------------------
       bind-key | split-window -h -c '#{pane_current_path}'
       bind-key - split-window -v -c '#{pane_current_path}'
       bind c new-window -c '#{pane_current_path}'
@@ -55,15 +57,16 @@
       bind-key -r K resize-pane -U 5
       bind-key -r L resize-pane -R 5
 
-      bind r source-file ~/.tmux.conf \; display "Reloaded!"
+      # --- copy mode ----------------------------------------------------
+      setw -g mode-keys vi
 
-# when scrolled up, change to copy mode
+      # when scrolled up, change to copy mode
       bind-key -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
 
-# when scrolled end, back to normal model
+      # when scrolled end, back to normal model
       bind-key -n WheelDownPane select-pane -t= \; send-keys -M
 
-# visual mode key bindings
+      # visual mode key bindings
       bind-key v copy-mode
 
       unbind-key -T copy-mode-vi Enter
@@ -78,10 +81,11 @@
           "bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'pbcopy'"
 
       if-shell "type xclip" \
-          "bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -i -sel clip > /dev/null'"
+          "bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel \
+          'xclip -i -sel clip > /dev/null'"
       if-shell "type xclip" \
-          "bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'xclip -i -sel clip > /dev/null'"
-      bind-key p paste-buffer
+          "bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel \
+          'xclip -i -sel clip > /dev/null'"
 
       bind-key -T copy-mode-vi w send-keys -X next-word
       bind-key -T copy-mode-vi e send-keys -X next-word-end
@@ -96,6 +100,11 @@
       bind-key -T copy-mode-vi C-f send-keys -X page-down
       bind-key -T copy-mode-vi C-u send-keys -X scroll-up
       bind-key -T copy-mode-vi C-d send-keys -X scroll-down
+
+      # -- buffers -------------------------------------------------------
+      bind b list-buffers     # list paste buffers
+      bind p paste-buffer -p  # paste from the top paste buffer
+      bind P choose-buffer    # choose which buffer to paste from
     '';
   };
 }
