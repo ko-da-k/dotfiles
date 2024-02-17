@@ -11,9 +11,14 @@
       la = "ls -a";
       lla = "ls -la";
       gco = "git checkout";
+      ghqcd = "cd (ghq list --full-path | fzf)";
     };
 
     extraConfig = ''
+      def greet [name] {
+        ['hello' $name]
+      }
+
       $env.config = {
         keybindings: [
           {

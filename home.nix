@@ -43,6 +43,8 @@
     pkgs.asdf-vm
     pkgs.lsd
     pkgs.lazygit
+    pkgs.gh
+    pkgs.htop
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -85,6 +87,6 @@
   imports = [ 
     ./home/nvim
     ./home/shell
-    ./home/terminal/tmux.nix
+    ./home/terminal
   ];
 }

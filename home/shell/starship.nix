@@ -23,13 +23,13 @@
 
       kubernetes = {
         disabled = false;
-        format = ''[$symbol($context($namespace))](green)'';
+        format = ''[$symbol($context($namespace))](green) '';
       };
 
       gcloud = {
         disabled = false;
         symbol = ''gcloud'';
-        format = ''[$symbol($account(@domain)(($project))$region)](cyan)'';
+        format = ''[$symbol($account(@domain)(($project))$region)](cyan) '';
       };
       gcloud.region_aliases = {
         us-central1 = ''uc1'';
@@ -39,13 +39,13 @@
       aws = {
         disabled = false;
         symbol = ''aws'';
-        format = ''[$symbol(($profile$region))]($style)'';
+        format = ''[$symbol(($profile$region))]($style) '';
       };
       
       nix_shell = {
         disabled = false;
         symbol = ''nix'';
-        format = ''[$symbol(($state):($name))]($style)'';
+        format = ''[$symbol(($state):($name))]($style) '';
       };
 
       shell = {
