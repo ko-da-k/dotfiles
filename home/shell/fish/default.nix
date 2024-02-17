@@ -11,7 +11,6 @@
     shellAbbrs = {
       k = "kubectl";
       lg = "lazygit";
-      ls = "lsd";
       lla = "lsd -la";
       gco = "git checkout";
     };

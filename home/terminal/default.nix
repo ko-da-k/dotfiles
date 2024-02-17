@@ -1,6 +1,5 @@
 { ... }: {
   imports = [
-    ./alacritty
     ./tmux.nix
   ];
 }

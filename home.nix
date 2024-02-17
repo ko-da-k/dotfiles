@@ -88,5 +88,6 @@
     ./home/nvim
     ./home/shell
     ./home/terminal
+    ./extra
   ];
 }
