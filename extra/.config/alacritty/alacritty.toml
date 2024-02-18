@@ -1,7 +1,7 @@
 import = ["~/.config/alacritty/dracula.toml"]
 
 [window]
-opacity = 0.5
+opacity = 0.8
 blur = true
 
 [font]
