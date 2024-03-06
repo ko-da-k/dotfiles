@@ -115,6 +115,7 @@
       coc-docker
       coc-eslint
       coc-tsserver
+      copilot-vim
     ];
 
     extraConfig = ''
