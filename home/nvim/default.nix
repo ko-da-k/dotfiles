@@ -115,6 +115,8 @@
       coc-docker
       coc-eslint
       coc-tsserver
+      nvim-treesitter
+      nvim-treesitter-parsers.elixir
       copilot-vim
     ];
 
@@ -148,5 +150,13 @@
       autocmd TermOpen * setlocal norelativenumber
       autocmd TermOpen * setlocal nonumber
       '';
+
+    extraLuaConfig = ''
+      require('nvim-treesitter.configs').setup {
+        highlight = {
+          enable = true,
+        },
+      }
+    '';
   };
 }
