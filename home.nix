@@ -45,6 +45,7 @@
     pkgs.lazygit
     pkgs.gh
     pkgs.htop
+    pkgs.graphviz
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
