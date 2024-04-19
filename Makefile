@@ -23,6 +23,3 @@ switch:
 gc:
 	nix-collect-garbage
 
-# home files outside of nix home-manager
-extra:
-	./extra/setup.sh
