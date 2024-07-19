@@ -57,8 +57,8 @@
       # local
       set -x PATH $HOME/.local/bin $PATH
 
-      # asdf
-      . ${pkgs.asdf-vm}/share/asdf-vm/asdf.fish
+      # mise
+      set -x PATH $HOME/.local/share/mise/shims
 
       # jetbrains
       set -x PATH $PATH "$HOME/Library/Application Support/Jetbrains/Toolbox/scripts"
