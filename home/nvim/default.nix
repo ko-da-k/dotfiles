@@ -29,10 +29,9 @@
       {
         plugin = nerdtree;
         config = ''
-          nnoremap <Leader>n :NERDTreeFocus<CR>
+          nnoremap <Leader>n :NERDTreeFind<CR>
           nnoremap <C-n> :NERDTreeCWD<CR>
           nnoremap <C-t> :NERDTreeToggle<CR>
-          nnoremap <C-f> :NERDTreeFind<CR>
 
           let g:NERDTreeIgnore = ['\.pyc','node_modules', '\.git$', '\.idea$', '\.vscode$', '\.history$']
           let g:NERDTreeShowHidden = 1
@@ -61,7 +60,7 @@
         config = ''
           let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
           map <C-p> :Files<CR>
-          map <C-g> :Rg<CR>
+          map <C-f> :Rg<CR>
           " Mapping selecting mappings
           nmap <Leader><tab> <plug>(fzf-maps-n)
           xmap <Leader><tab> <plug>(fzf-maps-x)

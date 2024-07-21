@@ -58,7 +58,7 @@
       set -x PATH $HOME/.local/bin $PATH
 
       # mise
-      set -x PATH $HOME/.local/share/mise/shims
+      set -x PATH $HOME/.local/share/mise/shims $PATH
 
       # jetbrains
       set -x PATH $PATH "$HOME/Library/Application Support/Jetbrains/Toolbox/scripts"
