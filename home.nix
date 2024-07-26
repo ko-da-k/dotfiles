@@ -48,6 +48,14 @@
     pkgs.htop
     pkgs.graphviz
     pkgs.mise
+    pkgs.ant
+    pkgs.pstree
+    pkgs.rye
+    pkgs.poetry
+    pkgs.moon
+    pkgs.unixtools.watch
+    pkgs.awscli2
+    pkgs.saml2aws
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
