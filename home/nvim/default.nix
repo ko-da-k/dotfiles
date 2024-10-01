@@ -91,6 +91,20 @@
           nnoremap <Leader>g :LazyGit<CR>
         '';
       }
+      { 
+        plugin = toggleterm-nvim;
+        config = ''
+          lua <<EOF
+          require('toggleterm').setup{
+            size = 15,
+            open_mapping = [[<leader>t]],
+            start_in_insert = true,
+            direction = 'float',
+            close_on_exit = true,
+          }
+          EOF
+        '';
+      }
       vim-terraform
       vim-nix
       vim-fish
@@ -144,8 +158,6 @@
       set viminfo=
 
       " --- terminal ----------------------------
-      nnoremap tt :belowright new<CR>:terminal<CR>:resize 15<CR>i
-      tnoremap <ESC> <C-\><C-n>
       autocmd TermOpen * setlocal norelativenumber
       autocmd TermOpen * setlocal nonumber
       '';
