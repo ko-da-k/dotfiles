@@ -31,7 +31,7 @@
         config = ''
           nnoremap <Leader>n :NERDTreeFind<CR>
           nnoremap <C-n> :NERDTreeCWD<CR>
-          nnoremap <C-t> :NERDTreeToggle<CR>
+          nnoremap <Leader>t :NERDTreeToggle<CR>
 
           let g:NERDTreeIgnore = ['\.pyc','node_modules', '\.git$', '\.idea$', '\.vscode$', '\.history$']
           let g:NERDTreeShowHidden = 1
@@ -97,7 +97,7 @@
           lua <<EOF
           require('toggleterm').setup{
             size = 15,
-            open_mapping = [[<leader>t]],
+            open_mapping = [[<C-t>]],
             start_in_insert = true,
             direction = 'float',
             close_on_exit = true,
@@ -167,6 +167,10 @@
         highlight = {
           enable = true,
         },
+        indent = {
+          enable = true,
+          disable = { 'yaml' },
+        }
       }
     '';
   };
