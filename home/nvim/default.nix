@@ -105,6 +105,14 @@
           EOF
         '';
       }
+      {
+        plugin = barbar-nvim;
+        config = ''
+          nnoremap <silent> <C-[> :BufferPrevious<CR>
+          nnoremap <silent> <C-]> :BufferNext<CR>
+        '';
+      }
+      nvim-web-devicons
       vim-terraform
       vim-nix
       vim-fish
