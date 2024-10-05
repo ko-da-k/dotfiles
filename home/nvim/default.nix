@@ -27,21 +27,10 @@
         '';
       }
       {
-        plugin = nerdtree;
+        plugin = vim-fern;
         config = ''
-          nnoremap <Leader>n :NERDTreeFind<CR>
-          nnoremap <C-n> :NERDTreeCWD<CR>
-          nnoremap <Leader>t :NERDTreeToggle<CR>
-
-          let g:NERDTreeIgnore = ['\.pyc','node_modules', '\.git$', '\.idea$', '\.vscode$', '\.history$']
-          let g:NERDTreeShowHidden = 1
-        '';
-      }
-      nerdtree-git-plugin
-      {
-        plugin = vim-nerdtree-syntax-highlight;
-        config = ''
-        let g:NERDTreeLimitedSyntax = 1
+          nnoremap <Leader>n :Fern . -drawer -reveal=% -toggle -stay<CR>
+          nnoremap <C-n> :Fern . -drawer -reveal=% -stay<CR>
         '';
       }
       vim-devicons
