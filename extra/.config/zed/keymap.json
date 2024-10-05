@@ -1,0 +1,32 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "space h": "vim::FirstNonWhitespace",
+      "space l": "vim::EndOfLine",
+      "space o": ["workspace::SendKeystrokes", "o<Esc>"],
+      "space p": ["workspace::SendKeystrokes", "o<Esc>p"]
+    }
+  },
+  {
+    "context": "VimControl && BufferSearchBar",
+    "bindings": {
+      "ctrl-[": "buffer_search::Dismiss"
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual)",
+    "bindings": {
+      "space n": "project_panel::ToggleFocus",
+      "ctrl-n": "project_panel::ToggleFocus",
+      "ctrl-t": "workspace::ToggleBottomDock"
+    }
+  }
+]

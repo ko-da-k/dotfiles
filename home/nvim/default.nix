@@ -15,8 +15,8 @@
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
     plugins = with pkgs.vimPlugins; [
-      { 
-        plugin = dracula-nvim; 
+      {
+        plugin = dracula-nvim;
         config = ''
           " first init
           let mapleader = "\<Space>"
@@ -30,7 +30,7 @@
         plugin = vim-fern;
         config = ''
           nnoremap <Leader>n :Fern . -drawer -reveal=% -toggle -stay<CR>
-          nnoremap <C-n> :Fern . -drawer -reveal=% -stay<CR>
+          nnoremap <C-n> :Fern . -drawer -reveal=%<CR>
         '';
       }
       vim-devicons
@@ -48,12 +48,12 @@
         plugin = fzf-vim;
         config = ''
           let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-          map <C-p> :Files<CR>
-          map <C-f> :Rg<CR>
+          map <C-p> :Files<CR>'
+          map <C-f> :Rg<CR>'
           " Mapping selecting mappings
-          nmap <Leader><tab> <plug>(fzf-maps-n)
-          xmap <Leader><tab> <plug>(fzf-maps-x)
-          omap <Leader><tab> <plug>(fzf-maps-o)
+          nmap <Leader><tab> <plug>(fzf-maps-n)'
+          xmap <Leader><tab> <plug>(fzf-maps-x)'
+          omap <Leader><tab> <plug>(fzf-maps-o)'
         '';
       }
       {
@@ -80,7 +80,7 @@
           nnoremap <Leader>g :LazyGit<CR>
         '';
       }
-      { 
+      {
         plugin = toggleterm-nvim;
         config = ''
           lua <<EOF
@@ -97,8 +97,9 @@
       {
         plugin = barbar-nvim;
         config = ''
-          nnoremap <silent> <C-[> :BufferPrevious<CR>
-          nnoremap <silent> <C-]> :BufferNext<CR>
+          nnoremap <silent> <A-,> <Cmd>BufferPrevious<CR>
+          nnoremap <silent> <A-.> <Cmd>BufferNext<CR>
+          nnoremap <silent> <A-w> :BufferClose<CR>
         '';
       }
       nvim-web-devicons

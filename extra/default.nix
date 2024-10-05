@@ -9,4 +9,5 @@
   xdg.configFile."alacritty/alacritty.toml".source = ./.config/alacritty/alacritty.toml;
   xdg.configFile."git/ignore".source = ./.config/git/ignore;
   xdg.configFile."zed/settings.json".source = ./.config/zed/settings.json;
+  xdg.configFile."zed/keymap.json".source = ./.config/zed/keymap.json;
 }
