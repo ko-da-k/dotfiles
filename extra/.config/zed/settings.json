@@ -13,14 +13,26 @@
     "metrics": false
   },
   "vim_mode": true,
+  "cursor_blink": false,
+  "scrollbar": {
+    "show": "never"
+  },
+  "vertical_scroll_margin": 0,
+  "tab_bar": {
+    "show": false,
+    "show_nav_history_buttons": false
+  },
+  "toolbar": {
+    "quick_actions": false
+  },
   "ui_font_size": 14,
   "buffer_font_size": 14,
+  "autosave": "on_focus_change",
   "theme": {
     "mode": "system",
     "light": "One Light",
     "dark": "Dracula"
   },
-  "autosave": "on_focus_change",
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
