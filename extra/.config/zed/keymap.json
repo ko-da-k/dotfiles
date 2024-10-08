@@ -66,5 +66,11 @@
         }
       ]
     }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-n": "workspace::NewTerminal"
+    }
   }
 ]
