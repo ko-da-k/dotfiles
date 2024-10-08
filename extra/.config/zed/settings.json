@@ -28,6 +28,7 @@
   "ui_font_size": 14,
   "buffer_font_size": 14,
   "autosave": "on_focus_change",
+  "show_whitespaces": "all",
   "theme": {
     "mode": "system",
     "light": "One Light",

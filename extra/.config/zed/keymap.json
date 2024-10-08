@@ -59,7 +59,7 @@
   {
     "context": "Workspace",
     "bindings": {
-      "cmk-k": [
+      "cmd-shift-o": [
         "projects::OpenRecent",
         {
           "create_new_window": false
