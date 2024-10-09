@@ -72,5 +72,12 @@
     "bindings": {
       "cmd-n": "workspace::NewTerminal"
     }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "ctrl-n": "project_panel::ToggleFocus",
+      "space n": "workspace::ToggleLeftDock"
+    }
   }
 ]
