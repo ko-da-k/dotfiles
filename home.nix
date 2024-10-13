@@ -37,6 +37,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
+    pkgs.jetbrains-mono
     pkgs.ghq
     pkgs.fzf
     pkgs.silver-searcher
@@ -94,7 +95,7 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  imports = [ 
+  imports = [
     ./home/nvim
     ./home/shell
     ./home/terminal

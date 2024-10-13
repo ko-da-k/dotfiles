@@ -26,7 +26,22 @@
     "quick_actions": false
   },
   "ui_font_size": 14,
-  "buffer_font_size": 14,
+  "ui_font_family": "Hack Nerd Font Mono",
+  "buffer_font_size": 13,
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_features": {
+    "liga": true
+  },
+  "buffer_line_height": {
+    "custom": 1.2
+  },
+  "terminal": {
+    "font_size": 12,
+    "font_family": "Hack Nerd Font Mono",
+    "line_height": {
+      "custom": 1.2
+    }
+  },
   "autosave": "on_focus_change",
   "show_whitespaces": "all",
   "theme": {
