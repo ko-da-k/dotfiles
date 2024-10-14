@@ -4,13 +4,10 @@ source ~/.vimrc.keymap
 " jetbrains actions
 " how to check: `:actionlist`
 nnoremap gd :action GotoDeclaration<CR>
-nnoremap <Leader>gt :action GotoTypeDeclaration<CR>
-nnoremap <Leader>gi :action GotoImplementation<CR>
-nnoremap <Leader>gs :action GotoSuperMethod<CR>
-nnoremap <Leader>gb :action Back<CR>
-nnoremap <Leader>gf :action Forward<CR>
-nnoremap <Leader>ga :action GotoAction<CR>
-vnoremap <Leader>ga :action GotoAction<CR>
+nnoremap gy :action GotoTypeDeclaration<CR>
+nnoremap gI :action GotoImplementation<CR>
+nnoremap cd :action RenameElement<CR>
+
 nnoremap <Leader>== :action ReformatCode<CR>
 vnoremap <Leader>== :action ReformatCode<CR>
 
