@@ -34,11 +34,14 @@
       # End Nix
 
       # fzf
-      # https://draculatheme.com/fzf
-      export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
+      export FZF_DEFAULT_OPTS=" \
+        --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+        --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+        --color=marker:#babbf1,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
+        --color=selected-bg:#51576d \
+        --multi"
       # Set up fzf key bindings and fuzzy completion
       source <(fzf --zsh)
-
 
       # gcloud
       export PATH=$HOME/.local/google-cloud-sdk/bin:$PATH

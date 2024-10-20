@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/dracula.toml"]
+import = ["~/.config/alacritty/catppuccin.toml"]
 
 [window]
 opacity = 0.8

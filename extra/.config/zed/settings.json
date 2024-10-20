@@ -46,8 +46,8 @@
   "show_whitespaces": "all",
   "theme": {
     "mode": "system",
-    "light": "One Light",
-    "dark": "Dracula"
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Frappé"
   },
   "lsp": {
     "rust-analyzer": {

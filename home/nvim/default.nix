@@ -21,9 +21,24 @@
           " first init
           let mapleader = "\<Space>"
 
-          colorscheme dracula
           let g:dracula_colorterm = 0
           let g:dracula_italic = 0
+        '';
+      }
+      {
+        plugin = catppuccin-nvim;
+        config = ''
+          lua << EOF
+          vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
+          require('catppuccin').setup {
+              styles = {
+              functions = { "italic" },
+              keywords = { "italic" },
+              variables = { "italic" },
+              },
+          }
+          vim.cmd [[colorscheme catppuccin]]
+          EOF
         '';
       }
       {
