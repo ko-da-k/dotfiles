@@ -1,8 +1,9 @@
 import = ["~/.config/alacritty/catppuccin.toml"]
 
 [window]
-opacity = 0.8
-blur = true
+opacity = 1
+blur = false
+option_as_alt = "Both"
 
 [font]
 size = 12

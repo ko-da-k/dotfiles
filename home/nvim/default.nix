@@ -31,11 +31,11 @@
           lua << EOF
           vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
           require('catppuccin').setup {
-              styles = {
+            styles = {
               functions = { "italic" },
               keywords = { "italic" },
               variables = { "italic" },
-              },
+            },
           }
           vim.cmd [[colorscheme catppuccin]]
           EOF
