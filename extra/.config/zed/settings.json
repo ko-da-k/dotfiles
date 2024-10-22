@@ -47,7 +47,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Frappé"
+    "dark": "Everforest Dark"
   },
   "lsp": {
     "rust-analyzer": {

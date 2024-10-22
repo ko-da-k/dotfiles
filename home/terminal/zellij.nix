@@ -6,7 +6,7 @@
     enable = true;
 
     settings =  {
-      theme = "catppuccin-frappe";
+      theme = "everforest-dark";
       default_mode = "locked";
     };
   };

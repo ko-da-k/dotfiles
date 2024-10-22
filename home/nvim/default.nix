@@ -37,7 +37,15 @@
               variables = { "italic" },
             },
           }
-          vim.cmd [[colorscheme catppuccin]]
+          -- vim.cmd [[colorscheme catppuccin]]
+          EOF
+        '';
+      }
+      {
+        plugin = everforest;
+        config = ''
+          lua <<EOF
+          vim.cmd [[colorscheme everforest]]
           EOF
         '';
       }

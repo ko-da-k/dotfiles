@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/catppuccin.toml"]
+import = ["~/.config/alacritty/everforest.toml"]
 
 [window]
 opacity = 1
