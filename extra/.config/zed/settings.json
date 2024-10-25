@@ -30,7 +30,8 @@
   "buffer_font_size": 13,
   "buffer_font_family": "JetBrains Mono",
   "buffer_font_features": {
-    "liga": true
+    "liga": false,
+    "calt": false
   },
   "buffer_line_height": {
     "custom": 1.2

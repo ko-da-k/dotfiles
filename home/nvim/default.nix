@@ -138,7 +138,6 @@
         '';
       }
       coc-lists
-      coc-python
       coc-yaml
       coc-toml
       coc-sh
@@ -151,6 +150,11 @@
       coc-tsserver
       nvim-treesitter
       nvim-treesitter-parsers.elixir
+      nvim-treesitter-parsers.eex
+      nvim-treesitter-parsers.terraform
+      nvim-treesitter-parsers.yaml
+      nvim-treesitter-parsers.toml
+      nvim-treesitter-parsers.bash
       copilot-vim
     ];
 
