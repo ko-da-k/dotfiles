@@ -56,6 +56,7 @@
     pkgs.awscli2
     pkgs.saml2aws
     pkgs.socat
+    pkgs.tfsec
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

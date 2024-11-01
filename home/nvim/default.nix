@@ -13,6 +13,14 @@
     viAlias = true;
     vimAlias = true;
 
+    extraPackages = with pkgs; [
+      bash-language-server
+      taplo
+      elixir-ls
+      terraform-ls
+      yaml-language-server
+    ];
+
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
     plugins = with pkgs.vimPlugins; [
       {
@@ -126,31 +134,87 @@
         '';
       }
       nvim-web-devicons
-      vim-terraform
-      vim-nix
-      vim-fish
       {
-        plugin = coc-nvim;
+        plugin = nvim-cmp;
+        type = "lua";
         config = ''
-          inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm()
-            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-          inoremap <silent><expr> <Esc> coc#pum#visible() ? coc#pum#cancel() : "\<Esc>"
+          local cmp = require 'cmp'
+          cmp.setup({
+            snippet = {
+              expand = function(args)
+                vim.fn["vsnip#anonymous"](args.body)
+              end,
+              },
+              mapping = cmp.mapping.preset.insert({
+                ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<C-e>'] = cmp.mapping.close(),
+                ['<CR>'] = cmp.mapping.confirm({
+                  behavior = cmp.ConfirmBehavior.Insert,
+                  select = true,
+                }),
+              }),
+              sources = cmp.config.sources({
+                { name = 'nvim_lsp' },
+              }, {
+                { name = 'buffer' },
+              }),
+          })
         '';
       }
-      coc-lists
-      coc-yaml
-      coc-toml
-      coc-sh
-      coc-json
-      coc-html
-      coc-go
-      coc-fzf
-      coc-docker
-      coc-eslint
-      coc-tsserver
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      {
+        plugin = nvim-lspconfig;
+        type = "lua";
+        config = ''
+          local lspconfig = require 'lspconfig'
+          local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+          lspconfig.elixirls.setup{
+            capabilities = capabilities,
+            cmd = { '${pkgs.elixir-ls}/bin/elixir-ls' }
+          }
+
+          lspconfig.taplo.setup{
+            capabilities = capabilities,
+            cmd = { '${pkgs.taplo}/bin/taplo', 'lsp', 'stdio' }
+          }
+
+          lspconfig.terraformls.setup{
+            capabilities = capabilities,
+            cmd = { '${pkgs.terraform-ls}/bin/terraform-ls', 'serve' }
+          }
+
+          lspconfig.bashls.setup{
+            capabilities = capabilities,
+            cmd = { '${pkgs.bash-language-server}/bin/bash-language-server', 'start' }
+          }
+
+          lspconfig.yamlls.setup{
+            capabilities = capabilities,
+            cmd = { '${pkgs.yaml-language-server}/bin/yaml-language-server', '--stdio' }
+          }
+        '';
+      }
+      {
+        plugin = lspsaga-nvim;
+        type = "lua";
+        config = ''
+          require('lspsaga').setup({})
+
+          vim.keymap.set('n', 'gh', '<Cmd>Lspsaga finder ref<CR>')
+          vim.keymap.set('n', 'gr', '<Cmd>Lspsaga project_replace<CR>')
+          vim.keymap.set('n', 'gd', '<Cmd>Lspsaga peek_definition<CR>')
+        '';
+      }
       nvim-treesitter
       nvim-treesitter-parsers.elixir
+      nvim-treesitter-parsers.heex
       nvim-treesitter-parsers.eex
+      nvim-treesitter-parsers.surface
       nvim-treesitter-parsers.terraform
       nvim-treesitter-parsers.yaml
       nvim-treesitter-parsers.toml
