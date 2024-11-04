@@ -208,6 +208,7 @@
           vim.keymap.set('n', 'gh', '<Cmd>Lspsaga finder ref<CR>')
           vim.keymap.set('n', 'gr', '<Cmd>Lspsaga project_replace<CR>')
           vim.keymap.set('n', 'gd', '<Cmd>Lspsaga peek_definition<CR>')
+          vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc ++keep<CR>')
         '';
       }
       nvim-treesitter
