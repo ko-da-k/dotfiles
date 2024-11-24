@@ -77,6 +77,10 @@
 
       # gke
       set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
+      
+      # ghcup
+      set -x PATH $PATH $HOME/.ghcup/bin
+
     '';
   };
 }

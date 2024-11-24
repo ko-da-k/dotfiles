@@ -19,6 +19,8 @@
       elixir-ls
       terraform-ls
       yaml-language-server
+      pyright
+      haskell-language-server
     ];
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
@@ -196,6 +198,16 @@
           lspconfig.yamlls.setup{
             capabilities = capabilities,
             cmd = { '${pkgs.yaml-language-server}/bin/yaml-language-server', '--stdio' }
+          }
+
+          lspconfig.pyright.setup{
+            capabilities = capabilities,
+            cmd = { '${pkgs.pyright}/bin/pyright-langserver', '--stdio' }
+          }
+
+          lspconfig.hls.setup{
+            capabilities = capabilities,
+            cmd = { '${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper', '--lsp' }
           }
         '';
       }

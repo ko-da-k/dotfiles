@@ -70,6 +70,9 @@
 
       # gke
       export USE_GKE_GCLOUD_AUTH_PLUGIN=true
+
+      # ghcup
+      export PATH=$HOME/.ghcup/bin:$PATH
     '';
   };
 }
