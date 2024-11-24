@@ -20,7 +20,6 @@
       terraform-ls
       yaml-language-server
       pyright
-      haskell-language-server
     ];
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
@@ -207,7 +206,7 @@
 
           lspconfig.hls.setup{
             capabilities = capabilities,
-            cmd = { '${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper', '--lsp' }
+            cmd = { '${config.home.homeDirectory}/.ghcup/bin/haskell-language-server-wrapper', '--lsp' }
           }
         '';
       }
