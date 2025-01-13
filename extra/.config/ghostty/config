@@ -1,1 +1,4 @@
 theme = Everforest Dark - Hard
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+macos-option-as-alt = true

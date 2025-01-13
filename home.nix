@@ -97,6 +97,7 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./home/helix
     ./home/nvim
     ./home/shell
     ./home/terminal
