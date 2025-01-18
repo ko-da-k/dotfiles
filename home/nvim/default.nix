@@ -13,15 +13,6 @@
     viAlias = true;
     vimAlias = true;
 
-    extraPackages = with pkgs; [
-      bash-language-server
-      taplo
-      elixir-ls
-      terraform-ls
-      yaml-language-server
-      pyright
-    ];
-
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
     plugins = with pkgs.vimPlugins; [
       {

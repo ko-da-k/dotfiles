@@ -57,6 +57,14 @@
     pkgs.saml2aws
     pkgs.socat
     pkgs.tfsec
+    # language-server
+    pkgs.bash-language-server
+    pkgs.elixir-ls
+    pkgs.taplo
+    pkgs.terraform-ls
+    pkgs.yaml-language-server
+    pkgs.nil
+    pkgs.nixd
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
