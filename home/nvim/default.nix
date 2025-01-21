@@ -190,14 +190,24 @@
             cmd = { '${pkgs.yaml-language-server}/bin/yaml-language-server', '--stdio' }
           }
 
-          lspconfig.pyright.setup{
-            capabilities = capabilities,
-            cmd = { '${pkgs.pyright}/bin/pyright-langserver', '--stdio' }
-          }
-
           lspconfig.hls.setup{
             capabilities = capabilities,
             cmd = { '${config.home.homeDirectory}/.ghcup/bin/haskell-language-server-wrapper', '--lsp' }
+          }
+
+          lspconfig.nixd.setup{
+            capabilities = capabilities,
+            cmd = { '${pkgs.nixd}/bin/nixd' }
+          }
+
+          lspconfig.rust_analyzer.setup{
+              settings = {
+                  ["rust-analyzer"] = {
+                      check = {
+                          command = "clippy"
+                      }
+                  }
+              }
           }
         '';
       }
