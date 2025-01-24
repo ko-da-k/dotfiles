@@ -71,8 +71,11 @@
         plugin = fzf-vim;
         config = ''
           let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-          map <C-p> :Files<CR>'
-          map <C-f> :Rg<CR>'
+          map <Leader>f :Files<CR>'
+          map <Leader>/ :Rg<CR>'
+          map <Leader>b :Buffers<CR>'
+          map <Leader>m :Marks<CR>'
+          map <Leader>j :Jumps<CR>'
           " Mapping selecting mappings
           nmap <Leader><tab> <plug>(fzf-maps-n)'
           xmap <Leader><tab> <plug>(fzf-maps-x)'
@@ -82,9 +85,9 @@
       {
         plugin = vim-easymotion;
         config = ''
-        " <Leader>f{char} to move to {char}
-        map  <Leader>f <Plug>(easymotion-bd-f)
-        nmap <Leader>f <Plug>(easymotion-overwin-f)
+        " gf{char} to move to {char}
+        map  gf <Plug>(easymotion-bd-f)
+        nmap gf <Plug>(easymotion-overwin-f)
 
         " s{char}{char} to move to {char}{char}
         nmap s <Plug>(easymotion-overwin-f2)
@@ -93,8 +96,8 @@
         nmap g/ <Plug>(easymotion-sn)
 
         " Move to word
-        map  <Leader>w <Plug>(easymotion-bd-w)
-        nmap <Leader>w <Plug>(easymotion-overwin-w)
+        map  gw <Plug>(easymotion-bd-w)
+        nmap gw <Plug>(easymotion-overwin-w)
         '';
       }
       {

@@ -3,8 +3,9 @@ let mapleader = "\<Space>"
 
 noremap <Leader>o o<Esc>
 noremap <Leader>p o<Esc>p
-noremap <Leader>h ^
-noremap <Leader>l $
+noremap gs ^
+noremap gl $
+noremap ge G
 
 set clipboard&
 set clipboard^=unnamedplus "sync os clipboard
