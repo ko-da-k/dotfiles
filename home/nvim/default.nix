@@ -68,19 +68,31 @@
         '';
       }
       {
-        plugin = fzf-vim;
+        plugin = fzf-lua;
         config = ''
-          let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-          map <Leader>f :Files<CR>'
-          map <Leader>/ :Rg<CR>'
-          map <Leader>b :Buffers<CR>'
-          map <Leader>m :Marks<CR>'
-          map <Leader>j :Jumps<CR>'
-          " Mapping selecting mappings
-          nmap <Leader><tab> <plug>(fzf-maps-n)'
-          xmap <Leader><tab> <plug>(fzf-maps-x)'
-          omap <Leader><tab> <plug>(fzf-maps-o)'
-        '';
+          lua <<EOF
+          require('fzf-lua').setup({})
+
+          vim.keymap.set('n', '<Leader>f', '<Cmd>lua require("fzf-lua").files()<CR>')
+          vim.keymap.set('n', '<Leader>/', '<Cmd>lua require("fzf-lua").live_grep()<CR>')
+          vim.keymap.set('n', '<Leader>b', '<Cmd>lua require("fzf-lua").buffers()<CR>')
+          vim.keymap.set('n', '<Leader>m', '<Cmd>lua require("fzf-lua").marks()<CR>')
+          vim.keymap.set('n', '<Leader>j', '<Cmd>lua require("fzf-lua").jumps()<CR>')
+          vim.keymap.set('n', '<Leader><tab>', '<Cmd>lua require("fzf-lua").keymaps()<CR>')
+
+          vim.keymap.set('n', 'gd', '<Cmd>lua require("fzf-lua").lsp_definitions()<CR>')
+          vim.keymap.set('n', 'gr', '<Cmd>lua require("fzf-lua").lsp_references()<CR>')
+          vim.keymap.set('n', 'gD', '<Cmd>lua require("fzf-lua").lsp_declarations()<CR>')
+          vim.keymap.set('n', 'gi', '<Cmd>lua require("fzf-lua").lsp_implementations()<CR>')
+          vim.keymap.set('n', 'gy', '<Cmd>lua require("fzf-lua").lsp_typedefs()<CR>')
+          vim.keymap.set('n', '<Leader>s', '<Cmd>lua require("fzf-lua").lsp_document_symbols()<CR>')
+          vim.keymap.set('n', '<Leader>S', '<Cmd>lua require("fzf-lua").lsp_live_workspace_symbols()<CR>')
+          vim.keymap.set('n', '<Leader>d', '<Cmd>lua require("fzf-lua").lsp_document_diagnostics()<CR>')
+          vim.keymap.set('n', '<Leader>D', '<Cmd>lua require("fzf-lua").lsp_workspace_diagnostics()<CR>')
+          vim.keymap.set('n', '<Leader>a', '<Cmd>lua require("fzf-lua").lsp_code_actions()<CR>')
+
+          EOF
+          '';
       }
       {
         plugin = vim-easymotion;
@@ -219,12 +231,7 @@
         type = "lua";
         config = ''
           require('lspsaga').setup({})
-
-          vim.keymap.set('n', 'gh', '<Cmd>Lspsaga finder ref<CR>')
-          vim.keymap.set('n', 'gr', '<Cmd>Lspsaga project_replace<CR>')
-          vim.keymap.set('n', 'gd', '<Cmd>Lspsaga peek_definition<CR>')
-          vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc ++keep<CR>')
-        '';
+          '';
       }
       nvim-treesitter
       nvim-treesitter-parsers.elixir
