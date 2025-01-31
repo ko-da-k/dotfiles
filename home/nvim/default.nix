@@ -50,6 +50,14 @@
         '';
       }
       {
+        plugin = nvim-surround;
+        config = ''
+          lua <<EOF
+          require('nvim-surround').setup {}
+          EOF
+        '';
+      }
+      {
         plugin = vim-fern;
         config = ''
           nnoremap <Leader>n :Fern . -drawer -reveal=% -toggle -stay<CR>
@@ -74,7 +82,7 @@
           require('fzf-lua').setup({})
 
           vim.keymap.set('n', '<Leader>f', '<Cmd>lua require("fzf-lua").files()<CR>')
-          vim.keymap.set('n', '<Leader>/', '<Cmd>lua require("fzf-lua").live_grep()<CR>')
+          vim.keymap.set('n', '<Leader>/', '<Cmd>lua require("fzf-lua").grep_project()<CR>')
           vim.keymap.set('n', '<Leader>b', '<Cmd>lua require("fzf-lua").buffers()<CR>')
           vim.keymap.set('n', '<Leader>m', '<Cmd>lua require("fzf-lua").marks()<CR>')
           vim.keymap.set('n', '<Leader>j', '<Cmd>lua require("fzf-lua").jumps()<CR>')
@@ -85,6 +93,7 @@
           vim.keymap.set('n', 'gD', '<Cmd>lua require("fzf-lua").lsp_declarations()<CR>')
           vim.keymap.set('n', 'gi', '<Cmd>lua require("fzf-lua").lsp_implementations()<CR>')
           vim.keymap.set('n', 'gy', '<Cmd>lua require("fzf-lua").lsp_typedefs()<CR>')
+          vim.keymap.set('n', '<Leader>r', '<Cmd>lua require("fzf-lua").lsp_rename()<CR>')
           vim.keymap.set('n', '<Leader>s', '<Cmd>lua require("fzf-lua").lsp_document_symbols()<CR>')
           vim.keymap.set('n', '<Leader>S', '<Cmd>lua require("fzf-lua").lsp_live_workspace_symbols()<CR>')
           vim.keymap.set('n', '<Leader>d', '<Cmd>lua require("fzf-lua").lsp_document_diagnostics()<CR>')

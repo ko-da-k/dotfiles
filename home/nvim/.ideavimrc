@@ -4,17 +4,17 @@ source ~/.vimrc.keymap
 " jetbrains actions
 " how to check: `:actionlist`
 nnoremap gd :action GotoDeclaration<CR>
+nnoremap gr :action FindUsages<CR>
 nnoremap gy :action GotoTypeDeclaration<CR>
-nnoremap gI :action GotoImplementation<CR>
-nnoremap cd :action RenameElement<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap <Leader>r :action RenameElement<CR>
+nnoremap <Leader>s :action GotoSymbol<CR>
 
 nnoremap <Leader>== :action ReformatCode<CR>
 vnoremap <Leader>== :action ReformatCode<CR>
 
 " ideavim-easymotion
 set easymotion
-map <Leader>f <Plug>(easymotion-bd-f)
+map gf <Plug>(easymotion-bd-f)
 nmap s <Plug>(easymotion-bd-f2)
 nmap g/ <Plug>(easymotion-sn)
-map <Leader>L <Plug>(easymotion-bd-jk)
-map <Leader>w <Plug>(easymotion-bd-w)
