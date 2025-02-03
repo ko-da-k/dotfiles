@@ -10,7 +10,7 @@
       add_newline = true;
 
       format = ''
-      $gcloud$aws$kubernetes$directory$git_branch$git_commit$git_status
+      $directory$git_branch$git_commit$git_status$gcloud$aws$kubernetes
       $nix_shell$shell$character'';
 
       package.disabled = true;
