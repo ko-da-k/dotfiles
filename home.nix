@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  xdg.enable = true;
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "ko-da-k";
