@@ -15,11 +15,25 @@
     };
 
     extraConfig = ''
-      def greet [name] {
-        ['hello' $name]
+      $env.STARSHIP_SHELL = "nu"
+
+      def create_left_prompt [] {
+        starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=$($env.LAST_EXIT_CODE)'
       }
 
+      $env.PROMPT_COMMAND = { || create_left_prompt }
+      $env.PROMPT_COMMAND_RIGHT = ""
+
+      $env.PROMPT_INDICATOR = ""
+      $env.PROMPT_INDICATOR_VI_INSERT = ""
+      $env.PROMPT_INDICATOR_VI_NORMAL = "|V| "
+      $env.PROMPT_MULTILINE_INDICATOR = "::: "
+
       $env.config = {
+        edit_mode: "vi"
+        history: {
+          max_size: 10000
+        }
         keybindings: [
           {
             name: fuzzy_history
@@ -29,9 +43,9 @@
             event: [
               {
                 send: ExecuteHostCommand
-                cmd: "commandline (
+                cmd: "commandline edit --insert (
                   history 
-                    | each { |it| $it.command } 
+                    | get command
                     | uniq 
                     | reverse 
                     | str join (char -i 0) 
