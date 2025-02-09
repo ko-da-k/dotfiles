@@ -1,0 +1,44 @@
+{
+  "editor.accessibilitySupport": "off",
+  "editor.stickyScroll.enabled": true,
+  "files.insertFinalNewline": true,
+  "workbench.colorTheme": "Everforest Dark",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+
+  "hediet.vscode-drawio.theme": "atlas",
+  "markdown-mermaid.darkModeTheme": "base",
+  "markdown-mermaid.lightModeTheme": "base",
+
+  "vim.easymotion": true,
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "after": [
+        "leader",
+        "leader",
+        "s"
+      ],
+      "before": [
+        "leader",
+        "f"
+      ]
+    }
+  ],
+  "vim.useSystemClipboard": true,
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "~/.vimrc.keymap",
+  "vim.enableNeovim": true,
+
+  "[nix]": {
+    "editor.tabSize": 2
+  },
+
+  "haskell.manageHLS": "GHCup",
+
+  "[rust]": {
+      "editor.defaultFormatter": "rust-lang.rust-analyzer",
+      "editor.formatOnSave": true
+  },
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.checkOnSave": true
+}
