@@ -3,7 +3,20 @@
   "editor.stickyScroll.enabled": true,
   "files.insertFinalNewline": true,
   "workbench.colorTheme": "Everforest Dark",
-  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "always",
+  "terminal.integrated.env.osx": {
+    "Q_NEW_SESSION": "1"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.git": true,
+    "**/.venv": true,
+    "**/.mypy_cache": true
+  },
 
   "hediet.vscode-drawio.theme": "atlas",
   "markdown-mermaid.darkModeTheme": "base",
@@ -13,16 +26,21 @@
   "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "after": [
-        "leader",
-        "leader",
-        "s"
-      ],
-      "before": [
-        "leader",
-        "f"
-      ]
+      "before": [ "g", "f" ],
+      "after": [ "leader", "leader", "s" ]
     }
+  ],
+  "vim.normalModeKeyBindings": [
+    { "before": ["g", "d"], "commands": ["editor.action.goToDeclaration"] },
+    { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+    { "before": ["g", "D"], "commands": ["editor.action.goToDefinition"] },
+    { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] },
+    { "before": ["g", "y"], "commands": ["editor.action.goToTypeDefinition"] },
+    { "before": ["leader", "r"], "commands": ["Rename Symbol"] },
+    { "before": ["leader", "s"], "commands": ["workbench.action.gotoSymbol"] },
+    { "before": ["leader", "S"], "commands": ["workbench.action.showAllSymbols"] },
+    { "before": ["leader", "a"], "commands": ["Refactor"] },
+    { "before": ["leader", "k"], "commands": ["editor.action.showHover"] },
   ],
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
@@ -33,6 +51,18 @@
     "editor.tabSize": 2
   },
 
+  "[json]": {
+    "editor.tabSize": 2
+  },
+
+  "[yaml]": {
+    "editor.tabSize": 2
+  },
+
+  "[toml]": {
+    "editor.tabSize": 4
+  },
+
   "haskell.manageHLS": "GHCup",
 
   "[rust]": {
@@ -40,5 +70,14 @@
       "editor.formatOnSave": true
   },
   "rust-analyzer.check.command": "clippy",
-  "rust-analyzer.checkOnSave": true
+  "rust-analyzer.checkOnSave": true,
+
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true
 }
