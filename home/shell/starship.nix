@@ -10,8 +10,11 @@
       add_newline = true;
 
       format = ''
-      $directory$git_branch$git_commit$git_status$gcloud$aws$kubernetes
-      $nix_shell$shell$character'';
+      $cmd_duration
+      $gcloud$aws$kubernetes
+      $nix_shell$shell$python$elixir$golang$haskell
+      $directory$git_branch$git_commit$git_status
+      $character'';
 
       package.disabled = true;
 
@@ -21,15 +24,19 @@
         vicmd_symbol = ''[V](bold green)'';
       };
 
+      cmd_duration = {
+        disabled = false;
+        min_time = 2000;
+      };
+
       kubernetes = {
         disabled = false;
-        format = ''[$symbol($context($namespace))](green) '';
+        format = ''[$symbol($context:$namespace)](green) '';
       };
 
       gcloud = {
         disabled = false;
-        symbol = ''gcloud'';
-        format = ''[$symbol($account(@domain)(($project))$region)](cyan) '';
+        format = ''[$symbol($account:@$domain:$project:$region)](cyan) '';
       };
       gcloud.region_aliases = {
         us-central1 = ''uc1'';
@@ -38,17 +45,39 @@
       
       aws = {
         disabled = false;
-        symbol = ''aws'';
-        format = ''[$symbol(($profile$region))]($style) '';
+        format = ''[$symbol($profile:$region)]($style) '';
       };
       
       nix_shell = {
         disabled = false;
-        symbol = ''nix'';
-        format = ''[$symbol(($state):($name))]($style) '';
+        format = ''[$symbol($state:$name)]($style) '';
       };
 
       shell = {
+        disabled = false;
+      };
+
+      python = {
+        disabled = false;
+        format = ''[$symbol($venv:$version)]($style) '';
+      };
+
+      elixir = {
+        disabled = false;
+        format = ''[$symbol($version \(OTP$otp_version))]($style) '';
+      };
+
+      golang = {
+        disabled = false;
+        format = ''[$symbol($version)]($style) '';
+      };
+
+      haskell = {
+        disabled = false;
+        format = ''[$symbol($version)]($style) '';
+      };
+
+      rust = {
         disabled = false;
       };
     };

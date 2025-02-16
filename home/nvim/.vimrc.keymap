@@ -6,6 +6,11 @@ noremap <Leader>p o<Esc>p
 noremap gs ^
 noremap gl $
 noremap ge G
+nnoremap x "_x
+nnoremap s "_s
+vnoremap p "_dP
+vnoremap > >gv
+vnoremap < <gv
 
 set clipboard&
 set clipboard^=unnamedplus "sync os clipboard

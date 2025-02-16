@@ -6,5 +6,9 @@
     {
         "key": "cmd+]",
         "command": "workbench.action.navigateForward"
+    },
+    {
+        "key": "cmd+k cmd+p",
+        "command": "workbench.action.openRecent"
     }
 ]

@@ -2,7 +2,7 @@
   "editor.accessibilitySupport": "off",
   "editor.stickyScroll.enabled": true,
   "files.insertFinalNewline": true,
-  "workbench.colorTheme": "Everforest Dark",
+  "workbench.colorTheme": "Catppuccin Frappé",
   "terminal.integrated.enableMultiLinePasteWarning": "always",
   "terminal.integrated.env.osx": {
     "Q_NEW_SESSION": "1"
@@ -27,7 +27,7 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [ "g", "f" ],
-      "after": [ "leader", "leader", "s" ]
+      "after": [ "<leader>", "<leader>", "s" ]
     }
   ],
   "vim.normalModeKeyBindings": [
@@ -36,11 +36,11 @@
     { "before": ["g", "D"], "commands": ["editor.action.goToDefinition"] },
     { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] },
     { "before": ["g", "y"], "commands": ["editor.action.goToTypeDefinition"] },
-    { "before": ["leader", "r"], "commands": ["Rename Symbol"] },
-    { "before": ["leader", "s"], "commands": ["workbench.action.gotoSymbol"] },
-    { "before": ["leader", "S"], "commands": ["workbench.action.showAllSymbols"] },
-    { "before": ["leader", "a"], "commands": ["Refactor"] },
-    { "before": ["leader", "k"], "commands": ["editor.action.showHover"] },
+    { "before": ["<leader>", "r"], "commands": ["editor.acion.rename"] },
+    { "before": ["<leader>", "s"], "commands": ["workbench.action.gotoSymbol"] },
+    { "before": ["<leader>", "S"], "commands": ["workbench.action.showAllSymbols"] },
+    { "before": ["<leader>", "a"], "commands": ["editor.action.refactor"] },
+    { "before": ["<leader>", "k"], "commands": ["editor.action.showHover"] },
   ],
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
