@@ -1,6 +1,11 @@
 {
   "editor.accessibilitySupport": "off",
   "editor.stickyScroll.enabled": true,
+  "editor.minimap.enabled": false,
+  "editor.fontSize": 13,
+  "editor.fontFamily": "JetBrains Mono",
+  "debug.console.fontSize": 13,
+  "debug.console.fontFamily": "JetBrains Mono",
   "files.insertFinalNewline": true,
   "workbench.colorTheme": "Catppuccin Frappé",
   "terminal.integrated.enableMultiLinePasteWarning": "always",
