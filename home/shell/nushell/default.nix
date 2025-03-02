@@ -58,6 +58,19 @@
           }
         ]
       }
+
+      def zsh_history [] {
+        commandline edit --insert (
+          cat $"($env.HOME)/.zsh_history"
+            | lines 
+            | uniq 
+            | reverse 
+            | str join (char -i 0) 
+            | fzf --read0 --height=40% -q (commandline) 
+            | decode utf-8 
+            | str trim
+        )
+      }
     '';
   };
 }
