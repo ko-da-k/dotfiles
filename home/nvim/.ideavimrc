@@ -5,10 +5,12 @@ source ~/.vimrc.keymap
 " how to check: `:actionlist`
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gr :action FindUsages<CR>
-nnoremap gy :action GotoTypeDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
+nnoremap gy :action GotoTypeDeclaration<CR>
 nnoremap <Leader>r :action RenameElement<CR>
 nnoremap <Leader>s :action GotoSymbol<CR>
+nnoremap <Leader>a :action Refactorings.QuickListPopupAction<CR>
+nnoremap <Leader>k :action ShowHoverInfo<CR>
 
 nnoremap <Leader>== :action ReformatCode<CR>
 vnoremap <Leader>== :action ReformatCode<CR>
