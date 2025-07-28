@@ -71,6 +71,30 @@
             | str trim
         )
       }
+
+      def urlencode [rec: record] {
+        mut pairs = []
+        for key in ($rec | columns) {
+          let value = ($rec | get $key)
+          if $value == null {
+            continue
+          }
+          let key_encoded = ($key | url encode)
+          match ($value | describe | str replace --regex "<.*" "") {
+            "list" => {
+              for item in $value {
+                let item_encoded = ($item | into string | url encode)
+                $pairs = ($pairs | append $"($key_encoded)=($item_encoded)")
+              }
+            }
+            _ => {
+              let value_encoded = ($value | into string | url encode)
+              $pairs = ($pairs | append $"($key_encoded)=($value_encoded)")
+            }
+          }
+        }
+        $pairs | str join "&"
+      }
     '';
   };
 }
