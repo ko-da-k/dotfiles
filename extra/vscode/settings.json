@@ -7,7 +7,7 @@
   "debug.console.fontSize": 13,
   "debug.console.fontFamily": "JetBrains Mono",
   "files.insertFinalNewline": true,
-  "workbench.colorTheme": "Catppuccin Frappé",
+  "workbench.colorTheme": "Catppuccin Macchiato",
   "terminal.integrated.enableMultiLinePasteWarning": "always",
   "terminal.integrated.env.osx": {
     "Q_NEW_SESSION": "1"
@@ -84,5 +84,12 @@
     "tests"
   ],
   "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true
+  "python.testing.pytestEnabled": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "go.toolsManagement.autoUpdate": true,
+  "chat.agent.enabled": true,
+  "[typescript]": {
+    "editor.tabSize": 2
+  },
+  "svelte.enable-ts-plugin": true
 }

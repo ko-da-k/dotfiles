@@ -76,6 +76,9 @@
 
       # ghcup
       export PATH=$HOME/.ghcup/bin:$PATH
+
+      # deno
+      export PATH=$HOME/.deno/bin:$PATH
     '';
     plugins = [
       {

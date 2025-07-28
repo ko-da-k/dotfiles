@@ -10,5 +10,25 @@
     {
         "key": "cmd+k cmd+p",
         "command": "workbench.action.openRecent"
+    },
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
+    },
+    {
+        "key": "shift+cmd+i",
+        "command": "composerMode.chat"
+    },
+    {
+        "key": "alt+cmd+i",
+        "command": "composerMode.edit"
+    },
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\\\r\n"
+        },
+        "when": "terminalFocus"
     }
 ]
