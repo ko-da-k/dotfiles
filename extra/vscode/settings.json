@@ -91,5 +91,8 @@
   "[typescript]": {
     "editor.tabSize": 2
   },
-  "svelte.enable-ts-plugin": true
+  "svelte.enable-ts-plugin": true,
+  
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false
 }

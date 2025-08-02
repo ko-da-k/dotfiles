@@ -7,7 +7,8 @@
     shellAliases = {
       ll = "lsd -l";
       lla = "lsd -la";
-      view = "vim -RM";
+      vim = "nvim";
+      view = "nvim -RM";
       ghqcd = "cd $(ghq list --full-path | fzf)";
       lg = "lazygit";
       k = "kubectl";
@@ -31,7 +32,7 @@
       # brew
       eval $(/opt/homebrew/bin/brew shellenv)
     '';
-    initExtra = ''
+    initContent = ''
       setopt incappendhistory
       # Nix
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

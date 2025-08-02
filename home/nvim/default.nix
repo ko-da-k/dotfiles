@@ -17,7 +17,8 @@
     plugins = with pkgs.vimPlugins; [
       {
         plugin = dracula-nvim;
-        config = ''
+        config = # lua
+        ''
           " first init
           let mapleader = "\<Space>"
 
@@ -51,15 +52,16 @@
       }
       {
         plugin = nvim-surround;
-        config = ''
-          lua <<EOF
+        type = "lua";
+        config = # lua
+        ''
           require('nvim-surround').setup {}
-          EOF
         '';
       }
       {
         plugin = vim-fern;
-        config = ''
+        config = # lua
+        ''
           nnoremap <Leader>n :Fern . -drawer -reveal=% -toggle -stay<CR>
           nnoremap <C-n> :Fern . -drawer -reveal=%<CR>
         '';
@@ -77,8 +79,9 @@
       }
       {
         plugin = fzf-lua;
-        config = ''
-          lua <<EOF
+        type = "lua";
+        config = # lua
+        ''
           require('fzf-lua').setup({})
 
           vim.keymap.set('n', '<Leader>f', '<Cmd>lua require("fzf-lua").files()<CR>')
@@ -99,8 +102,6 @@
           vim.keymap.set('n', '<Leader>d', '<Cmd>lua require("fzf-lua").lsp_document_diagnostics()<CR>')
           vim.keymap.set('n', '<Leader>D', '<Cmd>lua require("fzf-lua").lsp_workspace_diagnostics()<CR>')
           vim.keymap.set('n', '<Leader>a', '<Cmd>lua require("fzf-lua").lsp_code_actions()<CR>')
-
-          EOF
           '';
       }
       {
@@ -129,8 +130,9 @@
       }
       {
         plugin = toggleterm-nvim;
-        config = ''
-          lua <<EOF
+        type = "lua";
+        config = # lua
+        ''
           require('toggleterm').setup{
             size = 15,
             open_mapping = [[<C-t>]],
@@ -138,7 +140,6 @@
             direction = 'float',
             close_on_exit = true,
           }
-          EOF
         '';
       }
       {
@@ -153,7 +154,8 @@
       {
         plugin = nvim-cmp;
         type = "lua";
-        config = ''
+        config = # lua
+        ''
           local cmp = require 'cmp'
           cmp.setup({
             snippet = {
@@ -185,7 +187,8 @@
       {
         plugin = nvim-lspconfig;
         type = "lua";
-        config = ''
+        config = # lua
+        ''
           local lspconfig = require 'lspconfig'
           local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -233,16 +236,34 @@
                   }
               }
           }
+
+          vim.lsp.enable('nushell')
         '';
       }
       {
         plugin = lspsaga-nvim;
         type = "lua";
-        config = ''
+        config = # lua
+        ''
           require('lspsaga').setup({})
           '';
       }
-      nvim-treesitter
+      {
+        plugin = nvim-treesitter;
+        type = "lua";
+        config = # lua
+        ''
+          require('nvim-treesitter.configs').setup {
+            highlight = {
+              enable = true,
+            },
+            indent = {
+              enable = true,
+              disable = { 'yaml' },
+            }
+          }
+        '';
+      }
       nvim-treesitter-parsers.elixir
       nvim-treesitter-parsers.heex
       nvim-treesitter-parsers.eex
@@ -251,6 +272,7 @@
       nvim-treesitter-parsers.yaml
       nvim-treesitter-parsers.toml
       nvim-treesitter-parsers.bash
+      nvim-treesitter-parsers.nu
       copilot-vim
     ];
 
@@ -283,16 +305,6 @@
       autocmd TermOpen * setlocal nonumber
       '';
 
-    extraLuaConfig = ''
-      require('nvim-treesitter.configs').setup {
-        highlight = {
-          enable = true,
-        },
-        indent = {
-          enable = true,
-          disable = { 'yaml' },
-        }
-      }
-    '';
+    extraLuaConfig = '''';
   };
 }
