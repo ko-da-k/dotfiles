@@ -78,3 +78,16 @@ def urlencode [rec: record] {
     }
     $pairs | str join "&"
 }
+
+def diff [left: record, right: record] {
+    let all_keys = [($left | sort | columns), ($right | sort | columns)] | flatten | uniq
+    mut diffs = []
+    for key in $all_keys {
+        let val1 = ($left | get $key -o)
+        let val2 = ($right | get $key -o)
+        if $val1 != $val2 {
+            $diffs = ($diffs | append { key: $key, left: $val1, right: $val2 })
+        }
+    }
+    $diffs
+}
