@@ -55,7 +55,6 @@
     pkgs.pstree
     pkgs.moon
     pkgs.unixtools.watch
-    pkgs.awscli2
     pkgs.saml2aws
     pkgs.socat
     pkgs.tfsec

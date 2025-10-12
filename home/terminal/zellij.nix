@@ -8,6 +8,15 @@
     settings =  {
       theme = "catppuccin-frappe";
       default_mode = "locked";
+      show_startup_tips = false;
     };
+
+    extraConfig = ''
+      keybinds {
+        locked {
+          bind "Alt f" { ToggleFloatingPanes; }
+        }
+      }
+    '';
   };
 }
