@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
-  "base_keymap": "JetBrains",
+  "base_keymap": "VSCode",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
@@ -58,13 +58,14 @@
         }
       }
     },
-    "pyright": {
-      "python.analysis": {
-        "diagnosticMode": "workspace",
-        "typeCheckingMode": "strict"
-      },
-      "python": {
-        "pythonPath": ".venv/bin/python"
+    "basedpyright": {
+      "settings": {
+        "basedpyright.analysis": {
+          "diagnosticMode": "workspace",
+          "inlayHints": {
+            "callArgumentNames": false
+          }
+        }
       }
     }
   }
