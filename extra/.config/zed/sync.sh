@@ -8,4 +8,4 @@ set -eu -o pipefail -x
 cd $(dirname "$0")
 
 ln -sf "$(pwd)/settings.json" "$HOME/.config/zed/settings.json"
-ln -sf "$(pwd)/keybindings.json" "$HOME/.config/zed/keybindings.json"
+ln -sf "$(pwd)/keymap.json" "$HOME/.config/zed/keymap.json"
