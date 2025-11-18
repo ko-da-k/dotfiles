@@ -16,6 +16,13 @@
     }
   },
   {
+    "context": "Editor && (vim_mode == normal || vim_mode == insert)",
+    "bindings": {
+      "cmd-[": "pane::GoBack",
+      "cmd-]": "pane::GoForward"
+    }
+  },
+  {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
       "space h": "vim::FirstNonWhitespace",

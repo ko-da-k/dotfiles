@@ -58,7 +58,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Everforest Dark"
+    "dark": "Ayu Mirage"
   },
   "lsp": {
     "rust-analyzer": {
