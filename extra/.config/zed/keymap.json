@@ -12,7 +12,8 @@
       "ctrl-w h": "workspace::ActivatePaneLeft",
       "ctrl-w l": "workspace::ActivatePaneRight",
       "ctrl-w k": "workspace::ActivatePaneUp",
-      "ctrl-w j": "workspace::ActivatePaneDown"
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "cmd-k cmd-p": "projects::OpenRecent"
     }
   },
   {
@@ -45,15 +46,13 @@
     }
   },
   {
-    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
-      "space n": "workspace::ToggleLeftDock",
-      "space N": "workspace::ToggleRightDock",
-      "ctrl-n": "project_panel::ToggleFocus",
-      "shift-k": "editor::Hover",
-      "space = =": "editor::Format",
-      "space o": "tab_switcher::Toggle",
-      "ctrl-p": "file_finder::Toggle"
+      "g i": "editor::GoToImplementation",
+      "space s": "project_symbols::Toggle",
+      "space a": "editor::ToggleCodeActions",
+      "space k": "editor::Hover",
+      "space = =": "editor::Format"
     }
   },
   {
