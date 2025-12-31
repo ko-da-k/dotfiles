@@ -13,54 +13,15 @@
       "ctrl-w l": "workspace::ActivatePaneRight",
       "ctrl-w k": "workspace::ActivatePaneUp",
       "ctrl-w j": "workspace::ActivatePaneDown",
-      "cmd-k cmd-p": "projects::OpenRecent"
-    }
-  },
-  {
-    "context": "Editor && (vim_mode == normal || vim_mode == insert)",
-    "bindings": {
-      "cmd-[": "pane::GoBack",
-      "cmd-]": "pane::GoForward"
-    }
-  },
-  {
-    "context": "vim_mode == normal || vim_mode == visual",
-    "bindings": {
-      "space h": "vim::FirstNonWhitespace",
-      "space l": "vim::EndOfLine",
-      "space o": ["workspace::SendKeystrokes", "o<Esc>"],
-      "space p": ["workspace::SendKeystrokes", "o<Esc>p"]
-    }
-  },
-  {
-    "context": "vim_mode == insert",
-    "bindings": {
-      "ctrl-k": "editor::ContextMenuPrevious",
-      "ctrl-j": "editor::ContextMenuNext"
-    }
-  },
-  {
-    "context": "VimControl && BufferSearchBar",
-    "bindings": {
-      "ctrl-[": "buffer_search::Dismiss"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
-    "bindings": {
-      "g i": "editor::GoToImplementation",
-      "space s": "project_symbols::Toggle",
-      "space a": "editor::ToggleCodeActions",
-      "space k": "editor::Hover",
-      "space = =": "editor::Format"
-    }
+      "cmd-k cmd-p": "projects::OpenRecent",
+    },
   },
   {
     "context": "TabSwitcher || FileFinder || CommandPalette",
     "bindings": {
       "ctrl-k": "menu::SelectPrevious",
-      "ctrl-j": "menu::SelectNext"
-    }
+      "ctrl-j": "menu::SelectNext",
+    },
   },
   {
     "context": "Workspace",
@@ -68,22 +29,63 @@
       "cmd-shift-o": [
         "projects::OpenRecent",
         {
-          "create_new_window": false
-        }
-      ]
-    }
+          "create_new_window": false,
+        },
+      ],
+    },
   },
   {
     "context": "Terminal",
     "bindings": {
-      "cmd-n": "workspace::NewTerminal"
-    }
+      "cmd-n": "workspace::NewTerminal",
+    },
   },
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "ctrl-n": "project_panel::ToggleFocus",
-      "space n": "workspace::ToggleLeftDock"
-    }
-  }
+      "space n": "workspace::ToggleLeftDock",
+    },
+  },
+
+  // vim custom keybind
+  // {
+  //   "context": "Editor && (vim_mode == normal || vim_mode == insert)",
+  //   "bindings": {
+  //     "cmd-[": "pane::GoBack",
+  //     "cmd-]": "pane::GoForward",
+  //   },
+  // },
+  // {
+  //   "context": "vim_mode == normal || vim_mode == visual",
+  //   "bindings": {
+  //     "space h": "vim::FirstNonWhitespace",
+  //     "space l": "vim::EndOfLine",
+  //     "space o": ["workspace::SendKeystrokes", "o<Esc>"],
+  //     "space p": ["workspace::SendKeystrokes", "o<Esc>p"],
+  //   },
+  // },
+  // {
+  //   "context": "vim_mode == insert",
+  //   "bindings": {
+  //     "ctrl-k": "editor::ContextMenuPrevious",
+  //     "ctrl-j": "editor::ContextMenuNext",
+  //   },
+  // },
+  // {
+  //   "context": "VimControl && BufferSearchBar",
+  //   "bindings": {
+  //     "ctrl-[": "buffer_search::Dismiss",
+  //   },
+  // },
+  // {
+  //   "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+  //   "bindings": {
+  //     "g i": "editor::GoToImplementation",
+  //     "space s": "project_symbols::Toggle",
+  //     "space a": "editor::ToggleCodeActions",
+  //     "space k": "editor::Hover",
+  //     "space = =": "editor::Format",
+  //   },
+  // },
 ]

@@ -8,32 +8,33 @@
 // command palette
 {
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "agent": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "claude-sonnet-4.5",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "base_keymap": "VSCode",
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
-  "vim_mode": true,
+  // "vim_mode": true,
+  "helix_mode": true,
   "cursor_blink": false,
   "scrollbar": {
-    "show": "never"
+    "show": "never",
   },
   "vertical_scroll_margin": 0,
   "tab_bar": {
     "show": false,
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
   },
   "toolbar": {
-    "quick_actions": false
+    "quick_actions": false,
   },
   "ui_font_size": 14,
   "ui_font_family": "Hack Nerd Font Mono",
@@ -41,42 +42,44 @@
   "buffer_font_family": "JetBrains Mono",
   "buffer_font_features": {
     "liga": false,
-    "calt": false
+    "calt": false,
   },
   "buffer_line_height": {
-    "custom": 1.2
+    "custom": 1.2,
   },
+  "expand_excerpt_lines": 5,
+  "excerpt_context_lines": 3,
   "terminal": {
     "font_size": 12,
     "font_family": "Hack Nerd Font Mono",
     "line_height": {
-      "custom": 1.2
-    }
+      "custom": 1.2,
+    },
   },
   "autosave": "on_focus_change",
   "show_whitespaces": "all",
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Ayu Mirage"
+    "dark": "Ayu Mirage",
   },
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
         "check": {
-          "command": "clippy"
-        }
-      }
+          "command": "clippy",
+        },
+      },
     },
     "basedpyright": {
       "settings": {
         "basedpyright.analysis": {
           "diagnosticMode": "workspace",
           "inlayHints": {
-            "callArgumentNames": false
-          }
-        }
-      }
-    }
-  }
+            "callArgumentNames": false,
+          },
+        },
+      },
+    },
+  },
 }
