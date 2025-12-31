@@ -42,6 +42,7 @@
     pkgs.jetbrains-mono
     pkgs.ghq
     pkgs.fzf
+    pkgs.yazi
     pkgs.silver-searcher
     pkgs.ripgrep
     pkgs.bat

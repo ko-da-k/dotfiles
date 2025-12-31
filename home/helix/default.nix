@@ -29,6 +29,15 @@
         insert = {
           "C-[" = "normal_mode";
         };
+        normal = {
+          C-y = [
+            ":sh rm -f /tmp/unique-file"
+            ":insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file"
+            ":insert-output echo \"\\x1b[?1049h\\x1b[?2004h\" > /dev/tty"
+            ":open %sh{cat /tmp/unique-file}"
+            ":redraw"
+          ];
+        };
       };
     };
 
@@ -48,16 +57,27 @@
         }
         {
           name = "json";
-          formatter = { command = "prettier"; args = [ "--parser" "json"]; };
+          formatter = {
+            command = "prettier";
+            args = [
+              "--parser"
+              "json"
+            ];
+          };
         }
         {
           name = "bash";
-          file-types = ["sh" "bash"];
-          indent = { tab-width = 2; unit = " "; };
-          language-servers = ["bash-language-server"]; 
+          file-types = [
+            "sh"
+            "bash"
+          ];
+          indent = {
+            tab-width = 2;
+            unit = " ";
+          };
+          language-servers = [ "bash-language-server" ];
         }
       ];
     };
   };
 }
-
