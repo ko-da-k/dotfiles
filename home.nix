@@ -42,7 +42,6 @@
     pkgs.jetbrains-mono
     pkgs.ghq
     pkgs.fzf
-    pkgs.yazi
     pkgs.silver-searcher
     pkgs.ripgrep
     pkgs.bat
@@ -100,7 +99,8 @@
   #  /etc/profiles/per-user/ko-da-k/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "hx";
+    VISUAL = "nvim";
   };
 
   # Let Home Manager install and manage itself.
