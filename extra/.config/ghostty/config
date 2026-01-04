@@ -1,4 +1,4 @@
-theme = "Catppuccin Frappe"
+theme = "Catppuccin Mocha"
 font-feature = -liga
 font-feature = -calt
 font-feature = -dlig
@@ -8,6 +8,7 @@ font-family = "JetBrains Mono NL Regular"
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 macos-option-as-alt = true
+macos-titlebar-style = "tabs"
 background-opacity = 0.9
 background-blur = 20
 unfocused-split-opacity = 0.3
