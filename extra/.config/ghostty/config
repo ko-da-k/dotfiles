@@ -1,11 +1,13 @@
-theme = Catppuccin Frappe
+theme = "Catppuccin Frappe"
 font-feature = -liga
 font-feature = -calt
 font-feature = -dlig
 font-family = ""
-font-family = Hack Nerd Font Mono Regular
-font-family = JetBrains Mono NL Regular
+font-family = "Hack Nerd Font Mono Regular"
+font-family = "JetBrains Mono NL Regular"
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 macos-option-as-alt = true
-
+background-opacity = 0.9
+background-blur = 20
+unfocused-split-opacity = 0.3
