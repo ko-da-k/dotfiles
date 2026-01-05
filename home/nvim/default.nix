@@ -189,54 +189,88 @@
         type = "lua";
         config = # lua
           ''
-            local lspconfig = require 'lspconfig'
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-            lspconfig.elixirls.setup{
+            -- elixirls
+            vim.lsp.config.elixirls = {
+              cmd = { '${pkgs.elixir-ls}/bin/elixir-ls' },
+              filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
+              root_markers = { 'mix.exs' },
               capabilities = capabilities,
-              cmd = { '${pkgs.elixir-ls}/bin/elixir-ls' }
             }
+            vim.lsp.enable('elixirls')
 
-            lspconfig.taplo.setup{
+            -- taplo
+            vim.lsp.config.taplo = {
+              cmd = { '${pkgs.taplo}/bin/taplo', 'lsp', 'stdio' },
+              filetypes = { 'toml' },
+              root_markers = { '*.toml' },
               capabilities = capabilities,
-              cmd = { '${pkgs.taplo}/bin/taplo', 'lsp', 'stdio' }
             }
+            vim.lsp.enable('taplo')
 
-            lspconfig.terraformls.setup{
+            -- terraformls
+            vim.lsp.config.terraformls = {
+              cmd = { '${pkgs.terraform-ls}/bin/terraform-ls', 'serve' },
+              filetypes = { 'terraform', 'tf', 'terraform-vars' },
+              root_markers = { '.terraform', '.git' },
               capabilities = capabilities,
-              cmd = { '${pkgs.terraform-ls}/bin/terraform-ls', 'serve' }
             }
+            vim.lsp.enable('terraformls')
 
-            lspconfig.bashls.setup{
+            -- bashls
+            vim.lsp.config.bashls = {
+              cmd = { '${pkgs.bash-language-server}/bin/bash-language-server', 'start' },
+              filetypes = { 'sh', 'bash' },
+              root_markers = { '.git' },
               capabilities = capabilities,
-              cmd = { '${pkgs.bash-language-server}/bin/bash-language-server', 'start' }
             }
+            vim.lsp.enable('bashls')
 
-            lspconfig.yamlls.setup{
+            -- yamlls
+            vim.lsp.config.yamlls = {
+              cmd = { '${pkgs.yaml-language-server}/bin/yaml-language-server', '--stdio' },
+              filetypes = { 'yaml', 'yml' },
+              root_markers = { '.git' },
               capabilities = capabilities,
-              cmd = { '${pkgs.yaml-language-server}/bin/yaml-language-server', '--stdio' }
             }
+            vim.lsp.enable('yamlls')
 
-            lspconfig.hls.setup{
+            -- hls (Haskell Language Server)
+            vim.lsp.config.hls = {
+              cmd = { '${config.home.homeDirectory}/.ghcup/bin/haskell-language-server-wrapper', '--lsp' },
+              filetypes = { 'haskell', 'lhaskell' },
+              root_markers = { 'hie.yaml', 'stack.yaml', 'cabal.project', '*.cabal', 'package.yaml' },
               capabilities = capabilities,
-              cmd = { '${config.home.homeDirectory}/.ghcup/bin/haskell-language-server-wrapper', '--lsp' }
             }
+            vim.lsp.enable('hls')
 
-            lspconfig.nixd.setup{
+            -- nixd
+            vim.lsp.config.nixd = {
+              cmd = { '${pkgs.nixd}/bin/nixd' },
+              filetypes = { 'nix' },
+              root_markers = { 'flake.nix', '.git' },
               capabilities = capabilities,
-              cmd = { '${pkgs.nixd}/bin/nixd' }
             }
+            vim.lsp.enable('nixd')
 
-            lspconfig.rust_analyzer.setup{
-                settings = {
-                    ["rust-analyzer"] = {
-                        check = {
-                            command = "clippy"
-                        }
-                    }
+            -- rust_analyzer
+            vim.lsp.config.rust_analyzer = {
+              cmd = { 'rust-analyzer' },
+              filetypes = { 'rust' },
+              root_markers = { 'Cargo.toml' },
+              capabilities = capabilities,
+              settings = {
+                ["rust-analyzer"] = {
+                  check = {
+                    command = "clippy"
+                  }
                 }
+              }
             }
+            vim.lsp.enable('rust_analyzer')
 
+            -- nushell
             vim.lsp.enable('nushell')
           '';
       }
