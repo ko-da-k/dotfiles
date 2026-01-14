@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  # https://github.com/nix-community/home-manager/blob/master/modules/programs/zsh.nix
+  # https://github.com/nix-community/home-manager/blob/master/modules/programs/zsh/default.nix
   programs.zsh = {
     enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
     shellAliases = {
       ll = "lsd -l";
       lla = "lsd -la";

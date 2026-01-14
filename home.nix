@@ -46,11 +46,11 @@
     pkgs.ripgrep
     pkgs.bat
     pkgs.lsd
+    pkgs.difftastic
     pkgs.lazygit
     pkgs.gh
     pkgs.htop
     pkgs.graphviz
-    pkgs.mise
     pkgs.ant
     pkgs.pstree
     pkgs.moon
