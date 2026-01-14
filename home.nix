@@ -47,6 +47,7 @@
     pkgs.bat
     pkgs.lsd
     pkgs.difftastic
+    pkgs.meld
     pkgs.lazygit
     pkgs.gh
     pkgs.htop
