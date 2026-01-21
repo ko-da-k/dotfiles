@@ -50,7 +50,10 @@
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
   "vim.vimrc.path": "~/.vimrc.keymap",
-  "vim.enableNeovim": true,
+  "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.visual": "underline"
+  "vim.enableNeovim": false,
 
   "[nix]": {
     "editor.tabSize": 2
