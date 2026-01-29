@@ -61,7 +61,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Ayu Mirage",
+    "dark": "Ayu Dark",
   },
   "lsp": {
     "rust-analyzer": {
