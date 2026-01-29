@@ -1,13 +1,30 @@
 # only config files outside of home-manager
-{ config, pkgs, ... }:
+# mkOutOfStoreSymlink: XDG配下 → dotfiles配下 へのシンボリックリンクを作成
+# これにより GUI アプリから直接編集可能になる
+{ config, pkgs, dotfilesPath, ... }:
 
+let
+  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
+  extraPath = "${dotfilesPath}/extra";
+in
 {
-  xdg.configFile."alacritty/dracula.toml".source = ./.config/alacritty/dracula.toml;
-  xdg.configFile."alacritty/catppuccin.toml".source = ./.config/alacritty/catppuccin.toml;
-  xdg.configFile."alacritty/everforest.toml".source = ./.config/alacritty/everforest.toml;
-  xdg.configFile."alacritty/alacritty.toml".source = ./.config/alacritty/alacritty.toml;
-  xdg.configFile."ghostty/config".source = ./.config/ghostty/config;
-  xdg.configFile."git/ignore".source = ./.config/git/ignore;
-  xdg.configFile."zed/settings.json".source = ./.config/zed/settings.json;
-  xdg.configFile."zed/keymap.json".source = ./.config/zed/keymap.json;
+  # alacritty
+  xdg.configFile."alacritty/dracula.toml".source = mkSymlink "${extraPath}/.config/alacritty/dracula.toml";
+  xdg.configFile."alacritty/catppuccin.toml".source = mkSymlink "${extraPath}/.config/alacritty/catppuccin.toml";
+  xdg.configFile."alacritty/everforest.toml".source = mkSymlink "${extraPath}/.config/alacritty/everforest.toml";
+  xdg.configFile."alacritty/alacritty.toml".source = mkSymlink "${extraPath}/.config/alacritty/alacritty.toml";
+
+  # ghostty
+  xdg.configFile."ghostty/config".source = mkSymlink "${extraPath}/.config/ghostty/config";
+
+  # git
+  xdg.configFile."git/ignore".source = mkSymlink "${extraPath}/.config/git/ignore";
+
+  # zed
+  xdg.configFile."zed/settings.json".source = mkSymlink "${extraPath}/.config/zed/settings.json";
+  xdg.configFile."zed/keymap.json".source = mkSymlink "${extraPath}/.config/zed/keymap.json";
+
+  # vscode
+  home.file."Library/Application Support/Code/User/settings.json".source = mkSymlink "${extraPath}/vscode/settings.json";
+  home.file."Library/Application Support/Code/User/keybindings.json".source = mkSymlink "${extraPath}/vscode/keybindings.json";
 }
