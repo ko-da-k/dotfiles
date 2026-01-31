@@ -24,6 +24,9 @@ in
   xdg.configFile."zed/settings.json".source = mkSymlink "${extraPath}/.config/zed/settings.json";
   xdg.configFile."zed/keymap.json".source = mkSymlink "${extraPath}/.config/zed/keymap.json";
 
+  # jj
+  xdg.configFile."jj/config.toml".source = mkSymlink "${extraPath}/.config/jj/config.toml";
+
   # vscode
   home.file."Library/Application Support/Code/User/settings.json".source = mkSymlink "${extraPath}/vscode/settings.json";
   home.file."Library/Application Support/Code/User/keybindings.json".source = mkSymlink "${extraPath}/vscode/keybindings.json";

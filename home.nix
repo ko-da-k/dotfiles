@@ -59,6 +59,8 @@
     pkgs.saml2aws
     pkgs.socat
     pkgs.tfsec
+    pkgs.git-secrets
+    pkgs.gitleaks
     # language-server
     pkgs.bash-language-server
     pkgs.elixir-ls
