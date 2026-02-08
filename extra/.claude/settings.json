@@ -50,9 +50,9 @@
     ],
     "defautMode": "plan"
   },
-  "model": "opusplan",
   "language": "Japanese",
   "sandbox": {
     "enabled": true
-  }
+  },
+  "model": "opusplan"
 }

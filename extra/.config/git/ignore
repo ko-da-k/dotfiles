@@ -4,3 +4,6 @@
 .mise.toml
 .nvimlog
 .helix
+utils.nu
+
+**/.claude/settings.local.json

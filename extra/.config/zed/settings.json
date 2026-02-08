@@ -24,6 +24,17 @@
   },
   // "vim_mode": true,
   "helix_mode": true,
+  "which_key": {
+    "enabled": true,
+    "delay_ms": 100,
+  },
+  "vim": {
+    "cursor_shape": {
+      "normal": "block",
+      "replace": "underline",
+      "visual": "underline",
+    },
+  },
   "cursor_blink": false,
   "scrollbar": {
     "show": "never",
@@ -61,7 +72,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Ayu Dark",
+    "dark": "Catppuccin Mocha",
   },
   "lsp": {
     "rust-analyzer": {

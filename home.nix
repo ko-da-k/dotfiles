@@ -38,29 +38,33 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    # fonts
     pkgs.nerd-fonts.hack
     pkgs.jetbrains-mono
+
+    # dev tools
     pkgs.ghq
     pkgs.fzf
     pkgs.silver-searcher
     pkgs.ripgrep
-    pkgs.bat
     pkgs.lsd
-    pkgs.difftastic
-    pkgs.meld
-    pkgs.lazygit
     pkgs.gh
     pkgs.htop
     pkgs.graphviz
-    pkgs.ant
     pkgs.pstree
     pkgs.moon
-    pkgs.unixtools.watch
-    pkgs.saml2aws
     pkgs.socat
+    pkgs.saml2aws
     pkgs.tfsec
+
+    # jj/git tools
+    pkgs.difftastic
+    pkgs.meld
     pkgs.git-secrets
     pkgs.gitleaks
+    pkgs.lazygit
+
     # language-server
     pkgs.bash-language-server
     pkgs.elixir-ls
@@ -70,6 +74,7 @@
     pkgs.nil
     pkgs.nixd
     pkgs.vscode-json-languageserver
+
     # js runtime
     pkgs.nodejs
     pkgs.pnpm

@@ -47,6 +47,13 @@
       "space n": "workspace::ToggleLeftDock",
     },
   },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "space": null, // Disable the default action vim:WrappingRight
+      "ctrl-w": null,
+    },
+  },
 
   // vim custom keybind
   // {

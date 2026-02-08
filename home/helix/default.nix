@@ -40,6 +40,7 @@
             ":open %sh{cat /tmp/unique-file}"
             ":redraw"
           ];
+          C-t = ":sh lsd --tree --depth=3";
         };
       };
     };
