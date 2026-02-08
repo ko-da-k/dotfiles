@@ -1,0 +1,60 @@
+{
+  "env": {
+    "EDITOR": "hx",
+    "VISUAL": "hx"
+  },
+  "sandbox": {
+    "enabled": true
+  },
+  "model": "opusplan",
+  "language": "Japanese",
+  "permissions": {
+    "defautMode": "plan",
+    "allow": [
+      "Bash(jj log:*)",
+      "Bash(jj st:*)",
+      "Bash(jj diff:*)",
+      "Bash(jj desc:*)",
+      "Bash(jj show:*)",
+      "Bash(go build:*)",
+      "Bash(go test:*)",
+      "Bash(go fmt:*)",
+      "Bash(go vet:*)",
+    ],
+    "deny": [
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm remove:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm uninstall:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(uv add:*)",
+      "Bash(uv remove:*)",
+      "Bash(poetry add:*)",
+      "Bash(poetry remove:*)",
+      "Bash(rm:*)",
+      "Bash(rm -rf:*)",
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      "Bash(jj git:*)",
+      "Bash(jj commit:*)",
+      "Bash(jj bookmark:*)",
+      "Bash(jj git push:*)",
+      "Read(.env)",
+      "Read(.env*)",
+      "Read(id_rsa*)",
+      "Read(id_ed25519*)",
+      "Read(**/*token*)",
+      "Read(**/*key*)",
+      "Read(utils.nu)",
+      "Read(secrets/**)",
+      "Write(.env*)",
+      "Write(**/secrets/**)"
+
+
+    ]
+  }
+}

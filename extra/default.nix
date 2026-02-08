@@ -30,4 +30,9 @@ in
   # vscode
   home.file."Library/Application Support/Code/User/settings.json".source = mkSymlink "${extraPath}/vscode/settings.json";
   home.file."Library/Application Support/Code/User/keybindings.json".source = mkSymlink "${extraPath}/vscode/keybindings.json";
+
+  # claude
+  home.file.".claude/settings.json".source = mkSymlink "${extraPath}/.claude/settings.json";
+  home.file.".claude/CLAUDE.md".source = mkSymlink "${extraPath}/.claude/CLAUDE.md";
+  home.file.".claude/skills".source = mkSymlink "${extraPath}/.claude/skills";
 }
