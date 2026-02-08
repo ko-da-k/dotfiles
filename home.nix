@@ -74,6 +74,7 @@
     pkgs.nil
     pkgs.nixd
     pkgs.vscode-json-languageserver
+    pkgs.typescript-language-server
 
     # js runtime
     pkgs.nodejs

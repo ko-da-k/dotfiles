@@ -6,7 +6,7 @@
     enable = true;
 
     settings = {
-      theme = "everforest_dark";
+      theme = "kanagawa";
       editor = {
         mouse = true;
         file-picker = {
@@ -100,6 +100,18 @@
             unit = " ";
           };
           language-servers = [ "bash-language-server" ];
+        }
+        {
+          name = "typescript";
+          language-servers = [ "typescript-language-server" ];
+        }
+        {
+          name = "tsx";
+          language-servers = [ "typescript-language-server" ];
+        }
+        {
+          name = "javascript";
+          language-servers = [ "typescript-language-server" ];
         }
       ];
     };
