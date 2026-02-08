@@ -3,13 +3,7 @@
     "EDITOR": "hx",
     "VISUAL": "hx"
   },
-  "sandbox": {
-    "enabled": true
-  },
-  "model": "opusplan",
-  "language": "Japanese",
   "permissions": {
-    "defautMode": "plan",
     "allow": [
       "Bash(jj log:*)",
       "Bash(jj st:*)",
@@ -19,7 +13,7 @@
       "Bash(go build:*)",
       "Bash(go test:*)",
       "Bash(go fmt:*)",
-      "Bash(go vet:*)",
+      "Bash(go vet:*)"
     ],
     "deny": [
       "Bash(curl:*)",
@@ -53,8 +47,12 @@
       "Read(secrets/**)",
       "Write(.env*)",
       "Write(**/secrets/**)"
-
-
-    ]
+    ],
+    "defautMode": "plan"
+  },
+  "model": "opusplan",
+  "language": "Japanese",
+  "sandbox": {
+    "enabled": true
   }
 }
