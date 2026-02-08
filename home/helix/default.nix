@@ -52,6 +52,10 @@
             command = "clippy";
           };
         };
+        vscode-json-languageserver = {
+          command = "vscode-json-languageserver";
+          args = [ "--stdio" ];
+        };
       };
       language = [
         {
@@ -60,11 +64,27 @@
         }
         {
           name = "json";
+          language-servers = [ "vscode-json-languageserver" ];
           formatter = {
-            command = "prettier";
+            command = "deno";
             args = [
-              "--parser"
+              "fmt"
+              "-"
+              "--ext"
               "json"
+            ];
+          };
+        }
+        {
+          name = "jsonc";
+          language-servers = [ "vscode-json-languageserver" ];
+          formatter = {
+            command = "deno";
+            args = [
+              "fmt"
+              "-"
+              "--ext"
+              "jsonc"
             ];
           };
         }

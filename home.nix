@@ -69,6 +69,12 @@
     pkgs.yaml-language-server
     pkgs.nil
     pkgs.nixd
+    pkgs.vscode-json-languageserver
+    # js runtime
+    pkgs.nodejs
+    pkgs.pnpm
+    pkgs.deno
+    pkgs.bun
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

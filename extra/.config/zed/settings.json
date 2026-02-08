@@ -7,8 +7,8 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
-  "features": {
-    "edit_prediction_provider": "copilot",
+  "edit_predictions": {
+    "provider": "copilot",
   },
   "agent": {
     "default_model": {
@@ -57,7 +57,7 @@
     },
   },
   "autosave": "on_focus_change",
-  "show_whitespaces": "all",
+  "show_whitespaces": "trailing",
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
@@ -80,6 +80,11 @@
           },
         },
       },
+    },
+  },
+  "languages": {
+    "JSON": {
+      "format_on_save": "on",
     },
   },
 }

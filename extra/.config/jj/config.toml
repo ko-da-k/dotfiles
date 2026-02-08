@@ -38,7 +38,6 @@ echo '==> All checks passed.'
 [ui]
 default-command = ["info"]
 diff-formatter = ["difft", "--color=always", "$left", "$right"]
-diff-editor = "meld"
 editor = "hx"
 
 [template-aliases]
