@@ -7,6 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "tabs": {
+    "file_icons": false,
+    "git_status": true,
+  },
+  "project_panel": {
+    "auto_fold_dirs": false,
+  },
   "edit_predictions": {
     "provider": "copilot",
   },
@@ -40,8 +47,10 @@
     "show": "never",
   },
   "vertical_scroll_margin": 0,
+  "max_tabs": 4,
   "tab_bar": {
-    "show": false,
+    "show_pinned_tabs_in_separate_row": false,
+    "show": true,
     "show_nav_history_buttons": false,
   },
   "toolbar": {
@@ -72,7 +81,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha",
+    "dark": "Everforest Dark Hard (regular)",
   },
   "lsp": {
     "rust-analyzer": {

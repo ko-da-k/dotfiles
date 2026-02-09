@@ -2,7 +2,7 @@
 name: jj-desc
 description: jujutsu のコミット説明をファイルごとの変更内容とともに自動生成
 user-invocable: true
-allowed-tools: Bash(jj log *), Bash(jj st *), Bash(jj diff *), Bash(jj desc *), Bash(jj show *), Bash(jj check *)
+allowed-tools: Bash(jj log *), Bash(jj st *), Bash(jj diff *), Bash(jj desc *), Bash(jj show *), Bash(jj check *) Bash(jj new *)
 ---
 
 # jj-desc スキル
@@ -31,6 +31,8 @@ jujutsu のコミット説明を自動生成します。
 
 5. コミット説明を更新
    - `jj desc -m "..."` で説明を更新
+   
+6. `jj new` で新しい作業を始められるようにする
 
 ## 注意事項
 

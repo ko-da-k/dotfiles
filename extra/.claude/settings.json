@@ -10,6 +10,7 @@
       "Bash(jj diff *)",
       "Bash(jj desc *)",
       "Bash(jj show *)",
+      "Bash(jj new *)",
       "Bash(go build *)",
       "Bash(go test *)",
       "Bash(go fmt *)",
@@ -48,11 +49,10 @@
       "Write(.env*)",
       "Write(**/secrets/**)"
     ],
-    "defautMode": "plan"
+    "defaultMode": "plan"
   },
   "language": "Japanese",
   "sandbox": {
     "enabled": true
-  },
-  "model": "opusplan"
+  }
 }
