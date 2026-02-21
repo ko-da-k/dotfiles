@@ -58,33 +58,16 @@
       --color=selected-bg:#494d64 \
       --multi"
 
-      # gcloud
-      set -x PATH $HOME/.local/google-cloud-sdk/bin $PATH
+      # 下のほうが優先
+      export PATH=$HOME/Library/Application\ Support/JetBrains/Toolbox/script:$PATH
+      export PATH=$HOME/.local/google-cloud-sdk/bin:$PATH
+      export PATH=$HOME/.local/share/mise/shims:$PATH
+      export PATH=$HOME/.krew/bin:$PATH
+      export PATH=$HOME/go/bin:$PATH
+      export PATH=$HOME/.cargo/bin:$PATH
+      export PATH=$HOME/.local/bin:$PATH
 
-      # local
-      set -x PATH $HOME/.local/bin $PATH
-
-      # mise
-      set -x PATH $HOME/.local/share/mise/shims $PATH
-
-      # jetbrains
-      set -x PATH $PATH "$HOME/Library/Application Support/Jetbrains/Toolbox/scripts"
-
-      # go
-      set -x PATH $HOME/go/bin $PATH
-
-      # cargo
-      set -x PATH $PATH $HOME/.cargo/bin
-
-      # krew
-      set -x PATH $PATH $HOME/.krew/bin
-
-      # gke
-      set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
-      
-      # ghcup
-      set -x PATH $PATH $HOME/.ghcup/bin
-
+      export USE_GKE_GCLOUD_AUTH_PLUGIN=true
     '';
   };
 }

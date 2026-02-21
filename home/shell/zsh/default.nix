@@ -34,6 +34,9 @@
       eval $(/opt/homebrew/bin/brew shellenv)
     '';
     initContent = ''
+      # Deduplicate PATH entries (macOS path_helper can cause duplicates)
+      path=($path)
+
       # Nix
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -51,57 +54,16 @@
       # Set up fzf key bindings and fuzzy completion
       source <(fzf --zsh)
 
-      # gcloud
+      # 下のほうが優先
+      export PATH=$HOME/Library/Application\ Support/JetBrains/Toolbox/script:$PATH
       export PATH=$HOME/.local/google-cloud-sdk/bin:$PATH
-
-      # local
+      export PATH=$HOME/.local/share/mise/shims:$PATH
+      export PATH=$HOME/.krew/bin:$PATH
+      export PATH=$HOME/go/bin:$PATH
+      export PATH=$HOME/.cargo/bin:$PATH
       export PATH=$HOME/.local/bin:$PATH
 
-      # mise
-      export PATH=$HOME/.local/share/mise/shims:$PATH
-
-      # jetbrains
-      export PATH=$HOME/Library/Application\ Support/JetBrains/Toolbox/script:$PATH
-
-      # go
-      export PATH=$HOME/go/bin:$PATH
-
-      # cargo
-      export PATH=$HOME/.cargo/bin:$PATH
-
-      # krew
-      export PATH=$HOME/.krew/bin:$PATH
-
-      # gke
       export USE_GKE_GCLOUD_AUTH_PLUGIN=true
-
-      # ghcup
-      export PATH=$HOME/.ghcup/bin:$PATH
-
-      # deno
-      export PATH=$HOME/.deno/bin:$PATH
     '';
-    plugins = [
-      {
-        # will source zsh-autosuggestions.plugin.zsh
-        name = "zsh-autosuggestions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-autosuggestions";
-          rev = "v0.7.0";
-          sha256 = "KLUYpUu4DHRumQZ3w59m9aTW6TBKMCXl2UcKi4uMd7w=";
-        };
-      }
-      {
-        # will source zsh-syntax-highlighting.zsh
-        name = "zsh-syntax-highlighting";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-syntax-highlighting";
-          rev = "0.8.0";
-          sha256 = "iJdWopZwHpSyYl5/FQXEW7gl/SrKaYDEtTH9cGP7iPo=";
-        };
-      }
-    ];
   };
 }

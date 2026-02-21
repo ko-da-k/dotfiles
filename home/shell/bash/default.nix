@@ -47,32 +47,16 @@
       # Set up fzf key bindings and fuzzy completion
       eval "$(fzf --bash)"
 
-      # gcloud
+      # 下のほうが優先
+      export PATH=$HOME/Library/Application\ Support/JetBrains/Toolbox/script:$PATH
       export PATH=$HOME/.local/google-cloud-sdk/bin:$PATH
-
-      # local
+      export PATH=$HOME/.local/share/mise/shims:$PATH
+      export PATH=$HOME/.krew/bin:$PATH
+      export PATH=$HOME/go/bin:$PATH
+      export PATH=$HOME/.cargo/bin:$PATH
       export PATH=$HOME/.local/bin:$PATH
 
-      # mise
-      export PATH=$HOME/.local/share/mise/shims:$PATH
-
-      # jetbrains
-      export PATH=$HOME/Library/Application\ Support/JetBrains/Toolbox/script:$PATH
-
-      # go
-      export PATH=$HOME/go/bin:$PATH
-
-      # cargo
-      export PATH=$HOME/.cargo/bin:$PATH
-
-      # krew
-      export PATH=$HOME/.krew/bin:$PATH
-
-      # gke
       export USE_GKE_GCLOUD_AUTH_PLUGIN=true
-
-      # ghcup
-      export PATH=$HOME/.ghcup/bin:$PATH
     '';
   };
 }
