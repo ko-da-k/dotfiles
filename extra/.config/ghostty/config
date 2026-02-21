@@ -12,3 +12,4 @@ macos-titlebar-style = "tabs"
 background-opacity = 0.9
 background-blur = 20
 unfocused-split-opacity = 0.3
+keybind = super+shift+r=prompt_surface_title
