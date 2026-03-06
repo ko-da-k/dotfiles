@@ -10,7 +10,9 @@
       lla = "lsd -la";
       vim = "nvim";
       view = "nvim -RM";
-      ghqcd = "cd $(ghq list --full-path | fzf)";
+      zg = "cd $(ghq list --full-path | fzf)";
+      zp = "zoxide query --interactive | tr -d '\n' | pbcopy";
+      zgp = "ghq list --full-path | fzf | tr -d '\n' | pbcopy";
       lg = "lazygit";
       k = "kubectl";
     };
@@ -64,6 +66,13 @@
       export PATH=$HOME/.local/bin:$PATH
 
       export USE_GKE_GCLOUD_AUTH_PLUGIN=true
+
+      # atuin
+      eval "$(atuin init zsh --disable-up-arrow)"
+
+      # zoxide
+      eval "$(zoxide init zsh)"
+
     '';
   };
 }

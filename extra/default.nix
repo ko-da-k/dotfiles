@@ -1,7 +1,12 @@
 # only config files outside of home-manager
 # mkOutOfStoreSymlink: XDG配下 → dotfiles配下 へのシンボリックリンクを作成
 # これにより GUI アプリから直接編集可能になる
-{ config, pkgs, dotfilesPath, ... }:
+{
+  config,
+  pkgs,
+  dotfilesPath,
+  ...
+}:
 
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
@@ -9,10 +14,14 @@ let
 in
 {
   # alacritty
-  xdg.configFile."alacritty/dracula.toml".source = mkSymlink "${extraPath}/.config/alacritty/dracula.toml";
-  xdg.configFile."alacritty/catppuccin.toml".source = mkSymlink "${extraPath}/.config/alacritty/catppuccin.toml";
-  xdg.configFile."alacritty/everforest.toml".source = mkSymlink "${extraPath}/.config/alacritty/everforest.toml";
-  xdg.configFile."alacritty/alacritty.toml".source = mkSymlink "${extraPath}/.config/alacritty/alacritty.toml";
+  xdg.configFile."alacritty/dracula.toml".source =
+    mkSymlink "${extraPath}/.config/alacritty/dracula.toml";
+  xdg.configFile."alacritty/catppuccin.toml".source =
+    mkSymlink "${extraPath}/.config/alacritty/catppuccin.toml";
+  xdg.configFile."alacritty/everforest.toml".source =
+    mkSymlink "${extraPath}/.config/alacritty/everforest.toml";
+  xdg.configFile."alacritty/alacritty.toml".source =
+    mkSymlink "${extraPath}/.config/alacritty/alacritty.toml";
 
   # ghostty
   xdg.configFile."ghostty/config".source = mkSymlink "${extraPath}/.config/ghostty/config";
@@ -28,11 +37,20 @@ in
   xdg.configFile."jj/config.toml".source = mkSymlink "${extraPath}/.config/jj/config.toml";
 
   # vscode
-  home.file."Library/Application Support/Code/User/settings.json".source = mkSymlink "${extraPath}/vscode/settings.json";
-  home.file."Library/Application Support/Code/User/keybindings.json".source = mkSymlink "${extraPath}/vscode/keybindings.json";
+  home.file."Library/Application Support/Code/User/settings.json".source =
+    mkSymlink "${extraPath}/vscode/settings.json";
+  home.file."Library/Application Support/Code/User/keybindings.json".source =
+    mkSymlink "${extraPath}/vscode/keybindings.json";
 
   # claude
   home.file.".claude/settings.json".source = mkSymlink "${extraPath}/.claude/settings.json";
   home.file.".claude/CLAUDE.md".source = mkSymlink "${extraPath}/.claude/CLAUDE.md";
   home.file.".claude/skills".source = mkSymlink "${extraPath}/.claude/skills";
+
+  # zoxide
+  xdg.configFile."zoxide/.zoxide.nu".source = mkSymlink "${extraPath}/.config/zoxide/.zoxide.nu";
+
+  # atuin
+  xdg.configFile."atuin/.atuin.init.nu".source =
+    mkSymlink "${extraPath}/.config/atuin/.atuin.init.nu";
 }

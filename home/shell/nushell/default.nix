@@ -11,7 +11,7 @@
       la = "ls -a";
       lla = "ls -la";
       gco = "git checkout";
-      ghqcd = "cd (ghq list --full-path | fzf)";
+      zg = "cd (ghq list --full-path | fzf)";
     };
 
     extraConfig = builtins.readFile ./config.nu;

@@ -57,6 +57,10 @@
     pkgs.socat
     pkgs.saml2aws
     pkgs.tfsec
+    pkgs.devbox
+    pkgs.dotenvx
+    pkgs.zoxide
+    pkgs.atuin
 
     # jj/git tools
     pkgs.difftastic

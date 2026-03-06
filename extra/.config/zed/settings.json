@@ -101,6 +101,12 @@
         },
       },
     },
+    "nu": {
+      "binary": {
+        "path": "nu",
+        "arguments": ["--lsp"],
+      },
+    },
   },
   "languages": {
     "JSON": {

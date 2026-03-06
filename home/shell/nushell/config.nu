@@ -17,42 +17,6 @@ edit_mode: "vi"
 history: {
     max_size: 10000
 }
-keybindings: [
-    {
-    name: fuzzy_history
-    modifier: control
-    keycode: char_r
-    mode: [emacs, vi_normal, vi_insert]
-    event: [
-        {
-        send: ExecuteHostCommand
-        cmd: "commandline edit --insert (
-            history 
-            | get command
-            | uniq 
-            | reverse 
-            | str join (char -i 0) 
-            | fzf --read0 --no-sort --height=40% -q (commandline) 
-            | decode utf-8 
-            | str trim
-        )"
-        }
-    ]
-    }
-]
-}
-
-def zsh_history [] {
-    commandline edit --insert (
-        cat $"($env.HOME)/.zsh_history"
-        | lines 
-        | uniq 
-        | reverse 
-        | str join (char -i 0) 
-        | fzf --read0 --no-sort --height=40% -q (commandline) 
-        | decode utf-8 
-        | str trim
-    )
 }
 
 def urlencode [rec: record] {
@@ -79,15 +43,15 @@ def urlencode [rec: record] {
     $pairs | str join "&"
 }
 
-def diff [left: record, right: record] {
-    let all_keys = [($left | sort | columns), ($right | sort | columns)] | flatten | uniq
-    mut diffs = []
-    for key in $all_keys {
-        let val1 = ($left | get $key -o)
-        let val2 = ($right | get $key -o)
-        if $val1 != $val2 {
-            $diffs = ($diffs | append { key: $key, left: $val1, right: $val2 })
-        }
-    }
-    $diffs
+# zoxide path copy (interactive)
+def zp [...rest: string] {
+  zoxide query --interactive -- ...$rest | str trim -r -c "\n" | pbcopy
 }
+
+# ghq path copy (interactive)
+def zgp [] {
+  ghq list --full-path | fzf | str trim | pbcopy
+}
+
+source ~/.config/zoxide/.zoxide.nu
+source ~/.config/atuin/.atuin.init.nu

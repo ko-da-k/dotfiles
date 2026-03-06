@@ -6,7 +6,9 @@
     enable = true;
     shellAliases = {
       view = "vim -RM";
-      ghqcd = "cd (ghq list --full-path | fzf)";
+      zg = "cd (ghq list --full-path | fzf)";
+      zp = "zoxide query --interactive | tr -d '\\n' | pbcopy";
+      zgp = "ghq list --full-path | fzf | tr -d '\\n' | pbcopy";
     };
     shellAbbrs = {
       k = "kubectl";
