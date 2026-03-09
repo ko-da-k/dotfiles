@@ -31,7 +31,7 @@ set -euo pipefail
 echo '==> Running gitleaks...'
 gitleaks detect --source . --no-git
 echo '==> Running git-secrets...'
-git-secrets --scan -r .
+git ls-files | xargs git-secrets --scan
 echo '==> All checks passed.'
 """]
 
@@ -39,6 +39,9 @@ echo '==> All checks passed.'
 default-command = ["info"]
 diff-formatter = ["difft", "--color=always", "$left", "$right"]
 editor = "hx"
+
+[colors]
+tags = "cyan"
 
 [template-aliases]
 'my_log_oneline(commit)' = '''

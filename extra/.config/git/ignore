@@ -4,7 +4,11 @@
 .mise.toml
 .nvimlog
 .helix
+.venv
 utils.nu
 
 **/.claude/settings.local.json
 **/CLAUDE.local.md
+.ash
+.env
+.env.keys

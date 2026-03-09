@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  arto,
+  ...
+}:
 
 {
   xdg.enable = true;
@@ -61,6 +66,7 @@
     pkgs.dotenvx
     pkgs.zoxide
     pkgs.atuin
+    arto.packages.${pkgs.system}.default
 
     # jj/git tools
     pkgs.difftastic

@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "git_panel": {
+    "tree_view": true,
+  },
   "tabs": {
     "file_icons": false,
     "git_status": true,
@@ -107,10 +110,23 @@
         "arguments": ["--lsp"],
       },
     },
+    "terraform-ls": {
+      "initialization_options": {
+        "experimentalFeatures": {
+          "prefillRequiredFields": true,
+        },
+      },
+    },
   },
   "languages": {
+    "YAML": {
+      "format_on_save": "off",
+      "tab_size": 2,
+    },
     "JSON": {
       "format_on_save": "on",
+      "language_servers": ["json-language-server"],
+      "tab_size": 2,
     },
     "TypeScript": {
       "language_servers": ["typescript-language-server", "!vtsls", "..."],
