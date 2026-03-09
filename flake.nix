@@ -8,17 +8,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    arto = {
-      url = "github:arto-app/arto";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
-      arto,
       ...
     }:
     let
@@ -34,7 +29,6 @@
 
         extraSpecialArgs = {
           dotfilesPath = "/Users/${username}/ghq/github.com/ko-da-k/dotfiles";
-          inherit arto;
         };
       };
     };

@@ -67,9 +67,6 @@
 
       export USE_GKE_GCLOUD_AUTH_PLUGIN=true
 
-      # atuin
-      eval "$(atuin init zsh --disable-up-arrow)"
-
       # zoxide
       eval "$(zoxide init zsh)"
 

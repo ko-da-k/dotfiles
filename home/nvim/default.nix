@@ -339,6 +339,6 @@
       autocmd TermOpen * setlocal nonumber
     '';
 
-    extraLuaConfig = '''';
+    initLua = '''';
   };
 }

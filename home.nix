@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  arto,
   ...
 }:
 
@@ -58,19 +57,14 @@
     pkgs.htop
     pkgs.graphviz
     pkgs.pstree
-    pkgs.moon
     pkgs.socat
     pkgs.saml2aws
     pkgs.tfsec
     pkgs.devbox
-    pkgs.dotenvx
     pkgs.zoxide
-    pkgs.atuin
-    arto.packages.${pkgs.system}.default
 
     # jj/git tools
     pkgs.difftastic
-    pkgs.meld
     pkgs.git-secrets
     pkgs.gitleaks
     pkgs.lazygit
@@ -85,12 +79,6 @@
     pkgs.nixd
     pkgs.vscode-json-languageserver
     pkgs.typescript-language-server
-
-    # js runtime
-    pkgs.nodejs
-    pkgs.pnpm
-    pkgs.deno
-    pkgs.bun
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
