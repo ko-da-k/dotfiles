@@ -54,4 +54,3 @@ def zgp [] {
 }
 
 source ~/.config/zoxide/.zoxide.nu
-source ~/.config/atuin/.atuin.init.nu

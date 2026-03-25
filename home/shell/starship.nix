@@ -10,17 +10,17 @@
       add_newline = true;
 
       format = ''
-      $cmd_duration
-      $gcloud$aws$kubernetes
-      $nix_shell$shell$python$elixir$golang$haskell
-      $directory$git_branch$git_commit$git_status
-      $character'';
+        $cmd_duration
+        $gcloud$aws$kubernetes
+        $nix_shell
+        $directory$git_branch$git_commit$git_status
+        $shell$character'';
 
       package.disabled = true;
 
       character = {
-        success_symbol = ''[>>>](bold green)'';
-        error_symbol = ''[✗✗✗](bold red)'';
+        success_symbol = ''[>](bold green)'';
+        error_symbol = ''[✗](bold red)'';
         vicmd_symbol = ''[V](bold green)'';
       };
 
@@ -42,42 +42,18 @@
         us-central1 = ''uc1'';
         asia-northeast1 = ''an1'';
       };
-      
+
       aws = {
         disabled = false;
         format = ''[$symbol($profile:$region)]($style) '';
       };
-      
+
       nix_shell = {
         disabled = false;
         format = ''[$symbol($state:$name)]($style) '';
       };
 
       shell = {
-        disabled = false;
-      };
-
-      python = {
-        disabled = false;
-        format = ''[$symbol($venv:$version)]($style) '';
-      };
-
-      elixir = {
-        disabled = false;
-        format = ''[$symbol($version \(OTP$otp_version))]($style) '';
-      };
-
-      golang = {
-        disabled = false;
-        format = ''[$symbol($version)]($style) '';
-      };
-
-      haskell = {
-        disabled = false;
-        format = ''[$symbol($version)]($style) '';
-      };
-
-      rust = {
         disabled = false;
       };
     };

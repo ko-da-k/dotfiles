@@ -49,8 +49,4 @@ in
 
   # zoxide
   xdg.configFile."zoxide/.zoxide.nu".source = mkSymlink "${extraPath}/.config/zoxide/.zoxide.nu";
-
-  # atuin
-  xdg.configFile."atuin/.atuin.init.nu".source =
-    mkSymlink "${extraPath}/.config/atuin/.atuin.init.nu";
 }
