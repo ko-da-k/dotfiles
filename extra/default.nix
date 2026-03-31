@@ -49,4 +49,16 @@ in
 
   # zoxide
   xdg.configFile."zoxide/.zoxide.nu".source = mkSymlink "${extraPath}/.config/zoxide/.zoxide.nu";
+
+  # uv
+  xdg.configFile."uv/uv.toml".source = mkSymlink "${extraPath}/.config/uv/uv.toml";
+
+  # bun
+  xdg.configFile.".bunfig.toml".source = mkSymlink "${extraPath}/.config/.bunfig.toml";
+
+  # pnpm
+  xdg.configFile."pnpm/rc".source = mkSymlink "${extraPath}/.config/pnpm/rc";
+
+  # npm
+  home.file.".npmrc".source = mkSymlink "${extraPath}/.npmrc";
 }
