@@ -6,6 +6,7 @@
 log = "present(@) | (trunk()..@).. | (trunk()..@)- | (trunk()..@)--"
 
 [aliases]
+l = ["log", "--limit", "20"]
 log-default = ["log", "-r", "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"]
 log-all = ["log", "-r", "all()"]
 info = ["util", "exec", "--", "bash", "-c", """
