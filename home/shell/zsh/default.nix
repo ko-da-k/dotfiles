@@ -22,6 +22,7 @@
     autosuggestion = {
       enable = true;
     };
+    completionInit = "autoload -U compinit && compinit -C";
     history = {
       size = 10000;
       save = 10000;

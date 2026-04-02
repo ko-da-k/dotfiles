@@ -62,6 +62,7 @@
     pkgs.tfsec
     pkgs.devbox
     pkgs.zoxide
+    pkgs.jankyborders
 
     # jj/git tools
     pkgs.difftastic
@@ -124,6 +125,7 @@
     ./home/nvim
     ./home/shell
     ./home/terminal
+    ./home/aerospace
     ./extra
   ];
 }
