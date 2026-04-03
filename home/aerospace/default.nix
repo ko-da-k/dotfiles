@@ -4,9 +4,9 @@
   # 役割: ワークスペース管理のみ。レイアウトは Raycast に委任。
   programs.aerospace = {
     enable = true;
-    launchd.enable = true;
+    launchd.enable = false;
     settings = {
-      start-at-login = true;
+      start-at-login = false;
       after-startup-command = [
         "exec-and-forget ${pkgs.jankyborders}/bin/borders style=round active_color=0xffe2e2e3 inactive_color=0x40ffffff width=12.0 hidpi=on"
       ];
@@ -79,11 +79,11 @@
         esc = "mode main";
       };
 
-      # Slack をワークスペース 9 に自動配置（alt-9 でアクセス）
+      # Slack をワークスペース 1 に自動配置（alt-1 でアクセス）
       on-window-detected = [
         {
           "if".app-id = "com.tinyspeck.slackmacgap";
-          run = "move-node-to-workspace 9";
+          run = "move-node-to-workspace 1";
         }
       ];
     };
