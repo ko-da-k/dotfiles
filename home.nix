@@ -115,7 +115,7 @@
   #
   home.sessionVariables = {
     EDITOR = "hx";
-    VISUAL = "nvim";
+    VISUAL = "hx";
   };
 
   # Let Home Manager install and manage itself.

@@ -53,8 +53,13 @@
     ],
     "defaultMode": "plan"
   },
+  "model": "opus",
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
   "language": "Japanese",
   "sandbox": {
     "enabled": true
-  }
+  },
+  "editorMode": "vim"
 }
