@@ -54,6 +54,7 @@
     pkgs.ripgrep
     pkgs.lsd
     pkgs.gh
+    pkgs.glab
     pkgs.htop
     pkgs.graphviz
     pkgs.pstree
