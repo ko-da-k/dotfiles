@@ -63,7 +63,8 @@
       # 下のほうが優先
       export PATH=$HOME/Library/Application\ Support/JetBrains/Toolbox/script:$PATH
       export PATH=$HOME/.local/google-cloud-sdk/bin:$PATH
-      export PATH=$HOME/.local/share/mise/shims:$PATH
+      export PATH=$PNPM_HOME:$PATH
+      export PATH=$BUN_INSTALL/bin:$PATH
       export PATH=$HOME/.krew/bin:$PATH
       export PATH=$HOME/go/bin:$PATH
       export PATH=$HOME/.cargo/bin:$PATH

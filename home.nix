@@ -81,6 +81,15 @@
     pkgs.nixd
     pkgs.vscode-json-languageserver
     pkgs.typescript-language-server
+
+    # language toolchain
+    pkgs.nodejs_22
+    pkgs.pnpm
+    pkgs.bun
+    pkgs.jdk21
+    pkgs.gradle
+    pkgs.gleam
+    pkgs.stack
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -116,6 +125,8 @@
   home.sessionVariables = {
     EDITOR = "hx";
     VISUAL = "hx";
+    PNPM_HOME = "${config.xdg.dataHome}/pnpm";
+    BUN_INSTALL = "${config.xdg.dataHome}/bun";
   };
 
   # Let Home Manager install and manage itself.
