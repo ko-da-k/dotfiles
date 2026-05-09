@@ -39,8 +39,15 @@ echo '==> All checks passed.'
 
 [ui]
 default-command = ["info"]
-diff-formatter = ["difft", "--color=always", "$left", "$right"]
+diff-formatter = ":git"
 editor = "hx"
+
+# `hunk` pager は TUI なので、log/status などの非 diff 出力に被せると毎回 q で抜ける
+# 必要が出る。diff 系コマンドのときだけスコープして適用する。
+[[--scope]]
+--when.commands = ["diff", "show", "interdiff"]
+[--scope.ui]
+pager = ["hunk", "pager"]
 
 [colors]
 tags = "cyan"

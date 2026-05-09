@@ -61,4 +61,7 @@ in
 
   # npm
   home.file.".npmrc".source = mkSymlink "${extraPath}/.npmrc";
+
+  # hunk
+  xdg.configFile."hunk/config.toml".source = mkSymlink "${extraPath}/.config/hunk/config.toml";
 }
