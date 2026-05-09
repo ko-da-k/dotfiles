@@ -74,6 +74,7 @@ set -euo pipefail
 jj check
 jj squash "$@"
 """, ""]
+sl = ["log", "-r", "trunk()::@"]
 
 [ui]
 default-command = ["info"]
@@ -89,6 +90,7 @@ pager = ["hunk", "pager"]
 
 [colors]
 tags = "cyan"
+trunk = { fg = "yellow", bold = true }
 
 [template-aliases]
 'my_log_oneline(commit)' = '''
@@ -108,6 +110,7 @@ if(commit.root(),
       commit.working_copies(),
       format_short_commit_id(commit.commit_id()),
       format_commit_labels(commit),
+      if(commit.contained_in("trunk()"), label("trunk", "(trunk)")),
       if(config("ui.show-cryptographic-signatures").as_boolean(),
         format_short_cryptographic_signature(commit.signature())
       ),
