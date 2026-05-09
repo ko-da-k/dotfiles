@@ -59,6 +59,21 @@ git-secrets --scan "${files[@]}"
 
 echo '==> All checks passed.'
 """]
+n = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+jj check
+jj new "$@"
+""", ""]
+c = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+jj check
+jj commit "$@"
+""", ""]
+s = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+jj check
+jj squash "$@"
+""", ""]
 
 [ui]
 default-command = ["info"]
