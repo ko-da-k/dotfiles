@@ -30,10 +30,33 @@ jj bookmark track $@ --remote=origin
 """, ""]
 check = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
-echo '==> Running gitleaks...'
-gitleaks detect --source . --no-git
-echo '==> Running git-secrets...'
-git ls-files | xargs git-secrets --scan
+REVSET='trunk()..@'
+
+if [ -z "$(jj diff --name-only -r "$REVSET")" ]; then
+  echo "==> No changes in $REVSET. Nothing to scan."
+  exit 0
+fi
+
+echo "scan target: jj diff -r '$REVSET'"
+
+files=()
+while IFS= read -r f; do
+  [ -f "$f" ] && files+=("$f")
+done < <(jj diff --name-only -r "$REVSET")
+
+if [ ${#files[@]} -eq 0 ]; then
+  echo "==> All changes are deletions. Nothing to scan."
+  exit 0
+fi
+
+echo "==> Running gitleaks..."
+for f in "${files[@]}"; do
+  gitleaks dir --no-banner --verbose --log-level warn "$f"
+done
+
+echo "==> Running git-secrets..."
+git-secrets --scan "${files[@]}"
+
 echo '==> All checks passed.'
 """]
 
