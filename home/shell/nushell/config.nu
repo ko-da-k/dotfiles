@@ -75,6 +75,123 @@ def zgp [] {
   ghq list --full-path | fzf | str trim | pbcopy
 }
 
+# --- port / process helpers ---------------------------------------------------
+
+# Show processes LISTENing on the given TCP port (macOS lsof).
+#
+# Example:
+#   port-using 8080
+def port-using [port: int]: nothing -> table {
+  let res = (^lsof +c 0 -nP $"-iTCP:($port)" -sTCP:LISTEN | complete)
+  if $res.exit_code != 0 {
+    return []
+  }
+  $res.stdout
+  | lines
+  | skip 1
+  | each { |line|
+      let parts = ($line | split row -r '\s+')
+      {
+        cmd: ($parts | get 0)
+        pid: ($parts | get 1)
+        user: ($parts | get 2)
+        addr: ($parts | get 8)
+      }
+    }
+}
+
+# All TCP ports currently in LISTEN state (macOS lsof).
+#
+# Example:
+#   listening-ports
+def listening-ports []: nothing -> table {
+  let res = (^lsof +c 0 -nP -iTCP -sTCP:LISTEN | complete)
+  if $res.exit_code != 0 {
+    return []
+  }
+  $res.stdout
+  | lines
+  | skip 1
+  | each { |line|
+      let parts = ($line | split row -r '\s+')
+      {
+        cmd: ($parts | get 0)
+        pid: ($parts | get 1)
+        user: ($parts | get 2)
+        addr: ($parts | get 8)
+      }
+    }
+}
+
+# Send SIGTERM (or SIGKILL with --force) to processes on the given TCP port.
+#
+# Example:
+#   kill-port 8080
+#   kill-port 8080 --force
+def kill-port [
+  port: int
+  --force
+] {
+  let pids = (port-using $port | get pid? | default [])
+  if ($pids | is-empty) {
+    print $"no process listening on port ($port)"
+    return
+  }
+  let signal = if $force { "-KILL" } else { "-TERM" }
+  $pids | each { |pid|
+    print $"kill ($signal) ($pid)"
+    ^kill $signal $pid
+  } | ignore
+}
+
+# --- filesystem helpers -------------------------------------------------------
+
+# Top N entries by physical size at depth 1 (default current dir, top 10).
+#
+# Example:
+#   du-top
+#   du-top ./src --limit 5
+def du-top [
+  path: string = "."
+  --limit (-n): int = 10
+]: nothing -> table {
+  du --all ($"($path)/*" | into glob)
+  | sort-by physical --reverse
+  | first $limit
+  | select path apparent physical
+}
+
+# Files larger than --min under --path (defaults: 100 MB / current dir).
+#
+# Example:
+#   find-large
+#   find-large --min 1GB --path ./node_modules
+def find-large [
+  --min: filesize = 100MB
+  --path: string = "."
+]: nothing -> table {
+  ls ($"($path)/**/*" | into glob)
+  | where type == file and size >= $min
+  | sort-by size --reverse
+  | select name size
+}
+
+# Files modified within the last --days days (default 7).
+#
+# Example:
+#   find-recent
+#   find-recent --days 1 --path ./src
+def find-recent [
+  --days: int = 7
+  --path: string = "."
+]: nothing -> table {
+  let cutoff = ((date now) - ($days * 1day))
+  ls ($"($path)/**/*" | into glob)
+  | where type == file and modified >= $cutoff
+  | sort-by modified --reverse
+  | select name size modified
+}
+
 # --- kubectl helpers ----------------------------------------------------------
 # Each helper takes the parsed `kubectl get ... -o json | from json` record via
 # pipeline input, so the caller controls namespace / selectors / etc.
