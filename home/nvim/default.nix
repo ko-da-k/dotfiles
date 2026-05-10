@@ -12,43 +12,45 @@
     defaultEditor = false;
     viAlias = true;
     vimAlias = true;
+    withRuby = false;
+    withPython3 = false;
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
     plugins = with pkgs.vimPlugins; [
       {
         plugin = dracula-nvim;
-        config = # lua
-          ''
-            " first init
-            let mapleader = "\<Space>"
+        type = "viml";
+        config = ''
+          " first init
+          let mapleader = "\<Space>"
 
-            let g:dracula_colorterm = 0
-            let g:dracula_italic = 0
-          '';
+          let g:dracula_colorterm = 0
+          let g:dracula_italic = 0
+        '';
       }
       {
         plugin = catppuccin-nvim;
-        config = ''
-          lua << EOF
-          vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
-          require('catppuccin').setup {
-            styles = {
-              functions = { "italic" },
-              keywords = { "italic" },
-              variables = { "italic" },
-            },
-          }
-          -- vim.cmd [[colorscheme catppuccin]]
-          EOF
-        '';
+        type = "lua";
+        config = # lua
+          ''
+            vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
+            require('catppuccin').setup {
+              styles = {
+                functions = { "italic" },
+                keywords = { "italic" },
+                variables = { "italic" },
+              },
+            }
+            -- vim.cmd [[colorscheme catppuccin]]
+          '';
       }
       {
         plugin = everforest;
-        config = ''
-          lua <<EOF
-          vim.cmd [[colorscheme everforest]]
-          EOF
-        '';
+        type = "lua";
+        config = # lua
+          ''
+            vim.cmd [[colorscheme everforest]]
+          '';
       }
       {
         plugin = nvim-surround;
@@ -60,15 +62,16 @@
       }
       {
         plugin = vim-fern;
-        config = # lua
-          ''
-            nnoremap <Leader>n :Fern . -drawer -reveal=% -toggle -stay<CR>
-            nnoremap <C-n> :Fern . -drawer -reveal=%<CR>
-          '';
+        type = "viml";
+        config = ''
+          nnoremap <Leader>n :Fern . -drawer -reveal=% -toggle -stay<CR>
+          nnoremap <C-n> :Fern . -drawer -reveal=%<CR>
+        '';
       }
       vim-devicons
       {
         plugin = vim-gitgutter;
+        type = "viml";
         config = ''
           let g:gitgutter_sign_column_always = 1
           nmap ghp <Plug>(GitGutterPreviewHunk)
@@ -106,6 +109,7 @@
       }
       {
         plugin = vim-easymotion;
+        type = "viml";
         config = ''
           " gf{char} to move to {char}
           map  gf <Plug>(easymotion-bd-f)
@@ -124,6 +128,7 @@
       }
       {
         plugin = lazygit-nvim;
+        type = "viml";
         config = ''
           nnoremap <Leader>g :LazyGit<CR>
         '';
@@ -144,6 +149,7 @@
       }
       {
         plugin = barbar-nvim;
+        type = "viml";
         config = ''
           nnoremap <silent> <A-,> <Cmd>BufferPrevious<CR>
           nnoremap <silent> <A-.> <Cmd>BufferNext<CR>
@@ -287,15 +293,13 @@
         type = "lua";
         config = # lua
           ''
-            require('nvim-treesitter.configs').setup {
-              highlight = {
-                enable = true,
-              },
-              indent = {
-                enable = true,
-                disable = { 'yaml' },
-              }
-            }
+            vim.api.nvim_create_autocmd('FileType', {
+              callback = function(args)
+                if pcall(vim.treesitter.start, args.buf) and args.match ~= 'yaml' then
+                  vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end
+              end,
+            })
           '';
       }
       nvim-treesitter-parsers.elixir
