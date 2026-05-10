@@ -10,9 +10,7 @@
       add_newline = true;
 
       format = ''
-        $cmd_duration
-        $gcloud$aws$kubernetes
-        $nix_shell
+        $gcloud$aws$kubernetes$nix_shell$direnv
         $directory$git_branch$git_commit$git_status
         $shell$character'';
 
@@ -24,11 +22,6 @@
         vicmd_symbol = ''[V](bold green)'';
       };
 
-      cmd_duration = {
-        disabled = false;
-        min_time = 2000;
-      };
-
       kubernetes = {
         disabled = false;
         format = ''[$symbol($context:$namespace)](green) '';
@@ -36,7 +29,7 @@
 
       gcloud = {
         disabled = false;
-        format = ''[$symbol($account:@$domain:$project:$region)](cyan) '';
+        format = ''[$symbol($project:$region)](cyan) '';
       };
       gcloud.region_aliases = {
         us-central1 = ''uc1'';
@@ -50,7 +43,21 @@
 
       nix_shell = {
         disabled = false;
-        format = ''[$symbol($state:$name)]($style) '';
+        symbol = ''❄️ '';
+        format = ''[$symbol$state\($name\)]($style) '';
+      };
+
+      directory = {
+        truncate_to_repo = false;
+        truncation_length = 2;
+      };
+
+      git_branch = {
+        format = ''[$symbol$branch]($style) '';
+      };
+
+      direnv = {
+        disabled = false;
       };
 
       shell = {
