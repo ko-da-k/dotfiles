@@ -40,6 +40,11 @@
       # Deduplicate PATH entries (macOS path_helper can cause duplicates)
       path=($path)
 
+      # Edit current command line in $EDITOR (Ctrl-X Ctrl-E)
+      autoload -Uz edit-command-line
+      zle -N edit-command-line
+      bindkey '^X^E' edit-command-line
+
       # Nix
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
