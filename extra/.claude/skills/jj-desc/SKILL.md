@@ -2,7 +2,7 @@
 name: jj-desc
 description: jujutsu のコミット説明をファイルごとの変更内容とともに自動生成
 user-invocable: true
-allowed-tools: Bash(jj log *), Bash(jj st *), Bash(jj diff *), Bash(jj desc *), Bash(jj show *), Bash(jj new)
+allowed-tools: Bash(jj log *), Bash(jj st *), Bash(jj diff *), Bash(jj desc *), Bash(jj show *), Bash(jj new), Bash(jj n)
 ---
 
 <!--
@@ -68,7 +68,7 @@ action-type(scope): description
    - 変更内容について承認を得る。jj desc は可変のため、先に jj desc で変更を生成してからレビュー依頼をする
    - 修正依頼を受けたら再度 jj desc で内容を更新の後確認依頼をする
 
-5. 承認を得られたら jj new で新しい作業を続けられるようにする
+5. 承認を得られたら jj n で新しい作業を続けられるようにする
 
 ## 注意事項
 

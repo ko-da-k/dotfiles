@@ -55,7 +55,8 @@
   },
   "model": "opus",
   "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true
   },
   "language": "Japanese",
   "sandbox": {
