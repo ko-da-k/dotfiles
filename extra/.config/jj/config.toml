@@ -7,9 +7,10 @@ log = "present(@) | (trunk()..@).. | (trunk()..@)- | (trunk()..@)--"
 
 [aliases]
 l = ["log", "--limit", "20"]
-full-sha = ["log", "-T", "my_log_oneline_full(self)"]
-log-default = ["log", "-r", "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"]
-log-all = ["log", "-r", "all()"]
+lt = ["log", "-r", "trunk()::@"] # log trunk
+lf = ["log", "-T", "my_log_oneline_full(self)"] # log full-sha
+ld = ["log", "-r", "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"] # log default
+la = ["log", "-r", "all()"] # log all
 info = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
 jj check
@@ -74,7 +75,11 @@ set -euo pipefail
 jj check
 jj squash "$@"
 """, ""]
-sl = ["log", "-r", "trunk()::@"]
+gp = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+jj check
+jj git push "$@"
+""", ""]
 
 [ui]
 default-command = ["info"]
