@@ -17,8 +17,20 @@
       "Bash(go vet *)"
     ],
     "deny": [
+      "Bash(sudo *)",
+      "Bash(su *)",
       "Bash(curl *)",
       "Bash(wget *)",
+      "Bash(rm *)",
+      "Bash(rm -rf *)",
+      "Bash(chmod *)",
+      "Bash(git push *)",
+      "Bash(git reset *)",
+      "Bash(git rebase *)",
+      "Bash(jj git *)",
+      "Bash(jj commit *)",
+      "Bash(jj bookmark *)",
+      "Bash(jj git push *)",
       "Bash(npm install *)",
       "Bash(npm uninstall *)",
       "Bash(npm remove *)",
@@ -29,15 +41,8 @@
       "Bash(uv remove *)",
       "Bash(poetry add *)",
       "Bash(poetry remove *)",
-      "Bash(rm *)",
-      "Bash(rm -rf *)",
-      "Bash(git push *)",
-      "Bash(git reset *)",
-      "Bash(git rebase *)",
-      "Bash(jj git *)",
-      "Bash(jj commit *)",
-      "Bash(jj bookmark *)",
-      "Bash(jj git push *)",
+      "Bash(terraform apply *)",
+
       "Read(.env)",
       "Read(.env*)",
       "Read(**/.env)",
@@ -47,9 +52,12 @@
       "Read(**/*token*)",
       "Read(**/*key*)",
       "Read(utils.nu)",
-      "Read(secrets/**)",
+      "Read(**/*secrets*)",
+      "Read(**/credentials*)",
+
       "Write(.env*)",
-      "Write(**/secrets/**)"
+      "Write(**/secrets/**)",
+      "Write(**/credentials*)"
     ],
     "defaultMode": "plan"
   },
@@ -60,7 +68,22 @@
   },
   "language": "Japanese",
   "sandbox": {
-    "enabled": true
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "filesystem": {
+      "allowWrite": ["/tmp", "."],
+      "denyWrite": ["/etc"],
+      "denyRead": ["~/.aws", "~/.config/gcloud"]
+    },
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "api.github.com"
+      ],
+      "allowLocalBinding": true
+    }
   },
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "skipAutoPermissionPrompt": true
 }
