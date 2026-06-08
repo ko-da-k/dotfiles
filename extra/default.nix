@@ -58,6 +58,7 @@ in
 
   # pnpm
   xdg.configFile."pnpm/rc".source = mkSymlink "${extraPath}/.config/pnpm/rc";
+  xdg.configFile."pnpm/config.yaml".source = mkSymlink "${extraPath}/.config/pnpm/config.yaml";
 
   # npm
   home.file.".npmrc".source = mkSymlink "${extraPath}/.npmrc";
