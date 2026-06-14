@@ -50,7 +50,6 @@
     # dev tools
     pkgs.ghq
     pkgs.fzf
-    pkgs.silver-searcher
     pkgs.ripgrep
     pkgs.lsd
     pkgs.gh
@@ -64,6 +63,8 @@
     pkgs.devbox
     pkgs.zoxide
     pkgs.jankyborders
+    pkgs.go-task
+    pkgs.atlas
 
     # jj/git tools
     pkgs.difftastic

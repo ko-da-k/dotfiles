@@ -42,7 +42,6 @@
       "Bash(poetry add *)",
       "Bash(poetry remove *)",
       "Bash(terraform apply *)",
-
       "Read(.env)",
       "Read(.env*)",
       "Read(**/.env)",
@@ -54,7 +53,6 @@
       "Read(utils.nu)",
       "Read(**/*secrets*)",
       "Read(**/credentials*)",
-
       "Write(.env*)",
       "Write(**/secrets/**)",
       "Write(**/credentials*)"
@@ -64,24 +62,33 @@
   "model": "opus",
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
   },
   "language": "Japanese",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
-    "filesystem": {
-      "allowWrite": ["/tmp", "."],
-      "denyWrite": ["/etc"],
-      "denyRead": ["~/.aws", "~/.config/gcloud"]
-    },
     "network": {
       "allowedDomains": [
         "github.com",
         "api.github.com"
       ],
       "allowLocalBinding": true
+    },
+    "filesystem": {
+      "allowWrite": [
+        "/tmp",
+        "."
+      ],
+      "denyWrite": [
+        "/etc"
+      ],
+      "denyRead": [
+        "~/.aws",
+        "~/.config/gcloud"
+      ]
     }
   },
   "editorMode": "vim",
