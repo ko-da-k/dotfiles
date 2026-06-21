@@ -58,6 +58,11 @@ done
 echo "==> Running git-secrets..."
 git-secrets --scan "${files[@]}"
 
+if [ -f .pre-commit-config.yaml ]; then
+  echo "==> Running prek..."
+  prek run --files "${files[@]}"
+fi
+
 echo '==> All checks passed.'
 """]
 n = ["util", "exec", "--", "bash", "-c", """

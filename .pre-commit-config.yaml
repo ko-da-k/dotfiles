@@ -1,0 +1,15 @@
+# prek (https://github.com/j178/prek) の動作確認用設定。
+# jj check (= jj n / c / s / gp の先頭で実行) が、このファイルが存在すると
+# 変更ファイルに対して prek run --files を実行する。
+#
+# repo: builtin は prek 組み込みの Rust 実装フックで、ネットワーク・外部ランタイム不要。
+# 一覧: https://prek.j178.dev/builtin/
+repos:
+  - repo: builtin
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: check-yaml
+      - id: check-toml
+      - id: detect-private-key
