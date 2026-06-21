@@ -64,6 +64,10 @@
 
       # 下のほうが優先
       export PATH=$HOME/Library/Application\ Support/JetBrains/Toolbox/script:$PATH
+      export PATH=$HOME/.local/share/mise/shims:$PATH
+      if command -v aqua &> /dev/null; then
+        export PATH="$(aqua root-dir)/bin:$PATH"
+      fi
       export PATH=$HOME/.local/google-cloud-sdk/bin:$PATH
       export PATH=$PNPM_HOME:$PATH
       export PATH=$BUN_INSTALL/bin:$PATH
