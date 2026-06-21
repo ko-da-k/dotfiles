@@ -31,19 +31,20 @@ jj bookmark track $@ --remote=origin
 """, ""]
 check = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
-REVSET='trunk()..@'
 
-if [ -z "$(jj diff --name-only -r "$REVSET")" ]; then
-  echo "==> No changes in $REVSET. Nothing to scan."
+diff_files="$(jj diff --name-only --no-pager -f 'trunk()' -t @)"
+
+if [ -z "$diff_files" ]; then
+  echo "==> No changes from trunk() to @. Nothing to scan."
   exit 0
 fi
 
-echo "scan target: jj diff -r '$REVSET'"
+echo "scan target: jj diff --name-only --no-pager -f 'trunk()' -t @"
 
 files=()
 while IFS= read -r f; do
   [ -f "$f" ] && files+=("$f")
-done < <(jj diff --name-only -r "$REVSET")
+done <<< "$diff_files"
 
 if [ ${#files[@]} -eq 0 ]; then
   echo "==> All changes are deletions. Nothing to scan."

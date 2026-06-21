@@ -26,4 +26,3 @@ switch:
 
 gc:
 	nix-collect-garbage
-
