@@ -19,7 +19,10 @@
     let
       system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
-      username = "ko-da-k";
+
+      # マシン固有の設定はここを編集する（single source of truth）
+      username = "ko-da-k"; # OS のユーザー名（マシンによって変わる）
+      homeDirectory = "/Users/${username}"; # macOS のホームディレクトリ
     in
     {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
@@ -28,7 +31,8 @@
         modules = [ ./home.nix ];
 
         extraSpecialArgs = {
-          dotfilesPath = "/Users/${username}/ghq/github.com/ko-da-k/dotfiles";
+          inherit username homeDirectory;
+          dotfilesPath = "${homeDirectory}/ghq/github.com/ko-da-k/dotfiles";
         };
       };
     };
