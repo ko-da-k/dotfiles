@@ -61,6 +61,8 @@ git-secrets --scan "${files[@]}"
 if [ -f .pre-commit-config.yaml ]; then
   echo "==> Running prek..."
   prek run --files "${files[@]}"
+else
+  echo "===> Skipping pre-commit (binary missing or .pre-commit-config.yaml not found)."
 fi
 
 echo '==> All checks passed.'

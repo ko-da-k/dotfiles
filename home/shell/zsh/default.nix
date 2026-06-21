@@ -38,7 +38,7 @@
     '';
     initContent = ''
       # Deduplicate PATH entries (macOS path_helper can cause duplicates)
-      path=($path)
+      typeset -U path PATH
 
       # Edit current command line in $EDITOR (Ctrl-X Ctrl-E)
       autoload -Uz edit-command-line
