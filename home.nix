@@ -83,14 +83,7 @@
     pkgs.vscode-json-languageserver
     pkgs.typescript-language-server
 
-    # language toolchain
-    pkgs.nodejs_22
-    pkgs.pnpm
-    pkgs.bun
-    pkgs.jdk21
-    pkgs.gradle
-    pkgs.gleam
-    pkgs.stack
+    # language toolchain は mise で管理する (~/.config/mise/config.toml)
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

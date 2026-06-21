@@ -65,4 +65,7 @@ in
 
   # hunk
   xdg.configFile."hunk/config.toml".source = mkSymlink "${extraPath}/.config/hunk/config.toml";
+
+  # mise (global tool versions)
+  xdg.configFile."mise/config.toml".source = mkSymlink "${extraPath}/.config/mise/config.toml";
 }
