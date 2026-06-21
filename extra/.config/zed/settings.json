@@ -9,10 +9,10 @@
 {
   "cli_default_open_behavior": "existing_window",
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "git_panel": {
     "dock": "left",
@@ -92,7 +92,7 @@
   "autosave": "on_focus_change",
   "show_whitespaces": "trailing",
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "Catppuccin Latte",
     "dark": "Everforest Dark Hard (regular)",
   },
@@ -125,6 +125,12 @@
         "experimentalFeatures": {
           "prefillRequiredFields": true,
         },
+      },
+    },
+    "regal": {
+      "binary": {
+        "path": "regal",
+        "arguments": ["language-server"],
       },
     },
   },

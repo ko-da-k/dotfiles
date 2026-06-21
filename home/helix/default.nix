@@ -57,6 +57,13 @@
           command = "vscode-json-languageserver";
           args = [ "--stdio" ];
         };
+        regal = {
+          command = "regal";
+          args = [ "language-server" ];
+          config = {
+            provideFormatter = true;
+          };
+        };
       };
       language = [
         {
@@ -112,6 +119,18 @@
         {
           name = "javascript";
           language-servers = [ "typescript-language-server" ];
+        }
+        {
+          name = "rego";
+          scope = "source.rego";
+          roots = [ ".regal/config.yaml" ];
+          file-types = [ "rego" ];
+          indent = {
+            tab-width = 4;
+            unit = "\t";
+          };
+          comment-token = "#";
+          language-servers = [ "regal" ];
         }
       ];
     };

@@ -84,6 +84,7 @@
     pkgs.nixd
     pkgs.vscode-json-languageserver
     pkgs.typescript-language-server
+    pkgs.regal
 
     # language toolchain は mise で管理する (~/.config/mise/config.toml)
   ];
