@@ -15,3 +15,6 @@ stack = "3.11.1"
 # tools
 conftest = "0.68.2"
 prek = "0.4.5"
+
+[settings]
+lockfile = true
