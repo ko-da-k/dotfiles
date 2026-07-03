@@ -68,4 +68,7 @@ in
 
   # mise (global tool versions)
   xdg.configFile."mise/config.toml".source = mkSymlink "${extraPath}/.config/mise/config.toml";
+
+  # herdr
+  xdg.configFile."herdr/config.toml".source = mkSymlink "${extraPath}/.config/herdr/config.toml";
 }

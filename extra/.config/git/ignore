@@ -21,3 +21,5 @@ utils.nu
 tmp
 .tmp
 scratch
+
+**/.claude/.cc-writes/

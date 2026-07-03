@@ -67,6 +67,7 @@
     pkgs.jankyborders
     pkgs.go-task
     pkgs.atlas
+    pkgs.herdr
 
     # jj/git tools
     pkgs.difftastic

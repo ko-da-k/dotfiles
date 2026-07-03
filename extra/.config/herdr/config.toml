@@ -1,0 +1,8 @@
+[keys]
+last_pane = "prefix+tab"
+
+[[keys.command]]
+key = "prefix+alt+t"
+type = "pane"
+command = "zsh"
+description = "temp shell"
