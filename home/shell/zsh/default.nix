@@ -70,6 +70,7 @@
       fi
       export PATH=$HOME/.local/google-cloud-sdk/bin:$PATH
       export PATH=$PNPM_HOME:$PATH
+      export PATH=$PNPM_HOME/bin:$PATH
       export PATH=$BUN_INSTALL/bin:$PATH
       export PATH=$HOME/.krew/bin:$PATH
       export PATH=$HOME/go/bin:$PATH

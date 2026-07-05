@@ -24,6 +24,8 @@
       "Bash(rm *)",
       "Bash(rm -rf *)",
       "Bash(chmod *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(git reset *)",
       "Bash(git rebase *)",
@@ -73,6 +75,9 @@
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
+    "excludeCommands": [
+      "herdr *"
+    ],
     "network": {
       "allowedDomains": [
         "github.com",
@@ -81,9 +86,13 @@
       "allowLocalBinding": true
     },
     "filesystem": {
+      "allowRead": [
+        "~/.config/herdr"
+      ],
       "allowWrite": [
         "/tmp",
-        "."
+        ".",
+        "~/.config/herdr"
       ],
       "denyWrite": [
         "/etc"
