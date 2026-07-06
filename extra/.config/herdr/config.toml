@@ -1,5 +1,13 @@
 [keys]
-last_pane = "prefix+tab"
+last_pane = "prefix+;"
+
+previous_workspace = "prefix+("
+next_workspace = "prefix+)"
+switch_workspace = "prefix+alt+1..9"
+
+previous_agent = "prefix+ctrl+("
+next_agent = "prefix+ctrl+)"
+focus_agent = "prefix+ctrl+1..9"
 
 [[keys.command]]
 key = "prefix+alt+t"
