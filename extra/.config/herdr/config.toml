@@ -1,3 +1,4 @@
+onboarding = false
 [keys]
 last_pane = "prefix+;"
 
@@ -10,7 +11,9 @@ next_agent = "prefix+ctrl+)"
 focus_agent = "prefix+ctrl+1..9"
 
 [[keys.command]]
-key = "prefix+alt+t"
-type = "pane"
-command = "zsh"
+key = "prefix+t"
+type = "popup"
+command = "exec \"${SHELL:-zsh}\""
 description = "temp shell"
+width = "80%"
+height = "80%"

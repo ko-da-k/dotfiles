@@ -1,8 +1,20 @@
 {
+  "advisorModel": "fable",
+  "editorMode": "vim",
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
   "env": {
     "EDITOR": "hx",
     "VISUAL": "hx"
   },
+  "language": "Japanese",
+  "model": "sonnet",
   "permissions": {
     "allow": [
       "Bash(jj log *)",
@@ -55,36 +67,18 @@
       "Read(utils.nu)",
       "Read(**/*secrets*)",
       "Read(**/credentials*)",
-      "Write(.env*)",
-      "Write(**/secrets/**)",
-      "Write(**/credentials*)"
-    ],
-    "defaultMode": "plan"
+      "Edit(.env*)",
+      "Edit(**/secrets/**)",
+      "Edit(**/credentials*)"
+    ]
   },
-  "model": "sonnet",
-  "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "explanatory-output-style@claude-plugins-official": true
-  },
-  "language": "Japanese",
   "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
+    "autoAllowBashIfSandboxed": true,
+    "enabled": true,
     "excludeCommands": [
       "herdr *"
     ],
-    "network": {
-      "allowedDomains": [
-        "github.com",
-        "api.github.com"
-      ],
-      "allowLocalBinding": true
-    },
     "filesystem": {
       "allowRead": [
         "~/.config/herdr"
@@ -94,20 +88,26 @@
         ".",
         "~/.config/herdr"
       ],
-      "denyWrite": [
-        "/etc"
-      ],
       "denyRead": [
         "~/.aws",
         "~/.config/gcloud"
+      ],
+      "denyWrite": [
+        "/etc"
+      ]
+    },
+    "network": {
+      "allowLocalBinding": true,
+      "allowedDomains": [
+        "github.com",
+        "api.github.com"
       ]
     }
   },
+  "skipAutoPermissionPrompt": true,
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
-  "editorMode": "vim",
-  "skipAutoPermissionPrompt": true,
   "voiceEnabled": true
 }

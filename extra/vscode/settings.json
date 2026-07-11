@@ -27,6 +27,9 @@
   "markdown-mermaid.darkModeTheme": "base",
   "markdown-mermaid.lightModeTheme": "base",
 
+  "extensions.experimental.affinity": {
+    "jasew.vscode-helix-emulation": 1
+  },
   "vim.easymotion": true,
   "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -52,8 +55,7 @@
   "vim.vimrc.path": "~/.vimrc.keymap",
   "vim.cursorStylePerMode.insert": "line",
   "vim.cursorStylePerMode.normal": "block",
-  "vim.cursorStylePerMode.visual": "underline"
-  "vim.enableNeovim": false,
+  "vim.cursorStylePerMode.visual": "underline",
 
   "[nix]": {
     "editor.tabSize": 2
@@ -95,7 +97,7 @@
     "editor.tabSize": 2
   },
   "svelte.enable-ts-plugin": true,
-  
+
   "diffEditor.renderSideBySide": true,
   "diffEditor.useInlineViewWhenSpaceIsLimited": false
 }
