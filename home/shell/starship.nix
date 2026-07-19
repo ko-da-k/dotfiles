@@ -11,7 +11,7 @@
 
       format = ''
         $gcloud$aws$kubernetes$nix_shell$direnv
-        $directory$git_branch$git_commit$git_status
+        $directory$git_branch$git_commit$git_status''${custom.jj_bookmark}
         $shell$character'';
 
       package.disabled = true;
@@ -54,6 +54,14 @@
 
       git_branch = {
         format = ''[$symbol$branch]($style) '';
+      };
+
+      custom.jj_bookmark = {
+        description = "current change に最も近い jj bookmark を表示";
+        command = ''jj log -r 'heads(::@ & bookmarks())' --no-graph -T 'bookmarks.join(",")' --limit 1'';
+        when = ''jj root'';
+        format = ''[🔖 $output]($style) '';
+        style = ''purple bold'';
       };
 
       direnv = {
