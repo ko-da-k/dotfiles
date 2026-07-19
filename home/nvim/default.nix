@@ -158,51 +158,15 @@
       }
       nvim-web-devicons
       {
-        plugin = nvim-cmp;
-        type = "lua";
-        config = # lua
-          ''
-            local cmp = require 'cmp'
-            cmp.setup({
-              snippet = {
-                expand = function(args)
-                  vim.fn["vsnip#anonymous"](args.body)
-                end,
-                },
-                mapping = cmp.mapping.preset.insert({
-                  ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-                  ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                  ['<C-Space>'] = cmp.mapping.complete(),
-                  ['<C-e>'] = cmp.mapping.close(),
-                  ['<CR>'] = cmp.mapping.confirm({
-                    behavior = cmp.ConfirmBehavior.Insert,
-                    select = true,
-                  }),
-                }),
-                sources = cmp.config.sources({
-                  { name = 'nvim_lsp' },
-                }, {
-                  { name = 'buffer' },
-                }),
-            })
-          '';
-      }
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      {
         plugin = nvim-lspconfig;
         type = "lua";
         config = # lua
           ''
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
             -- elixirls
             vim.lsp.config.elixirls = {
               cmd = { '${pkgs.elixir-ls}/bin/elixir-ls' },
               filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
               root_markers = { 'mix.exs' },
-              capabilities = capabilities,
             }
             vim.lsp.enable('elixirls')
 
@@ -211,7 +175,6 @@
               cmd = { '${pkgs.taplo}/bin/taplo', 'lsp', 'stdio' },
               filetypes = { 'toml' },
               root_markers = { '*.toml' },
-              capabilities = capabilities,
             }
             vim.lsp.enable('taplo')
 
@@ -220,7 +183,6 @@
               cmd = { '${pkgs.terraform-ls}/bin/terraform-ls', 'serve' },
               filetypes = { 'terraform', 'tf', 'terraform-vars' },
               root_markers = { '.terraform', '.git' },
-              capabilities = capabilities,
             }
             vim.lsp.enable('terraformls')
 
@@ -229,7 +191,6 @@
               cmd = { '${pkgs.bash-language-server}/bin/bash-language-server', 'start' },
               filetypes = { 'sh', 'bash' },
               root_markers = { '.git' },
-              capabilities = capabilities,
             }
             vim.lsp.enable('bashls')
 
@@ -238,7 +199,6 @@
               cmd = { '${pkgs.yaml-language-server}/bin/yaml-language-server', '--stdio' },
               filetypes = { 'yaml', 'yml' },
               root_markers = { '.git' },
-              capabilities = capabilities,
             }
             vim.lsp.enable('yamlls')
 
@@ -247,7 +207,6 @@
               cmd = { '${config.home.homeDirectory}/.ghcup/bin/haskell-language-server-wrapper', '--lsp' },
               filetypes = { 'haskell', 'lhaskell' },
               root_markers = { 'hie.yaml', 'stack.yaml', 'cabal.project', '*.cabal', 'package.yaml' },
-              capabilities = capabilities,
             }
             vim.lsp.enable('hls')
 
@@ -256,7 +215,6 @@
               cmd = { '${pkgs.nixd}/bin/nixd' },
               filetypes = { 'nix' },
               root_markers = { 'flake.nix', '.git' },
-              capabilities = capabilities,
             }
             vim.lsp.enable('nixd')
 
@@ -265,7 +223,6 @@
               cmd = { 'rust-analyzer' },
               filetypes = { 'rust' },
               root_markers = { 'Cargo.toml' },
-              capabilities = capabilities,
               settings = {
                 ["rust-analyzer"] = {
                   check = {
@@ -278,6 +235,26 @@
 
             -- nushell
             vim.lsp.enable('nushell')
+
+            -- native LSP completion (replaces nvim-cmp)
+            -- https://neovim.io/doc/user/lsp.html#lsp-completion
+            vim.o.completeopt = 'menuone,noselect,popup'
+
+            vim.api.nvim_create_autocmd('LspAttach', {
+              group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+              callback = function(ev)
+                local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+
+                if client:supports_method('textDocument/completion') then
+                  vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+                end
+              end,
+            })
+
+            -- native LSP codelens
+            -- https://neovim.io/doc/user/lsp.html#vim.lsp.codelens.enable()
+            vim.lsp.codelens.enable(true)
+            vim.keymap.set('n', '<Leader>cl', vim.lsp.codelens.run)
           '';
       }
       {
@@ -337,6 +314,11 @@
       set noswapfile
       set nobackup
       set viminfo=
+
+      " --- folding (treesitter) -----------------
+      set foldmethod=expr
+      set foldexpr=v:lua.vim.treesitter.foldexpr()
+      set foldlevelstart=99
 
       " --- terminal ----------------------------
       autocmd TermOpen * setlocal norelativenumber
