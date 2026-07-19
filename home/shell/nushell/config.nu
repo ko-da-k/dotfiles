@@ -38,6 +38,16 @@ keybindings: [
             cmd: "zsh-history-replace"
         }
     }
+    {
+        name: edit_command_in_editor
+        modifier: control
+        keycode: char_g
+        mode: [emacs, vi_normal, vi_insert]
+        event: {
+            send: executehostcommand
+            cmd: "edit-command-in-editor"
+        }
+    }
 ]
 }
 
@@ -543,6 +553,19 @@ def zsh-history-replace [] {
   if ($cmd | is-not-empty) {
     commandline edit --replace $cmd
   }
+}
+
+# --- edit command line in $EDITOR (Ctrl-G) -----------------------------------
+
+# Edit the current command line buffer in $env.EDITOR, then replace the
+# buffer with the edited result (bound to Ctrl-G).
+def edit-command-in-editor [] {
+  let tmp = (mktemp --suffix ".nu")
+  commandline | save --force $tmp
+  ^$env.EDITOR $tmp
+  let edited = (open --raw $tmp | str trim --right --char (char nl))
+  rm $tmp
+  commandline edit --replace $edited
 }
 
 source ~/.config/zoxide/.zoxide.nu
