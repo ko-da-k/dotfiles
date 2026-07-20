@@ -13,42 +13,46 @@ $env.PROMPT_INDICATOR_VI_NORMAL = "V "
 $env.PROMPT_MULTILINE_INDICATOR = "... "
 
 $env.config = {
-edit_mode: "vi"
-history: {
-    max_size: 10000
-}
-keybindings: [
-    {
-        name: nu_history_search
-        modifier: control
-        keycode: char_r
-        mode: [emacs, vi_normal, vi_insert]
-        event: {
-            send: executehostcommand
-            cmd: "nu-history-replace"
-        }
+    edit_mode: "vi"
+    history: {
+        max_size: 10000
     }
-    {
-        name: zsh_history_search
-        modifier: alt
-        keycode: char_r
-        mode: [emacs, vi_normal, vi_insert]
-        event: {
-            send: executehostcommand
-            cmd: "zsh-history-replace"
+    keybindings: [
+        {
+            name: nu_history_search
+            modifier: control
+            keycode: char_r
+            mode: [emacs, vi_normal, vi_insert]
+            event: {
+                send: executehostcommand
+                cmd: "nu-history-replace"
+            }
         }
-    }
-    {
-        name: edit_command_in_editor
-        modifier: control
-        keycode: char_g
-        mode: [emacs, vi_normal, vi_insert]
-        event: {
-            send: executehostcommand
-            cmd: "edit-command-in-editor"
+        {
+            name: zsh_history_search
+            modifier: alt
+            keycode: char_r
+            mode: [emacs, vi_normal, vi_insert]
+            event: {
+                send: executehostcommand
+                cmd: "zsh-history-replace"
+            }
         }
+        {
+            name: edit_command_in_editor
+            modifier: control
+            keycode: char_g
+            mode: [emacs, vi_normal, vi_insert]
+            event: {
+                send: executehostcommand
+                cmd: "edit-command-in-editor"
+            }
+        }
+    ]
+    datetime_format: {
+        normal: "%+"
+        table: "%+"
     }
-]
 }
 
 def urlencode [rec: record] {
