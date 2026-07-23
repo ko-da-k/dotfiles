@@ -27,6 +27,12 @@
           normal = "block";
           select = "underline";
         };
+        soft-wrap = {
+          enable = true;
+        };
+        indent-guides = {
+          render = true;
+        };
       };
       keys = {
         insert = {
