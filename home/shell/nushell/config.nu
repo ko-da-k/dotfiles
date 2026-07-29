@@ -67,7 +67,7 @@ $env.config = {
 #   `use x.nu *` … 単体で意味が通る名前のもの (フラットに取り込む)
 # どちらでも export しない def は private のままになる。
 use ./scripts/grpc.nu     # grpc curl (buf curl ラッパー)
-use ./scripts/k8s.nu      # k8s pods-restarts / pods-running / pods-top-mem / svc-lbs / deploys-unready / nodes-arch / containers-images
+use ./scripts/k8s.nu      # k8s pods-restarts / pods-running / pods-top-mem / svc-lbs / deploys-unready / nodes-arch / containers-images / hpa-status / node-scaling-blocked
 use ./scripts/k8s.nu kg   # kg = kubectl get ... -o json | from json | get items
 use ./scripts/fs.nu *     # du-top / find-large / find-recent
 use ./scripts/http.nu *   # urlencode

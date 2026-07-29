@@ -203,3 +203,110 @@ export def containers-images []: any -> table {
     }
   | flatten
 }
+
+# HPA (status.conditions) から特定 type の condition を取り出す。
+# 存在しなければ null。
+def hpa-condition [conditions: list, cond_type: string] {
+  let matched = ($conditions | where type == $cond_type)
+  if ($matched | is-empty) { null } else { $matched | first }
+}
+
+# HPA の現在値と、スケールを阻害している条件を一覧する。
+#
+# status.conditions の意味:
+# - AbleToScale=False   : HPA 自体が動けていない (対象取得失敗など)
+# - ScalingActive=False : メトリクスが取れずスケール計算ができていない
+#   (FailedGetResourceMetric など。GKE コンソールの「メトリクスがありません」に相当)
+# - ScalingLimited=True : メトリクス的には動いているが min/max replicas に張り付いている
+# のいずれかに該当する condition だけ blocked_reason にまとめて出す。
+#
+# Example:
+#   kg hpa -A | k8s hpa-status
+#   kg hpa -A | k8s hpa-status | where blocked_reason != null
+export def hpa-status []: any -> table {
+  $in
+  | unwrap-items
+  | each {|hpa|
+      let conditions = ($hpa.status.conditions? | default [])
+      let able = (hpa-condition $conditions "AbleToScale")
+      let active = (hpa-condition $conditions "ScalingActive")
+      let limited = (hpa-condition $conditions "ScalingLimited")
+      let blockers = (
+        [$able, $active, $limited]
+        | where {|c| $c != null }
+        | where {|c| (
+            (($c.type == "ScalingLimited") and ($c.status == "True"))
+            or (($c.type != "ScalingLimited") and ($c.status != "True"))
+          )}
+        | each {|c| $"($c.type): ($c.reason)" }
+      )
+      {
+        namespace: $hpa.metadata.namespace,
+        name: $hpa.metadata.name,
+        target: $"($hpa.spec.scaleTargetRef.kind)/($hpa.spec.scaleTargetRef.name)",
+        min: ($hpa.spec.minReplicas? | default 1),
+        max: $hpa.spec.maxReplicas,
+        current: ($hpa.status.currentReplicas? | default 0),
+        desired: ($hpa.status.desiredReplicas? | default 0),
+        able_to_scale: (if $able == null { null } else { $able.status == "True" }),
+        scaling_active: (if $active == null { null } else { $active.status == "True" }),
+        scaling_limited: (if $limited == null { null } else { $limited.status == "True" }),
+        blocked_reason: (if ($blockers | is-empty) { null } else { $blockers | str join "; " })
+      }
+    }
+  | sort-by namespace name
+}
+
+# cluster-autoscaler-status ConfigMap のテキストを NodeGroup 単位にパースする。
+#
+# この ConfigMap は JSON/YAML ではなく Cluster Autoscaler が独自形式で
+# 書き出す固定レイアウトのテキスト (Name:/Health:/ScaleUp:/ScaleDown: の行)。
+# LastProbeTime などの継続行は無視して先頭キーの行だけ拾う。
+def parse-ca-nodegroups [text: string] {
+  let lines = ($text | lines | str trim | where {|l| $l != "" })
+  mut groups = []
+  mut current = { name: "", health: "", scale_up: "", scale_down: "" }
+  mut have_current = false
+  for line in $lines {
+    if ($line | str starts-with "Name:") {
+      if $have_current { $groups = ($groups | append $current) }
+      $current = { name: ($line | str replace "Name:" "" | str trim), health: "", scale_up: "", scale_down: "" }
+      $have_current = true
+    } else if $have_current {
+      if ($line | str starts-with "Health:") {
+        $current = ($current | merge { health: ($line | str replace "Health:" "" | str trim) })
+      } else if ($line | str starts-with "ScaleUp:") {
+        $current = ($current | merge { scale_up: ($line | str replace "ScaleUp:" "" | str trim) })
+      } else if ($line | str starts-with "ScaleDown:") {
+        $current = ($current | merge { scale_down: ($line | str replace "ScaleDown:" "" | str trim) })
+      }
+    }
+  }
+  if $have_current { $groups = ($groups | append $current) }
+  $groups
+}
+
+# Cluster Autoscaler (GKE Standard など、OSS cluster-autoscaler を使う構成) の
+# node group のうち、Healthy/NoActivity/NoCandidates 以外の状態にある
+# (= scale up/down が止まっている、または unhealthy な) ものだけを一覧する。
+#
+# GKE コンソールの Node Auto-provisioning 表示はこの ConfigMap を
+# 描画しているだけなので、kubectl だけでも同じ情報が取れる。
+# GKE Autopilot や Cluster Autoscaler 未導入のクラスタにはこの ConfigMap 自体が無い。
+#
+# Example:
+#   kubectl get cm cluster-autoscaler-status -n kube-system -o json | from json | k8s node-scaling-blocked
+#   kg cm cluster-autoscaler-status -n kube-system | k8s node-scaling-blocked
+export def node-scaling-blocked []: any -> table {
+  let text = ($in | get -o data.status | default "")
+  if ($text | is-empty) {
+    return []
+  }
+  parse-ca-nodegroups $text
+  | where {|g| (
+      (not ($g.health | default "" | str starts-with "Healthy"))
+      or (not ($g.scale_up | default "" | str starts-with "NoActivity"))
+      or (not ($g.scale_down | default "" | str starts-with "NoCandidates"))
+    )}
+  | select name health scale_up scale_down
+}
