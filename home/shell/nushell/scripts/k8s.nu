@@ -147,3 +147,59 @@ export def nodes-arch []: any -> table {
   | unwrap-items
   | select metadata.name status.nodeInfo.architecture
 }
+
+# initContainer/Container の image をコンテナ単位に展開して一覧する。
+#
+# Deployment/DaemonSet/StatefulSet/Job (spec.template.spec 配下) と
+# Pod (spec 直下) のどちらの形も同じインタフェースで扱える。
+# サイドカーを含む複数コンテナも initContainers/containers をまとめて
+# 1 行ずつに展開するので取りこぼさない。
+#
+# image のほかに運用上あわせて見ておきたいフィールドも出す:
+# - imagePullPolicy: Always だと rollout のたびに pull し直すので rollout 速度に影響
+# - restartPolicy: initContainer に Always が付いていれば native sidecar
+#   (K8s 1.28+) で、本体コンテナと一緒に稼働し続ける特殊な initContainer
+# - resources.requests/limits (cpu/memory): 未設定だと QoS が Burstable/BestEffort になり
+#   ノード逼迫時の Eviction 優先度に直結する
+# - ports: サービスの疎通確認や NetworkPolicy 設計時の手がかり
+#
+# Example:
+#   kg deploy -A | k8s containers-images
+#   kg po -n kube-system | k8s containers-images
+#   kg ds -A | k8s containers-images | where kind == init
+export def containers-images []: any -> table {
+  $in
+  | unwrap-items
+  | each {|item|
+      let namespace = $item.metadata.namespace
+      let workload = $item.metadata.name
+      # Deployment/DaemonSet/StatefulSet/Job は spec.template.spec 配下、
+      # Pod は spec 直下に containers がある
+      let pod_spec = ($item.spec.template?.spec? | default $item.spec)
+      let init_containers = (
+        $pod_spec.initContainers? | default [] | each {|c| $c | merge { kind: "init" } }
+      )
+      let containers = (
+        $pod_spec.containers? | default [] | each {|c| $c | merge { kind: "container" } }
+      )
+      $init_containers
+      | append $containers
+      | each {|c|
+          {
+            namespace: $namespace,
+            workload: $workload,
+            kind: $c.kind,
+            container: $c.name,
+            image: $c.image,
+            imagePullPolicy: ($c.imagePullPolicy? | default null),
+            restartPolicy: ($c.restartPolicy? | default null),
+            cpu_request: ($c | get -o resources.requests.cpu),
+            cpu_limit: ($c | get -o resources.limits.cpu),
+            mem_request: ($c | get -o resources.requests.memory),
+            mem_limit: ($c | get -o resources.limits.memory),
+            ports: ($c.ports? | default [])
+          }
+        }
+    }
+  | flatten
+}

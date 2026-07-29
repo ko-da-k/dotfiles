@@ -1,20 +1,8 @@
 {
-  "advisorModel": "fable",
-  "editorMode": "vim",
-  "enabledPlugins": {
-    "code-review@claude-plugins-official": true,
-    "explanatory-output-style@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
-  },
   "env": {
     "EDITOR": "hx",
     "VISUAL": "hx"
   },
-  "language": "Japanese",
-  "model": "sonnet",
   "permissions": {
     "allow": [
       "Bash(jj log *)",
@@ -72,42 +60,54 @@
       "Edit(**/credentials*)"
     ]
   },
+  "model": "sonnet",
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "language": "Japanese",
   "sandbox": {
-    "allowUnsandboxedCommands": false,
-    "autoAllowBashIfSandboxed": true,
     "enabled": true,
-    "excludeCommands": [
-      "herdr *"
-    ],
-    "filesystem": {
-      "allowRead": [
-        "~/.config/herdr"
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "api.github.com"
       ],
+      "allowLocalBinding": true
+    },
+    "filesystem": {
       "allowWrite": [
         "/tmp",
         ".",
         "~/.config/herdr"
       ],
+      "denyWrite": [
+        "/etc"
+      ],
       "denyRead": [
         "~/.aws",
         "~/.config/gcloud"
       ],
-      "denyWrite": [
-        "/etc"
+      "allowRead": [
+        "~/.config/herdr"
       ]
     },
-    "network": {
-      "allowLocalBinding": true,
-      "allowedDomains": [
-        "github.com",
-        "api.github.com"
-      ]
-    }
+    "excludeCommands": [
+      "herdr *"
+    ]
   },
-  "skipAutoPermissionPrompt": true,
+  "advisorModel": "fable",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
+  "editorMode": "vim",
+  "skipAutoPermissionPrompt": true,
   "voiceEnabled": true
 }
