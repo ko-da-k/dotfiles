@@ -72,6 +72,7 @@ use ./scripts/k8s.nu kg   # kg = kubectl get ... -o json | from json | get items
 use ./scripts/fs.nu *     # du-top / find-large / find-recent
 use ./scripts/http.nu *   # urlencode
 use ./scripts/port.nu *   # port-using / port-listening / port-kill
+use ./scripts/jwt.nu # jwt decode
 
 # zoxide path copy (interactive)
 def zp [...rest: string] {
