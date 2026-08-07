@@ -1,0 +1,52 @@
+# lefthook (https://github.com/evilmartians/lefthook) の動作確認用設定。
+# jj check (= jj n / c / s / d / gp の先頭で実行) が、lefthook の設定ファイルが
+# 存在すると変更ファイルに対して `lefthook run pre-commit --file ...` を実行する。
+#
+# jj には index が無いため、jj check 側は `--file` で明示的にファイルを渡す。
+# `--file` は {files} / {staged_files} / {all_files} をすべて上書きするので、
+# jj 配下では {files} を使っておけば良い。
+#
+# prek と違い lefthook に builtin フックは無く、すべて run: のシェルに落とす。
+# ここでは外部ランタイムに依存しない POSIX sh のみで書いている。
+# 設定の検証は `lefthook validate`、正規化後の確認は `lefthook dump`。
+pre-commit:
+  parallel: true
+  jobs:
+    # glob で対象を絞る例。{files} は lefthook がクォートして展開するので
+    # スペースを含むパスでも壊れない。
+    - name: trailing-whitespace
+      tags: [style]
+      glob: "*.{md,toml,yaml,yml,json,nix,nu,sh,bash,zsh}"
+      # BSD grep では [ \t] が「空白 / バックスラッシュ / 文字 t」の
+      # 文字クラスとして解釈され t で終わる行を誤検知する。
+      # POSIX 文字クラス [[:blank:]] を使うこと。
+      run: |
+        if grep -nE '[[:blank:]]+$' {files}; then
+          echo "==> 行末に空白があります" >&2
+          exit 1
+        fi
+
+    # exclude で除外する例。glob はサブディレクトリのパスにも効くので
+    # "*.lock" だけで flake.lock も sub/foo.lock も除外される。
+    - name: eof-newline
+      tags: [style]
+      exclude:
+        - "*.lock"
+      run: |
+        status=0
+        for f in {files}; do
+          if [ -s "$f" ] && [ "$(tail -c1 "$f" | wc -l)" -eq 0 ]; then
+            echo "$f: 末尾に改行がありません" >&2
+            status=1
+          fi
+        done
+        exit $status
+
+    # glob 無し = 渡された全ファイルが対象。
+    - name: detect-private-key
+      tags: [security]
+      run: |
+        if grep -nE 'BEGIN [A-Z ]*PRIVATE KEY' {files}; then
+          echo "==> 秘密鍵らしき文字列が含まれています" >&2
+          exit 1
+        fi

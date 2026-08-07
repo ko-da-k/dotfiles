@@ -32,6 +32,10 @@ jj bookmark track $@ --remote=origin
 check = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
 
+# jj diff の出力パスも prek / lefthook の設定探索も CWD 基準なので、
+# サブディレクトリから呼ばれても同じ結果になるよう workspace root に移動する。
+cd "$(jj root)"
+
 diff_files="$(jj diff --name-only --no-pager -f 'trunk()' -t @)"
 
 if [ -z "$diff_files" ]; then
@@ -59,11 +63,32 @@ done
 echo "==> Running git-secrets..."
 git-secrets --scan "${files[@]}"
 
-if [ -f .pre-commit-config.yaml ]; then
+if command -v prek >/dev/null 2>&1 && [ -f .pre-commit-config.yaml ]; then
   echo "==> Running prek..."
   prek run --files "${files[@]}"
 else
-  echo "===> Skipping pre-commit (binary missing or .pre-commit-config.yaml not found)."
+  echo "==> Skipping prek (binary missing or .pre-commit-config.yaml not found)."
+fi
+
+# lefthook は設定ファイル名が lefthook / .lefthook / .config/lefthook x
+# yml|yaml|toml|json と幅広いので、`lefthook dump` の成否で存在判定する。
+# lefthook は git repo を前提とするため、非 colocated な jj repo では
+# dump が exit 128 になり、この分岐ごとスキップされる。
+if command -v lefthook >/dev/null 2>&1 && lefthook dump >/dev/null 2>&1; then
+  echo "==> Running lefthook..."
+  # jj には index が無く {staged_files} は常に空になるため --file で明示的に渡す。
+  # --file は {files} / {staged_files} / {all_files} をすべて上書きする。
+  # --force は付けない: 付けると glob 非マッチのジョブが空のファイルリストで
+  # 起動してしまう (`cmd {files}` が引数無しで全体を舐める事故になる)。
+  lefthook_args=()
+  for f in "${files[@]}"; do
+    lefthook_args+=(--file "$f")
+  done
+  # --no-auto-install: 読み取り専用チェックのはずが .git/hooks を書き換えるのを防ぐ
+  # --no-stage-fixed: jj が使わない git index への `git add` を抑止する
+  lefthook run pre-commit --no-auto-install --no-stage-fixed --no-tty "${lefthook_args[@]}"
+else
+  echo "==> Skipping lefthook (binary missing or config not found)."
 fi
 
 echo '==> All checks passed.'
