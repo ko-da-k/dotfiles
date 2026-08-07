@@ -64,7 +64,7 @@
 
       # 下のほうが優先
       export PATH=$HOME/Library/Application\ Support/JetBrains/Toolbox/script:$PATH
-      eval "$(mise activate zsh)"
+      export PATH=$HOME/.local/share/mise/shims:$PATH
       if command -v aqua &> /dev/null; then
         export PATH="$(aqua root-dir)/bin:$PATH"
       fi
