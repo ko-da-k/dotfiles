@@ -55,6 +55,7 @@
     pkgs.ripgrep
     pkgs.lsd
     pkgs.gh
+    pkgs.jq
     pkgs.glab
     pkgs.htop
     pkgs.graphviz

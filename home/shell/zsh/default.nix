@@ -82,6 +82,9 @@
       # zoxide
       eval "$(zoxide init zsh)"
 
+      # 自前の関数群 (pr-review など)。
+      # ${./functions.zsh} で nix store に取り込まれたパスを source する。
+      source ${./functions.zsh}
     '';
   };
 }
