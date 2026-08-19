@@ -128,37 +128,82 @@ pr-review() {
   # --- herdr の space と pane ------------------------------------------------
   # --focus はここではなく最後に行う。先にフォーカスを移すと、この関数の残りの
   # 出力 (最後のサマリ) が見えなくなった元の pane に流れてしまうため。
-  local created split hw hp_left hp_right
-  created="$(herdr workspace create --cwd "$ws_dir" --label "${repo}#${num}" --no-focus)" || created=""
-  # workspace.create のレスポンスは workspace と root_pane の両方を返すので、
-  # pane list を引かなくても作りたての pane の id が分かる。
-  hw="$(__pr_review_json '.result.workspace.workspace_id' "$created")"
-  hp_left="$(__pr_review_json '.result.root_pane.pane_id' "$created")"
+  #
+  # 同じ PR に対して pr-review を撃ち直しても space が増殖しないよう、先に
+  # ws_dir を cwd に持つ pane を探して既存の space を再利用する。目印を label
+  # ではなく cwd にするのは、label (repo#num) が owner 違いの同名リポジトリで
+  # 衝突しうるのに対し、ws_dir は owner/repo/番号ごとに一意なため。
+  # --workspace を付けない pane list は全 workspace の pane を返し、各 pane が
+  # workspace_id / cwd / label / agent を持つので、必要な情報はこの 1 回で揃う。
+  local panes created split hw hp_left hp_right left_agent
+  panes="$(herdr pane list)" || panes=""
+  hw="$(__pr_review_json '[.result.panes[] | select(.cwd == $d) | .workspace_id] | last' \
+    "$panes" --arg d "$ws_dir")"
+
+  if [[ -n "$hw" ]]; then
+    print -r -- "==> reusing herdr workspace: ${hw}"
+    hp_left="$(__pr_review_json \
+      '[.result.panes[] | select(.workspace_id == $w and .label == "review") | .pane_id] | last' \
+      "$panes" --arg w "$hw")"
+    hp_right="$(__pr_review_json \
+      '[.result.panes[] | select(.workspace_id == $w and .label == "diff") | .pane_id] | last' \
+      "$panes" --arg w "$hw")"
+    if [[ -z "$hp_left" ]]; then
+      # label が失われている場合は、その space の最初の pane を review 用にする。
+      hp_left="$(__pr_review_json '[.result.panes[] | select(.workspace_id == $w) | .pane_id] | first' \
+        "$panes" --arg w "$hw")"
+    fi
+  else
+    print -r -- "==> creating herdr workspace"
+    created="$(herdr workspace create --cwd "$ws_dir" --label "${repo}#${num}" --no-focus)" || created=""
+    # workspace.create のレスポンスは workspace と root_pane の両方を返すので、
+    # pane list を引き直さなくても作りたての pane の id が分かる。
+    hw="$(__pr_review_json '.result.workspace.workspace_id' "$created")"
+    hp_left="$(__pr_review_json '.result.root_pane.pane_id' "$created")"
+  fi
+
   if [[ -z "$hw" || -z "$hp_left" ]]; then
-    print -u2 "pr-review: herdr workspace を作成できませんでした"
+    print -u2 "pr-review: herdr workspace を用意できませんでした"
     return 1
   fi
 
   # 左 (元の pane) を AI、右 (分割で生まれる pane) を hunk にする。
   # --no-focus なので分割後もフォーカスは左に残る。
-  split="$(herdr pane split "$hp_left" --direction right --cwd "$ws_dir" --no-focus)" || split=""
-  hp_right="$(__pr_review_json '.result.pane.pane_id' "$split")"
   if [[ -z "$hp_right" ]]; then
-    print -u2 "pr-review: pane を分割できませんでした"
-    return 1
+    split="$(herdr pane split "$hp_left" --direction right --cwd "$ws_dir" --no-focus)" || split=""
+    hp_right="$(__pr_review_json '.result.pane.pane_id' "$split")"
+    if [[ -z "$hp_right" ]]; then
+      print -u2 "pr-review: pane を分割できませんでした"
+      return 1
+    fi
   fi
 
-  herdr pane rename "$hp_left" "review" >/dev/null
-  herdr pane rename "$hp_right" "diff" >/dev/null
+  # rename は見た目だけの話なので、失敗してもセットアップを止めない。
+  # err_return 下では非ゼロがそのまま関数の中断になり、何も表示されずに終わる。
+  herdr pane rename "$hp_left" "review" >/dev/null 2>&1 || true
+  herdr pane rename "$hp_right" "diff" >/dev/null 2>&1 || true
 
-  __pr_review_wait_prompt "$hp_right"
-  herdr pane run "$hp_right" "hunk diff ${(q)revset} --watch"
+  # hunk は全画面 TUI なので、動いている pane にコマンド文字列を送るとシェルでは
+  # なく hunk のキー入力として食われてしまう。ws_dir を表示しているライブ
+  # セッションが既にあるなら起動し直さない (--watch が差分の変化を追う)。
+  if ! __pr_review_hunk_live "$ws_dir"; then
+    __pr_review_wait_prompt "$hp_right"
+    herdr pane run "$hp_right" "hunk diff ${(q)revset} --watch"
+  fi
 
   # review-pr スキルの「diff の取得方法をユーザーに確認」ステップを省けるよう、
   # revset と PR の情報をプロンプトに埋めておく。改行を含めると途中で送信されるので一行にする。
   local prompt="/review-pr ${pr_url} (${title}) のレビューをお願いします。レビュー対象の diff は cwd で \`jj diff -r ${(q)revset}\` で取得できます。"
-  __pr_review_wait_prompt "$hp_left"
-  herdr pane run "$hp_left" "claude ${(q)prompt}"
+  # 再利用時は claude が既に動いているので、シェルから起動せずプロンプトだけを送る。
+  # 新規作成時は pane list を引いた後に pane ができているため、ここは必ず空になる。
+  left_agent="$(__pr_review_json '[.result.panes[] | select(.pane_id == $p) | .agent] | last' \
+    "$panes" --arg p "$hp_left")"
+  if [[ -n "$left_agent" ]]; then
+    herdr pane run "$hp_left" "$prompt"
+  else
+    __pr_review_wait_prompt "$hp_left"
+    herdr pane run "$hp_left" "claude ${(q)prompt}"
+  fi
 
   # サマリは呼び出し元の pane に出るので、フォーカスを移す前に出し切っておく。
   print -r -- "==> ${owner}/${repo}#${num} ${title}"
@@ -181,15 +226,31 @@ __pr_review_wait_prompt() {
 
 # herdr の CLI が stdout に出す JSON から値を 1 つ取り出す。
 #
-#   __pr_review_json <jq-filter> <json>
+#   __pr_review_json <jq-filter> <json> [jq の追加引数...]
 #
 # herdr のレスポンスは {"id": "<リクエスト id>", "result": {...}} という形で、
 # トップレベルの "id" は workspace/pane の id ではないので必ず result 以下を見る。
+# 3 引数目以降は jq にそのまま渡す (--arg で値を埋めるため。フィルタに文字列を
+# 直接埋め込むとパスに含まれる引用符などで壊れる)。
 #
 # 見つからない場合は何も出力せず 0 で返し、判定は呼び出し側の空文字チェックに任せる
 # (err_return 下で非ゼロを返すと呼び出し側のエラーメッセージに到達しないため)。
 __pr_review_json() {
   emulate -L zsh
-  print -r -- "$2" | jq -r "$1 // empty" 2>/dev/null
+  local filter="$1" json="$2"
+  shift 2
+  print -r -- "$json" | jq -r "$@" "$filter // empty" 2>/dev/null
   return 0
+}
+
+# ws_dir を表示している hunk のライブセッションがあるか。
+#
+# hunk のセッション一覧は herdr とは別の daemon が持っており、cwd と repoRoot の
+# どちらに jj workspace のパスが入るかは入力の種類で変わりうるので両方を見る。
+__pr_review_hunk_live() {
+  emulate -L zsh
+  local n
+  n="$(hunk session list --json 2>/dev/null \
+    | jq -r --arg d "$1" '[.sessions[] | select(.cwd == $d or .repoRoot == $d)] | length' 2>/dev/null)"
+  (( ${n:-0} > 0 ))
 }
