@@ -95,11 +95,16 @@
         "~/.config/gcloud"
       ],
       "allowRead": [
-        "~/.config/herdr"
+        "~/.config/herdr",
+        ".git",
+        ".jj"
       ]
     },
     "excludeCommands": [
       "herdr *"
+    ],
+    "allowMachLookup": [
+      "com.apple.trustd.agent"
     ]
   },
   "advisorModel": "fable",
