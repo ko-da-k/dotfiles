@@ -45,6 +45,9 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
 
+    # dotfiles
+    pkgs.chezmoi
+
     # fonts
     pkgs.nerd-fonts.hack
     pkgs.jetbrains-mono
