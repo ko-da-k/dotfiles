@@ -1,0 +1,20 @@
+{{- $data := dict -}}
+{{- if eq .Format "toml" -}}
+{{-   $data = include .BasePath | fromToml -}}
+{{- else -}}
+{{-   $data = include .BasePath | fromJsonc -}}
+{{- end -}}
+{{- if stat .OverridePath -}}
+{{-   $override := dict -}}
+{{-   if eq .Format "toml" -}}
+{{-     $override = include .OverridePath | fromToml -}}
+{{-   else -}}
+{{-     $override = include .OverridePath | fromJsonc -}}
+{{-   end -}}
+{{-   $data = mergeOverwrite $data $override -}}
+{{- end -}}
+{{- if eq .Format "toml" -}}
+{{ $data | toToml }}
+{{- else -}}
+{{ $data | toPrettyJson }}
+{{- end -}}
