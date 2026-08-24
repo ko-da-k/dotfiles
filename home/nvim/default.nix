@@ -1,10 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.file = {
-    ".ideavimrc".source = ./.ideavimrc;
-    ".vimrc.keymap".source = ./.vimrc.keymap;
-  };
+  # .ideavimrc / .vimrc.keymap は chezmoi で管理する（chezmoi/dot_ideavimrc, chezmoi/dot_vimrc.keymap）
 
   # https://github.com/nix-community/home-manager/blob/master/modules/programs/neovim.nix
   programs.neovim = {

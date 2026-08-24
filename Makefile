@@ -23,6 +23,7 @@ build:
 
 switch:
 	home-manager switch -v --flake .#$(USERNAME)
+	@echo "Next: run 'chezmoi init --apply --source .' (first time) or 'chezmoi apply' to sync dotfiles"
 
 gc:
 	nix-collect-garbage

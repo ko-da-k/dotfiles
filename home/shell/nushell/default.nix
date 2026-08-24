@@ -17,9 +17,6 @@
     extraConfig = builtins.readFile ./config.nu;
   };
 
-  # 用途ごとのユーティリティモジュール。
-  # config.nu からは `use ./scripts/<name>.nu` で相対参照する。
-  # ~/.config/nushell/scripts は nushell のデフォルト $env.NU_LIB_DIRS にも
-  # 含まれるため、`use k8s.nu` のようなアドホックな読み込みもできる。
-  xdg.configFile."nushell/scripts".source = ./scripts;
+  # scripts/ (~/.config/nushell/scripts) は chezmoi で管理する
+  # (chezmoi/private_dot_config/nushell/scripts)
 }

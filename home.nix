@@ -140,6 +140,5 @@
     ./home/shell
     ./home/terminal
     ./home/aerospace
-    ./extra
   ];
 }
