@@ -1,0 +1,103 @@
+{
+  "editor.accessibilitySupport": "off",
+  "editor.stickyScroll.enabled": true,
+  "editor.minimap.enabled": false,
+  "editor.fontSize": 13,
+  "editor.fontFamily": "JetBrains Mono",
+  "debug.console.fontSize": 13,
+  "debug.console.fontFamily": "JetBrains Mono",
+  "files.insertFinalNewline": true,
+  "workbench.colorTheme": "Catppuccin Macchiato",
+  "terminal.integrated.enableMultiLinePasteWarning": "always",
+  "terminal.integrated.env.osx": {
+    "Q_NEW_SESSION": "1"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.git": true,
+    "**/.venv": true,
+    "**/.mypy_cache": true
+  },
+
+  "hediet.vscode-drawio.theme": "atlas",
+  "markdown-mermaid.darkModeTheme": "base",
+  "markdown-mermaid.lightModeTheme": "base",
+
+  "extensions.experimental.affinity": {
+    "jasew.vscode-helix-emulation": 1
+  },
+  "vim.easymotion": true,
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [ "g", "f" ],
+      "after": [ "<leader>", "<leader>", "s" ]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    { "before": ["g", "d"], "commands": ["editor.action.goToDeclaration"] },
+    { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+    { "before": ["g", "D"], "commands": ["editor.action.goToDefinition"] },
+    { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] },
+    { "before": ["g", "y"], "commands": ["editor.action.goToTypeDefinition"] },
+    { "before": ["<leader>", "r"], "commands": ["editor.acion.rename"] },
+    { "before": ["<leader>", "s"], "commands": ["workbench.action.gotoSymbol"] },
+    { "before": ["<leader>", "S"], "commands": ["workbench.action.showAllSymbols"] },
+    { "before": ["<leader>", "a"], "commands": ["editor.action.refactor"] },
+    { "before": ["<leader>", "k"], "commands": ["editor.action.showHover"] },
+  ],
+  "vim.useSystemClipboard": true,
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "~/.vimrc.keymap",
+  "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.visual": "underline",
+
+  "[nix]": {
+    "editor.tabSize": 2
+  },
+
+  "[json]": {
+    "editor.tabSize": 2
+  },
+
+  "[yaml]": {
+    "editor.tabSize": 2
+  },
+
+  "[toml]": {
+    "editor.tabSize": 4
+  },
+
+  "haskell.manageHLS": "GHCup",
+
+  "[rust]": {
+      "editor.defaultFormatter": "rust-lang.rust-analyzer",
+      "editor.formatOnSave": true
+  },
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.checkOnSave": true,
+
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "go.toolsManagement.autoUpdate": true,
+  "chat.agent.enabled": true,
+  "[typescript]": {
+    "editor.tabSize": 2
+  },
+  "svelte.enable-ts-plugin": true,
+
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false
+}

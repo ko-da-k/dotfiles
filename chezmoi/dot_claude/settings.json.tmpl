@@ -1,0 +1,118 @@
+{
+  "env": {
+    "EDITOR": "hx",
+    "VISUAL": "hx"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(jj log *)",
+      "Bash(jj st *)",
+      "Bash(jj diff *)",
+      "Bash(jj desc *)",
+      "Bash(jj show *)",
+      "Bash(jj new *)",
+      "Bash(go build *)",
+      "Bash(go test *)",
+      "Bash(go fmt *)",
+      "Bash(go vet *)"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(su *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(rm *)",
+      "Bash(rm -rf *)",
+      "Bash(chmod *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git reset *)",
+      "Bash(git rebase *)",
+      "Bash(jj git *)",
+      "Bash(jj commit *)",
+      "Bash(jj bookmark *)",
+      "Bash(jj git push *)",
+      "Bash(npm install *)",
+      "Bash(npm uninstall *)",
+      "Bash(npm remove *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm uninstall *)",
+      "Bash(pnpm remove *)",
+      "Bash(uv add *)",
+      "Bash(uv remove *)",
+      "Bash(poetry add *)",
+      "Bash(poetry remove *)",
+      "Bash(terraform apply *)",
+      "Read(.env)",
+      "Read(.env*)",
+      "Read(**/.env)",
+      "Read(**/.env.keys)",
+      "Read(id_rsa*)",
+      "Read(id_ed25519*)",
+      "Read(**/*token*)",
+      "Read(**/*key*)",
+      "Read(utils.nu)",
+      "Read(**/*secrets*)",
+      "Read(**/credentials*)",
+      "Edit(.env*)",
+      "Edit(**/secrets/**)",
+      "Edit(**/credentials*)"
+    ]
+  },
+  "model": "sonnet",
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "language": "Japanese",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "api.github.com"
+      ],
+      "allowLocalBinding": true
+    },
+    "filesystem": {
+      "allowWrite": [
+        "/tmp",
+        ".",
+        "~/.config/herdr"
+      ],
+      "denyWrite": [
+        "/etc"
+      ],
+      "denyRead": [
+        "~/.aws",
+        "~/.config/gcloud"
+      ],
+      "allowRead": [
+        "~/.config/herdr",
+        ".git",
+        ".jj"
+      ]
+    },
+    "excludeCommands": [
+      "herdr *"
+    ],
+    "allowMachLookup": [
+      "com.apple.trustd.agent"
+    ]
+  },
+  "advisorModel": "fable",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "editorMode": "vim",
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
+}
