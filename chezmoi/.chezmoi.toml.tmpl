@@ -1,5 +1,7 @@
 {{- $choices := list "personal" "work" -}}
 {{- $profile := promptChoiceOnce . "profile" "profile (personal/work)" $choices "personal" -}}
 
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
 [data]
     profile = {{ $profile | quote }}
