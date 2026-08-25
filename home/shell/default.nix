@@ -2,7 +2,6 @@
 {
   imports = [
     ./bash
-    ./fish
     ./nushell
     ./scripts
     ./zsh
