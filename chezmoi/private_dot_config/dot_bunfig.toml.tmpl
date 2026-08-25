@@ -1,1 +1,1 @@
-{{ template "merge-config" (dict "BasePath" "symlink-src/.config/.bunfig.toml" "OverridePath" (joinPath .chezmoi.homeDir ".config/chezmoi-overrides/.config/.bunfig.toml") "Format" "toml") }}
+{{ template "merge-config" (dict "BasePath" "base/.config/.bunfig.toml" "OverridePath" (joinPath .chezmoi.homeDir ".config/chezmoi-overrides/.config/.bunfig.toml") "Format" "toml") }}

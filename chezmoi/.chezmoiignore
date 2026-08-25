@@ -1,5 +1,6 @@
 # symlink_ で参照するだけの実体置き場。それ自体を ~/claude-skills として展開しない
 claude-skills
 
-# symlink_ で参照するだけの実体置き場。それ自体を ~/symlink-src として展開しない
-symlink-src
+# symlink_/merge-config/append-config が参照する base 設定の置き場。
+# それ自体を ~/base として展開しない
+base
