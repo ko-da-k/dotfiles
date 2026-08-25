@@ -1,6 +1,8 @@
 {{- $data := dict -}}
 {{- if eq .Format "toml" -}}
 {{-   $data = include .BasePath | fromToml -}}
+{{- else if eq .Format "yaml" -}}
+{{-   $data = include .BasePath | fromYaml -}}
 {{- else -}}
 {{-   $data = include .BasePath | fromJsonc -}}
 {{- end -}}
@@ -8,6 +10,8 @@
 {{-   $override := dict -}}
 {{-   if eq .Format "toml" -}}
 {{-     $override = include .OverridePath | fromToml -}}
+{{-   else if eq .Format "yaml" -}}
+{{-     $override = include .OverridePath | fromYaml -}}
 {{-   else -}}
 {{-     $override = include .OverridePath | fromJsonc -}}
 {{-   end -}}
@@ -15,6 +19,8 @@
 {{- end -}}
 {{- if eq .Format "toml" -}}
 {{ $data | toToml }}
+{{- else if eq .Format "yaml" -}}
+{{ $data | toYaml }}
 {{- else -}}
 {{ $data | toPrettyJson }}
 {{- end -}}
