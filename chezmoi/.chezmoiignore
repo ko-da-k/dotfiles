@@ -1,5 +1,6 @@
-# symlink_ で参照するだけの実体置き場。それ自体を ~/claude-skills として展開しない
-claude-skills
+# run_after スクリプトが symlink の実体として参照する SSOT。
+# それ自体を ~/agent-skills として展開しない
+agent-skills
 
 # symlink_/merge-config/append-config が参照する base 設定の置き場。
 # それ自体を ~/base として展開しない

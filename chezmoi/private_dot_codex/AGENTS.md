@@ -57,7 +57,7 @@ pytest や go など parametrized test / table driven test の場合、Given/Whe
 
 レビューの容易性、保守性のため commit の粒度を細かくする必要があります。
 
-1. README.md 等 Docs の作成、関数のインタフェース定義、テストリストの定義ができた時点でレビューを実施する。jj-desc / jj new でこの時点の作業を記録する
+1. README.md 等 Docs の作成、関数のインタフェース定義、テストリストの定義ができた時点でレビューを実施する。jj-desc / jj n でこの時点の作業を記録する
 2. 1 つずつ関数の実装とテストを行い、レビューを実施する。jj-desc / jj new でこの時点の作業をきろくする
 3. `2` を繰り返し、細かい粒度の Commit を重ねていき完成させる
 

@@ -55,13 +55,14 @@ JSON/TOML/YAML はキー単位マージ（`mergeOverwrite`）、プレーンテ�
 `chezmoi apply` は source tree にあるものしか触らないので、そもそも chezmoi が関知しないパスは
 **直接その場所にファイルを作れば十分**。override の仕組みは不要。
 
-例: 会社PCだけで使う claude skill
+例: 会社PCだけで使う agent skill
 
 ```sh
-mkdir -p ~/.claude/skills/company-tool
-cp SKILL.md ~/.claude/skills/company-tool/SKILL.md
+mkdir -p ~/.agents/skills/company-tool
+cp SKILL.md ~/.agents/skills/company-tool/SKILL.md
 ```
 
-`.claude/skills` はリポジトリ側のスキル（`chezmoi/claude-skills/*`）を1つずつ symlink する構成
-（`chezmoi/run_after_sync-claude-skills.sh.tmpl` が管理）になっており、repo の skill 名と衝突しない
-限り、直接追加したフォルダが `chezmoi apply` で消されたり上書きされたりすることはない。
+`chezmoi/agent-skills/*` が Claude Code と Codex の共通 SSOT である。`chezmoi apply` は
+`~/.claude/skills` と `~/.agents/skills` に skill ごとの symlink を作成する
+（`chezmoi/run_after_sync-agent-skills.sh.tmpl` が管理）。Git 管理外の skill は、repo の skill 名と
+衝突しない限り、どちらのディレクトリに直接追加しても消えたり上書きされたりしない。
