@@ -9,10 +9,25 @@
    - 初回のみ `profile`（personal/work）を尋ねられる。回答は `~/.config/chezmoi/chezmoi.toml`
      （このリポジトリの外・Git 管理対象外）に保存される
    - 2回目以降の反映は `chezmoi apply` のみでよい
+4. `mise install` — Nushell と language toolchain をインストールする
 
 パッケージのインストール（Nix/home-manager）と dotfiles の展開（chezmoi）は責務が分かれている。
 - `home.nix` / `home/**`: Nix パッケージのインストールを管理
 - `chezmoi/**`: dotfiles（symlink・テンプレート）の展開を管理
+
+## Nushell
+
+Nushell 本体は Home Manager ではなく、`chezmoi/base/.config/mise/config.toml` の
+`aqua:nushell/nushell` でバージョンを管理する。バージョンを更新したら設定を反映してインストールする。
+
+```sh
+chezmoi apply
+mise install
+```
+
+`config.nu` の共通設定は `chezmoi/base/.config/nushell/config.nu` に置く。マシン固有の設定は
+`~/.config/chezmoi-overrides/.config/nushell/config.nu` に置くと、共通設定の末尾に追記される。
+同名の alias などをマシン固有設定で再定義した場合は、後にあるマシン固有設定が使われる。
 
 ## マシンごとの override（会社PCだけ設定を変えたい等）
 
@@ -22,7 +37,7 @@ override が要るかどうかは「base が Git 管理下にあり `chezmoi app
 
 `.claude/settings.json`, vscode の `settings.json`/`keybindings.json`, `.config/zed/{settings,keymap}.json`,
 `.config/{herdr,mise}/config.toml`, `.config/ghostty/config`, `.config/git/ignore`, `.config/pnpm/rc`,
-`.config/uv/uv.toml`, `.config/.bunfig.toml`, `.config/pnpm/config.yaml`, `.npmrc` は
+`.config/nushell/config.nu`, `.config/uv/uv.toml`, `.config/.bunfig.toml`, `.config/pnpm/config.yaml`, `.npmrc` は
 すべて chezmoi が毎回 base から再生成するので、直接編集しても次の apply で消える。これらは
 `~/.config/chezmoi-overrides/` 配下（このリポジトリの外・Git 管理対象外）に `$HOME` から見た相対パスと
 同じ構造で override ファイルを置くと、次の `chezmoi apply` から自動的に反映される。ファイルが無ければ

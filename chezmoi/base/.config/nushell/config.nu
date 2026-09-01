@@ -1,5 +1,12 @@
 $env.STARSHIP_SHELL = "nu"
 
+alias k = kubectl
+alias lg = lazygit
+alias la = ls -a
+alias lla = ls -la
+alias gco = git checkout
+alias zg = cd (ghq list --full-path | fzf)
+
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=$($env.LAST_EXIT_CODE)'
 }
@@ -57,10 +64,8 @@ $env.config = {
 
 # --- utility modules ----------------------------------------------------------
 # 用途が明確なユーティリティは scripts/ 配下のモジュールに分けている。
-# 実体は home/shell/nushell/scripts/*.nu で、home-manager が
-# ~/.config/nushell/scripts へリンクする。相対パスは config.nu の実体
-# (nix store) ではなくシンボリックリンクの置かれた ~/.config/nushell/ を
-# 基準に解決される。
+# config.nu と scripts/*.nu は chezmoi が ~/.config/nushell/ に配置する。
+# 相対パスはそのディレクトリを基準に解決される。
 #
 # 名前空間を切るかどうかはモジュールごとに選ぶ:
 #   `use x.nu`   … 体系が複雑で `k8s <Tab>` で引きたいもの

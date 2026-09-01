@@ -2,7 +2,6 @@
 {
   imports = [
     ./bash
-    ./nushell
     ./scripts
     ./zsh
     ./direnv.nix
