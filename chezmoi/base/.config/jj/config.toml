@@ -44,29 +44,30 @@ if [ -z "$diff_files" ]; then
   exit 0
 fi
 
-echo "scan target: jj diff --name-only --no-pager -f 'trunk()' -t @"
+echo "scan target: trunk()..@"
 
+changed_files=()
 files=()
 while IFS= read -r f; do
+  changed_files+=("$f")
   [ -f "$f" ] && files+=("$f")
 done <<< "$diff_files"
 
 if [ ${#files[@]} -eq 0 ]; then
-  echo "==> All changes are deletions. Nothing to scan."
-  exit 0
+  echo "==> All changes are deletions. Skipping file scanners."
+else
+  echo "==> Running gitleaks..."
+  for f in "${files[@]}"; do
+    gitleaks dir --no-banner --verbose --log-level warn "$f"
+  done
+
+  echo "==> Running git-secrets..."
+  git-secrets --scan "${files[@]}"
 fi
-
-echo "==> Running gitleaks..."
-for f in "${files[@]}"; do
-  gitleaks dir --no-banner --verbose --log-level warn "$f"
-done
-
-echo "==> Running git-secrets..."
-git-secrets --scan "${files[@]}"
 
 if command -v prek >/dev/null 2>&1 && [ -f .pre-commit-config.yaml ]; then
   echo "==> Running prek..."
-  prek run --files "${files[@]}"
+  prek run --files "${changed_files[@]}"
 else
   echo "==> Skipping prek (binary missing or .pre-commit-config.yaml not found)."
 fi
@@ -77,17 +78,12 @@ fi
 # dump が exit 128 になり、この分岐ごとスキップされる。
 if command -v lefthook >/dev/null 2>&1 && lefthook dump >/dev/null 2>&1; then
   echo "==> Running lefthook..."
-  # jj には index が無く {staged_files} は常に空になるため --file で明示的に渡す。
-  # --file は {files} / {staged_files} / {all_files} をすべて上書きする。
-  # --force は付けない: 付けると glob 非マッチのジョブが空のファイルリストで
-  # 起動してしまう (`cmd {files}` が引数無しで全体を舐める事故になる)。
   lefthook_args=()
-  for f in "${files[@]}"; do
+  for f in "${changed_files[@]}"; do
     lefthook_args+=(--file "$f")
   done
-  # --no-auto-install: 読み取り専用チェックのはずが .git/hooks を書き換えるのを防ぐ
-  # --no-stage-fixed: jj が使わない git index への `git add` を抑止する
-  lefthook run pre-commit --no-auto-install --no-stage-fixed --no-tty "${lefthook_args[@]}"
+  lefthook run pre-commit --colors off \
+    --no-auto-install --no-stage-fixed --no-tty "${lefthook_args[@]}" 2>&1 | cat
 else
   echo "==> Skipping lefthook (binary missing or config not found)."
 fi

@@ -16,6 +16,7 @@ stack = "3.11.1"
 # tools
 conftest = "0.68.2"
 prek = "0.4.5"
+lefthook = "2.1.12"
 
 [settings]
 lockfile = true

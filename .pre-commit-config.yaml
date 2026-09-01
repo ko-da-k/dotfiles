@@ -1,8 +1,9 @@
-# prek (https://github.com/j178/prek) の動作確認用設定。
-# jj check (= jj n / c / s / gp の先頭で実行) が、このファイルが存在すると
-# 変更ファイルに対して prek run --files を実行する。
+# prek (https://github.com/j178/prek) の Git pre-commit hook 設定。
+# 通常の hook は Git が選択したファイルを検査し、always_run hook は
+# 対象ファイルの有無にかかわらず実行される。
 #
 # repo: builtin は prek 組み込みの Rust 実装フックで、ネットワーク・外部ランタイム不要。
+# repo: local は repository 固有のチェック用。
 # 一覧: https://prek.j178.dev/builtin/
 repos:
   - repo: builtin
@@ -13,3 +14,11 @@ repos:
       - id: check-yaml
       - id: check-toml
       - id: detect-private-key
+  - repo: local
+    hooks:
+      - id: chezmoi-status
+        name: chezmoi status
+        entry: chezmoi status
+        language: system
+        pass_filenames: false
+        always_run: true
