@@ -7,8 +7,9 @@ log = "present(@) | (trunk()..@).. | (trunk()..@)- | (trunk()..@)--"
 
 [aliases]
 l = ["log", "--limit", "20"]
-lt = ["log", "-r", "trunk()::@"] # log trunk
-lf = ["log", "-T", "my_log_oneline_full(self)"] # log full-sha
+lb = ["log", "-r", "::@ | ::trunk()"] # log current branch and trunk
+lt = ["log", "-r", "::trunk()"] # log trunk
+lf = ["log", "-T", "my_log_oneline_full(self)", "-r", "::@ | ::trunk()", "--limit", "20"] # log full-sha
 ld = ["log", "-r", "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"] # log default
 la = ["log", "-r", "all()"] # log all
 info = ["util", "exec", "--", "bash", "-c", """
