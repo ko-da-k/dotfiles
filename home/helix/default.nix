@@ -39,6 +39,7 @@
           "C-[" = "normal_mode";
         };
         normal = {
+          C-p = ":sh arto --open=screen \"%{buffer_name}\"";
           C-y = [
             ":sh rm -f /tmp/unique-file"
             ":insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file"
