@@ -129,6 +129,7 @@
     VISUAL = "hx";
     PNPM_HOME = "${config.xdg.dataHome}/pnpm";
     BUN_INSTALL = "${config.xdg.dataHome}/bun";
+    NIX_SSL_CERT_FILE = "/opt/homebrew/etc/ca-certificates/cert.pem";
   };
 
   # Let Home Manager install and manage itself.

@@ -17,6 +17,7 @@ stack = "3.11.1"
 conftest = "0.68.2"
 prek = "0.4.5"
 lefthook = "2.1.12"
+pinact = "5.0.2"
 
 [settings]
 lockfile = true

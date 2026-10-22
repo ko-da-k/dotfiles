@@ -60,7 +60,6 @@
       "Edit(**/credentials*)"
     ]
   },
-  "model": "sonnet",
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "explanatory-output-style@claude-plugins-official": true,
@@ -113,6 +112,8 @@
     "mode": "hold"
   },
   "editorMode": "vim",
+  "inputNeededNotifEnabled": false,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true
 }

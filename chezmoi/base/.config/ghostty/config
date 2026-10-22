@@ -13,3 +13,6 @@ background-opacity = 0.9
 background-blur = 20
 unfocused-split-opacity = 0.3
 keybind = super+shift+r=prompt_surface_title
+
+# マシン固有の設定（Git 管理外）。存在しなければ無視され、本ファイルより後に読まれる
+config-file = ?config.local
