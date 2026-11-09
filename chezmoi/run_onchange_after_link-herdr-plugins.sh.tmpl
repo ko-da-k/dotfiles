@@ -1,0 +1,9 @@
+#!/bin/sh
+{{- $pluginDir := joinPath .chezmoi.sourceDir ".." "herdr-plugins" "agent-name" }}
+# herdr は link 時に manifest を検証・登録するので、manifest が変わったときだけ link し直す。
+# script は link 元のパスから毎回読まれるため、変更しても再 link は不要。
+# herdr-plugin.toml sha256: {{ include (joinPath $pluginDir "herdr-plugin.toml") | sha256sum }}
+set -eu
+
+command -v herdr >/dev/null 2>&1 || exit 0
+herdr plugin link {{ $pluginDir | quote }}

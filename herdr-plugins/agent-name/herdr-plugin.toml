@@ -1,0 +1,26 @@
+id = "agent-name"
+name = "Agent name"
+version = "0.1.0"
+min_herdr_version = "0.9.5"
+description = "Prompt for a name when an agent starts, and rename agents from a keybinding."
+platforms = ["linux", "macos"]
+
+# agent を検知したら、名前が未設定のときだけ名前入力の popup を開く
+[[events]]
+on = "pane.agent_detected"
+command = ["sh", "on-agent-detected.sh"]
+
+# フォーカス中の agent の名前を変更する（keys.command の plugin_action から呼ぶ）
+[[actions]]
+id = "rename"
+title = "Rename agent"
+contexts = ["pane"]
+command = ["sh", "open-prompt.sh"]
+
+[[panes]]
+id = "prompt"
+title = "Agent name"
+placement = "popup"
+width = 50
+height = 5
+command = ["sh", "prompt-name.sh"]

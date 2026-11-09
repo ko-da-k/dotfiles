@@ -20,11 +20,9 @@ height = "80%"
 
 [[keys.command]]
 key = "prefix+shift+a"
-type = "popup"
-command = '''printf 'agent name: '; read -r name; [ -z "$name" ] || "$HERDR_BIN_PATH" agent rename "$HERDR_ACTIVE_PANE_ID" "$name" >/dev/null || { printf 'press enter to close'; read -r _; }'''
+type = "plugin_action"
+command = "agent-name.rename"
 description = "rename agent"
-width = 50
-height = 5
 
 [ui]
 prompt_new_workspace_name = true

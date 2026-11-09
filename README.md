@@ -27,6 +27,14 @@ mise install
 
 `config.nu` は `chezmoi/base/.config/nushell/config.nu` に置く。
 
+## herdr plugin
+
+`herdr-plugins/` の plugin は chezmoi で配置せず、`herdr plugin link` で登録する。
+`chezmoi apply` が manifest の変更時に link する（`chezmoi/run_onchange_after_link-herdr-plugins.sh.tmpl`）。
+
+- `agent-name`: agent の起動時に、名前が未設定なら名前を入力する popup を出す。
+  `prefix+shift+a` でフォーカス中の agent の名前を変更する
+
 ## マシン固有の設定
 
 ### ツールの設定分割機能を使う
