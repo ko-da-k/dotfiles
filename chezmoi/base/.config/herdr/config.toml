@@ -26,3 +26,11 @@ description = "rename agent"
 
 [ui]
 prompt_new_workspace_name = true
+
+# $cwd は shell の hook（zsh / nushell）が workspace の先頭 pane の cwd 末尾 2 要素を報告する
+[ui.sidebar.spaces]
+rows = [
+  ["state_icon", "workspace"],
+  ["$cwd"],
+  ["branch", "git_status"],
+]

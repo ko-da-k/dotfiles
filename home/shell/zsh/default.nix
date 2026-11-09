@@ -81,6 +81,25 @@
 
       # zoxide
       eval "$(zoxide init zsh)"
+
+      # herdr: pane 名を cwd の末尾 2 要素にして、分割した pane の repo を見分ける。
+      # workspace の先頭 pane なら、同じ値を spaces の $cwd としても報告する
+      if [[ -n "$HERDR_PANE_ID" ]] && (( $+commands[herdr] )); then
+        _herdr_pane_name_from_cwd() {
+          {
+            local name="''${PWD:h:t}/''${PWD:t}"
+            herdr pane rename "$HERDR_PANE_ID" "$name"
+            local first
+            first="$(herdr pane list --workspace "$HERDR_WORKSPACE_ID" | jq -r '.result.panes[0].pane_id // empty')"
+            if [[ "$first" == "$HERDR_PANE_ID" ]]; then
+              herdr workspace report-metadata "$HERDR_WORKSPACE_ID" --source pane-cwd --token "cwd=$name"
+            fi
+          } >/dev/null 2>&1 &!
+        }
+        autoload -Uz add-zsh-hook
+        add-zsh-hook chpwd _herdr_pane_name_from_cwd
+        _herdr_pane_name_from_cwd
+      fi
     '';
   };
 }

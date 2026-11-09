@@ -154,4 +154,28 @@ def edit-command-in-editor [] {
   commandline edit --replace $edited
 }
 
+# --- herdr pane name -----------------------------------------------------------
+
+# pane 名を cwd の末尾 2 要素にして、分割した pane の repo を見分ける
+# workspace の先頭 pane なら、同じ値を spaces の $cwd としても報告する
+def herdr-pane-name-from-cwd [dir: string] {
+  let name = ($dir | path split | last 2 | path join)
+  job spawn {
+    ^herdr pane rename $env.HERDR_PANE_ID $name o+e>| ignore
+    let first = (try {
+      ^herdr pane list --workspace $env.HERDR_WORKSPACE_ID | from json | get result.panes.0.pane_id
+    } catch { null })
+    if $first == $env.HERDR_PANE_ID {
+      ^herdr workspace report-metadata $env.HERDR_WORKSPACE_ID --source pane-cwd --token $"cwd=($name)" o+e>| ignore
+    }
+  } | ignore
+}
+
+if ($env.HERDR_PANE_ID? | is-not-empty) and (which herdr | is-not-empty) {
+  $env.config.hooks.env_change.PWD = (
+    $env.config.hooks.env_change.PWD? | default [] | append {|_, after| herdr-pane-name-from-cwd $after }
+  )
+  herdr-pane-name-from-cwd $env.PWD
+}
+
 source ~/.config/zoxide/.zoxide.nu
